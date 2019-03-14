@@ -1,0 +1,15 @@
+dist: xenial
+
+addons:
+  apt:
+    packages:
+      - libgtkmm-3.0-dev
+      - libgtest-dev
+
+compiler:
+  - clang
+  - gcc
+
+script:
+  - make all
+  - make test
