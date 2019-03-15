@@ -2,18 +2,20 @@ dist: xenial
 
 language: cpp
 
-addons:
-  apt:
-    sources:
-      - ppa:isc/bind
-    packages:
-      - libgtkmm-3.0-dev
-      - libgtest-dev
-      - googletest
-
 compiler:
   - clang
   - gcc
+
+addons:
+  apt:
+    packages:
+      - libgtkmm-3.0-dev
+      - libgtest-dev
+
+before_install:
+  - sudo add-apt-repository ppa:isc/bind -y
+  - sudo apt-get update -q
+  - sudo apt-get install googletest -y
 
 script:
   - make all
