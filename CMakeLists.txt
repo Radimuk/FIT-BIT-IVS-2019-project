@@ -26,6 +26,5 @@ if(NOT CMAKE_BUILD_TOOL MATCHES "(msdev|devenv|nmake|MSBuild)")
     endif()
 endif()
 
-
 add_subdirectory(src)
 add_subdirectory(tests)
