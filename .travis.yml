@@ -4,9 +4,12 @@ language: cpp
 
 addons:
   apt:
+    sources:
+      - ppa:isc/bind
     packages:
       - libgtkmm-3.0-dev
       - libgtest-dev
+      - googletest
 
 compiler:
   - clang
