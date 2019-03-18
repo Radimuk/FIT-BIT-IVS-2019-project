@@ -1,22 +1,22 @@
-dist: xenial
-
 language: cpp
+
+services:
+  - docker
 
 compiler:
   - clang
   - gcc
 
-addons:
-  apt:
-    packages:
-      - libgtkmm-3.0-dev
-      - libgtest-dev
-
 before_install:
-  - sudo add-apt-repository ppa:isc/bind -y
-  - sudo apt-get update -q
-  - sudo apt-get install googletest -y
+  - docker pull ubuntu:18.04
+  - docker run --name travis-ci -v $TRAVIS_BUILD_DIR:/ivs -td ubuntu:18.04 /bin/bash
+  - docker exec -ti travis-ci bash -c "apt-get update"
+  - docker exec -ti travis-ci bash -c "apt-get install -y build-essential cmake libgtest-dev libgtkmm-3.0-dev"
+  - if [[ "$CC" == "clang" ]]; then docker exec -ti travis-ci bash -c "apt-get install -y clang"; fi
 
 script:
-  - make all
-  - make test
+  - docker exec -ti travis-ci bash -c "CC=${CC} CXX=${CXX} make all"
+  - docker exec -ti travis-ci bash -c "CC=${CC} CXX=${CXX} make test"
+
+after_script:
+  - docker stop travis-ci
