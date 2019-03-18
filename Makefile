@@ -1,15 +1,14 @@
-all: compile test
+all: clean build test
 
-compile: clean
-	mkdir build
+build:
 	cmake -Bbuild -H.
 	cmake --build build
 
 clean:
 	rm -rf build
 
-run: compile
+run: build
 	./build/bin/fit-calc
 
-test: compile
+test: build
 	./build/bin/tests
