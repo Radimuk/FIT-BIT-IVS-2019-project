@@ -1,9 +1,10 @@
-# FIT-BIT-IVS-2018-project
+# FIT-BIT-IVS-2019-project
 
 [![Build Status](https://travis-ci.com/Roman3349/FIT-BIT-IVS-2019-project.svg?token=7VpMcGETTy8vt99girhh&branch=master)](https://travis-ci.com/Roman3349/FIT-BIT-IVS-2019-project)
 
 ## Prostředí
  * Debian testing
+ * Ubuntu 18.04
 
 ## Autoři
 
