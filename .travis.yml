@@ -15,8 +15,8 @@ before_install:
   - if [[ "$CC" == "clang" ]]; then docker exec -ti travis-ci bash -c "apt-get install -y clang"; fi
 
 script:
-  - docker exec -ti travis-ci bash -c "CC=${CC} CXX=${CXX} make all"
-  - docker exec -ti travis-ci bash -c "CC=${CC} CXX=${CXX} make test"
+  - docker exec -ti travis-ci bash -c "cd /ivs && CC=${CC} CXX=${CXX} make all"
+  - docker exec -ti travis-ci bash -c "cd /ivs && CC=${CC} CXX=${CXX} make test"
 
 after_script:
   - docker stop travis-ci
