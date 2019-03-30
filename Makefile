@@ -7,6 +7,10 @@ build:
 clean:
 	rm -rf build
 
+deb-package:
+	gbp dch -a -S --ignore-branch
+	dpkg-buildpackage -b -rfakeroot -us -uc -tc
+
 run: build
 	./build/bin/fit-calc
 

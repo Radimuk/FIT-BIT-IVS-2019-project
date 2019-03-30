@@ -1,0 +1,18 @@
+fit-calc (0.0.1~2.gbpe2774a) UNRELEASED; urgency=medium
+
+  ** SNAPSHOT build @e2774ae5830f3ff72b368f8055554a7e8daa211b **
+
+  [ Roman Ondráček ]
+  * Initial commit
+  * Add project's skeletion
+  * Fix Travis CI
+  * Use PPA for GoogleTest's package
+  * Fix Travis CI's configuration
+  * Add plan (resolve #18)
+  * Travis CI: use Ubuntu 18.04
+  * Travis CI: fix path to the source code
+  * Tests: fix googletest on Ubuntu 18.04
+  * Build: fix Makefile
+  * Read Me: update repository's name and environments
+
+ -- Roman Ondráček <roman.ondracek@iqrf.com>  Sat, 30 Mar 2019 22:54:32 +0100

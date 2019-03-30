@@ -1,0 +1,16 @@
+Source: fit-calc
+Section: math
+Priority: optional
+Maintainer: Roman Ondráček <xondra58@stud.fit.vutbr.cz>
+Build-Depends: debhelper (>= 10), cmake, libgtest-dev, libgtkmm-3.0-dev
+Standards-Version: 4.1.5
+Homepage: https://github.com/Roman3349/FIT-BIT-IVS-2019-project
+Vcs-Git: https://github.com/Roman3349/FIT-BIT-IVS-2019-project.git
+Vcs-Browser: https://github.com/Roman3349/FIT-BIT-IVS-2019-project
+
+Package: fit-calc
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: FIT Calc
+ Simple GTK+ calculator written in C++.
