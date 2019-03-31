@@ -12,7 +12,5 @@ else(NOT GTest_FOUND)
 	include_directories(${GTEST_INCLUDE_DIRS})
 endif(NOT GTest_FOUND)
 
-include_directories()
-
-add_executable(tests main.cpp GenericMathLibTest.cpp)
-target_link_libraries(tests ${GTEST_BOTH_LIBRARIES} genericMathLib)
+add_executable(tests main.cpp GenericMathLibTest.cpp TrigonometricMathLibTest.cpp)
+target_link_libraries(tests ${GTEST_BOTH_LIBRARIES} genericMathLib trigonometricMathLib)
