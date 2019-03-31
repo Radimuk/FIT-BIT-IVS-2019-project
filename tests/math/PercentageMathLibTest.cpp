@@ -20,7 +20,7 @@
  */
 
 #include <gtest/gtest.h>
-#include "../src/PercentageMathLib.h"
+#include "../../src/math/PercentageMathLib.h"
 
 namespace FitCalcTests {
 

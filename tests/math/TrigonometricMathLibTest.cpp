@@ -20,17 +20,17 @@
  */
 
 #include <gtest/gtest.h>
-#include "../src/GenericMathLib.h"
+#include "../../src/math/TrigonometricMathLib.h"
 
 namespace FitCalcTests {
 
-	class GenericMathLibTest : public ::testing::Test {
+	class TrigonometricMathLibTest : public ::testing::Test {
 	protected:
-		GenericMathLib mathLib;
+		TrigonometricMathLib mathLib;
 	};
 
-	TEST_F(GenericMathLibTest, add) {
-		ASSERT_EQ(5, this->mathLib.add(2, 3));
+	TEST_F(TrigonometricMathLibTest, add) {
+		ASSERT_EQ(0, this->mathLib.sin(0));
 	}
 
 }

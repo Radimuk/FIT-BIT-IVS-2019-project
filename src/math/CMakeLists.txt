@@ -1,0 +1,3 @@
+add_library(genericMathLib GenericMathLib.cpp GenericMathLib.h)
+add_library(percentageMathLib PercentageMathLib.cpp PercentageMathLib.h)
+add_library(trigonometricMathLib TrigonometricMathLib.cpp TrigonometricMathLib.h)
