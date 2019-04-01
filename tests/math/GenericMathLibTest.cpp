@@ -50,7 +50,7 @@ namespace FitCalcTests {
 	TEST_F(GenericMathLibTest, div) {
 		ASSERT_EQ(4, this->mathLib.div(12, 3));
 		ASSERT_EQ(0.6, this->mathLib.div(12, 20));
-		ASSERT_EQ(−24, this->mathLib.div(-12, 0.5));
+		ASSERT_EQ(-24, this->mathLib.div(-12, 0.5));
 	}
 
 	TEST_F(GenericMathLibTest, mod) {
@@ -78,21 +78,21 @@ namespace FitCalcTests {
 	}
 
 	TEST_F(GenericMathLibTest, root) {
-		ASSERT_EQ(3, this->mathLib.root(2, 9));
+		ASSERT_EQ(3, this->mathLib.root(9, 2));
 		ASSERT_EQ(1.414213562, this->mathLib.root(2, 2));
-		ASSERT_EQ(3.107232506, this->mathLib.root(3, 30));
+		ASSERT_EQ(3.107232506, this->mathLib.root(30, 3));
 	}
 
 	TEST_F(GenericMathLibTest, log) {
 		ASSERT_EQ(2, this->mathLib.log(100));
 		ASSERT_EQ(1.079181246, this->mathLib.log(12));
-		ASSERT_EQ(−0.301029996, this->mathLib.log(0.5));
+		ASSERT_EQ(-0.301029996, this->mathLib.log(0.5));
 	}
 
 	TEST_F(GenericMathLibTest, ln) {
 		ASSERT_EQ(2.302585093, this->mathLib.ln(10));
 		ASSERT_EQ(0.693147181, this->mathLib.ln(2));
-		ASSERT_EQ(−0.693147181, this->mathLib.ln(0.5));
+		ASSERT_EQ(-0.693147181, this->mathLib.ln(0.5));
 	}
 
 
