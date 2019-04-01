@@ -51,12 +51,14 @@ namespace FitCalcTests {
 		ASSERT_EQ(4, this->mathLib.div(12, 3));
 		ASSERT_EQ(0.6, this->mathLib.div(12, 20));
 		ASSERT_EQ(-24, this->mathLib.div(-12, 0.5));
+		ASSERT_ANY_THROW(this->mathLib.div(10, 0));
 	}
 
 	TEST_F(GenericMathLibTest, mod) {
 		ASSERT_EQ(0, this->mathLib.mod(12, 3));
 		ASSERT_EQ(1, this->mathLib.mod(13, 3));
 		ASSERT_EQ(5, this->mathLib.mod(15, 10));
+		ASSERT_ANY_THROW(this->mathLib.mod(10, 0));
 	}
 
 	TEST_F(GenericMathLibTest, abs) {
@@ -87,12 +89,14 @@ namespace FitCalcTests {
 		ASSERT_EQ(2, this->mathLib.log(100));
 		ASSERT_EQ(1.079181246, this->mathLib.log(12));
 		ASSERT_EQ(-0.301029996, this->mathLib.log(0.5));
+		ASSERT_ANY_THROW(this->mathLib.log(-2));
 	}
 
 	TEST_F(GenericMathLibTest, ln) {
 		ASSERT_EQ(2.302585093, this->mathLib.ln(10));
 		ASSERT_EQ(0.693147181, this->mathLib.ln(2));
 		ASSERT_EQ(-0.693147181, this->mathLib.ln(0.5));
+		ASSERT_ANY_THROW(this->mathLib.ln(-2));
 	}
 
 
