@@ -31,6 +31,25 @@ namespace FitCalcTests {
 
 	TEST_F(PercentageMathLibTest, add) {
 		ASSERT_EQ(12, this->mathLib.add(10, 20));
+		ASSERT_EQ(39.6, this->mathLib.add(33, 20));
+		ASSERT_EQ(48.15, this->mathLib.add(45, 7));
 	}
 
+	TEST_F(PercentageMathLibTest, sub) {
+		ASSERT_EQ(80, this->mathLib.sub(100, 20));
+		ASSERT_EQ(79.05, this->mathLib.sub(93, 15));
+		ASSERT_EQ(10.45, this->mathLib.sub(11, 5));
+	}
+
+	TEST_F(PercentageMathLibTest, mul) {
+		ASSERT_EQ(2000, this->mathLib.mul(100, 20));
+		ASSERT_EQ(144.15, this->mathLib.mul(31, 15));
+		ASSERT_EQ(32.4, this->mathLib.mul(18, 10));
+	}
+
+	TEST_F(PercentageMathLibTest, div) {
+		ASSERT_EQ(5, this->mathLib.div(100, 20));
+		ASSERT_EQ(5, this->mathLib.div(12, 20));
+		ASSERT_EQ(1, this->mathLib.div(20, 100));
+	}
 }

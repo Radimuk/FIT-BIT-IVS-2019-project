@@ -29,8 +29,21 @@ namespace FitCalcTests {
 		TrigonometricMathLib mathLib;
 	};
 
-	TEST_F(TrigonometricMathLibTest, add) {
+	TEST_F(TrigonometricMathLibTest, sin) {
 		ASSERT_EQ(0, this->mathLib.sin(0));
+		ASSERT_EQ(1, this->mathLib.sin(90));
+		ASSERT_EQ(0.00872654, this->mathLib.sin(0.5));
 	}
 
+	TEST_F(TrigonometricMathLibTest, cos) {
+		ASSERT_EQ(0, this->mathLib.cos(90));
+		ASSERT_EQ(1, this->mathLib.cos(0));
+		ASSERT_EQ(0.99996192, this->mathLib.cos(0.5));
+	}
+
+	TEST_F(TrigonometricMathLibTest, tan) {
+		ASSERT_EQ(0, this->mathLib.tan(0));
+		ASSERT_EQ(1, this->mathLib.tan(45));
+		ASSERT_EQ(0.00872687, this->mathLib.tan(0.5));
+	}
 }
