@@ -22,45 +22,80 @@
 #include "GenericMathLib.h"
 
 double GenericMathLib::add(double addendA, double addendB) {
-	return 0.0;
+	return addendA + addendB;
 }
 
 double GenericMathLib::sub(double minuend, double subtrahend) {
-	return 0.0;
+	return minuend - subtrahend;
 }
 
 double GenericMathLib::mul(double factorA, double factorB) {
-	return 0.0;
+	return factorA * factorB;
 }
 
 double GenericMathLib::div(double dividend, double divisor) {
-	return 0.0;
+	if (divisor == 0)
+	{
+		throw ("Divison by zero.");
+	}
+	return dividend / divisor;
 }
 
 double GenericMathLib::mod(double dividend, double divisor) {
-	return 0.0;
+	if (divisor == 0)
+	{
+		throw ("Divison by zero.");
+	}
+	return fmod(dividend, divisor);
 }
 
 double GenericMathLib::abs(double x) {
-	return 0.0;
+	return fabs(x);
 }
 
 double GenericMathLib::fact(int x) {
-	return 0.0;
+	if (x < 0)
+	{
+		throw ("Factorial not defined for negative numbers");
+	}
+	if (x == 1 || x == 0)
+	{
+		return 1;
+	}
+	else
+	{
+		return x * fact(x-1);
+	}
 }
 
 double GenericMathLib::pow(double base, double exponent) {
-	return 0.0;
+	return pow(base, exponent);
 }
 
 double GenericMathLib::root(double degree, double radicand) {
-	return 0.0;
+	if (degree == 0)
+	{
+		throw ("Root not defined.");
+	}
+	if ((fmod(degree,2) == 0) && radicand < 0)
+	{
+		throw ("Root not defined for this radicand.");
+	}
+	return pow(radicand, degree);
 }
 
 double GenericMathLib::log(double x) {
-	return 0.0;
+	if (x < 1)
+	{
+		throw ("Logarithm not defined for this number.");
+	}
+	return log10(x);
 }
 
 double GenericMathLib::ln(double x) {
-	return 0.0;
+	if (x < 1)
+	{
+		throw ("Logarithm not defined for this number.");
+	}
+	return log(x);
 }

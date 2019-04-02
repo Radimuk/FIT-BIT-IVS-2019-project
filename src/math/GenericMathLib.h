@@ -22,7 +22,6 @@
 #pragma once
 
 #include <math.h>
-
 /**
  * Generic math library
  */

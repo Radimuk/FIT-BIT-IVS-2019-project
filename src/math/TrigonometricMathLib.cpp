@@ -22,13 +22,13 @@
 #include "TrigonometricMathLib.h"
 
 double TrigonometricMathLib::sin(double x) {
-	return 0.0;
+	return sin(x);
 }
 
 double TrigonometricMathLib::cos(double x) {
-	return 0.0;
+	return cos(x);
 }
 
 double TrigonometricMathLib::tan(double x) {
-	return 0.0;
+	return tan(x);
 }
