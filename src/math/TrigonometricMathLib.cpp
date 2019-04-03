@@ -30,5 +30,8 @@ double TrigonometricMathLib::cos(double x) {
 }
 
 double TrigonometricMathLib::tan(double x) {
+	if (fmod(x,M_PI) == M_PI_2) {
+		throw ("Tangens not defined for this value.");
+	}
 	return std::tan(x);
 }
