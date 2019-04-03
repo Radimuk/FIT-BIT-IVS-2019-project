@@ -27,23 +27,24 @@ namespace FitCalcTests {
 	class TrigonometricMathLibTest : public ::testing::Test {
 	protected:
 		TrigonometricMathLib mathLib;
+		double error = 1e-6;
 	};
 
 	TEST_F(TrigonometricMathLibTest, sin) {
-		ASSERT_EQ(0, this->mathLib.sin(0));
-		ASSERT_EQ(1, this->mathLib.sin(M_PI/2));
-		ASSERT_EQ(0.707106781, this->mathLib.sin(M_PI/4));
+		EXPECT_NEAR(0, this->mathLib.sin(0), this->error);
+		EXPECT_NEAR(1, this->mathLib.sin(M_PI_2), this->error);
+		EXPECT_NEAR(0.707106781, this->mathLib.sin(M_PI_4), this->error);
 	}
 
 	TEST_F(TrigonometricMathLibTest, cos) {
-		ASSERT_EQ(0, this->mathLib.cos(M_PI/2));
-		ASSERT_EQ(-1, this->mathLib.cos(M_PI));
-		ASSERT_EQ(0.707106781, this->mathLib.cos(M_PI/4));
+		EXPECT_NEAR(0.0, this->mathLib.cos(M_PI_2), this->error);
+		EXPECT_NEAR(-1, this->mathLib.cos(M_PI), this->error);
+		EXPECT_NEAR(0.707106781, this->mathLib.cos(M_PI_4), this->error);
 	}
 
 	TEST_F(TrigonometricMathLibTest, tan) {
-		ASSERT_EQ(0, this->mathLib.tan(0));
-		ASSERT_EQ(1, this->mathLib.tan(M_PI/4));
-		ASSERT_ANY_THROW(this->mathLib.tan(3*M_PI/2));
+		EXPECT_NEAR(0, this->mathLib.tan(0), 1e-6);
+		EXPECT_NEAR(1, this->mathLib.tan(M_PI_4), 1e-6);
+		EXPECT_ANY_THROW(this->mathLib.tan(3*M_PI_2));
 	}
 }
