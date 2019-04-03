@@ -34,68 +34,58 @@ double GenericMathLib::mul(double factorA, double factorB) {
 }
 
 double GenericMathLib::div(double dividend, double divisor) {
-	if (divisor == 0)
-	{
+	if (divisor == 0) {
 		throw ("Divison by zero.");
 	}
 	return dividend / divisor;
 }
 
 double GenericMathLib::mod(double dividend, double divisor) {
-	if (divisor == 0)
-	{
+	if (divisor == 0) {
 		throw ("Divison by zero.");
 	}
-	return fmod(dividend, divisor);
+	return std::fmod(dividend, divisor);
 }
 
 double GenericMathLib::abs(double x) {
-	return fabs(x);
+	return std::fabs(x);
 }
 
 double GenericMathLib::fact(int x) {
-	if (x < 0)
-	{
+	if (x < 0) {
 		throw ("Factorial not defined for negative numbers");
 	}
-	if (x == 1 || x == 0)
-	{
+	if (x == 1 || x == 0) {
 		return 1;
-	}
-	else
-	{
-		return x * fact(x-1);
+	} else {
+		return x * fact(x - 1);
 	}
 }
 
 double GenericMathLib::pow(double base, double exponent) {
-	return pow(base, exponent);
+	return std::pow(base, exponent);
 }
 
 double GenericMathLib::root(double degree, double radicand) {
-	if (degree == 0)
-	{
+	if (degree == 0) {
 		throw ("Root not defined.");
 	}
-	if ((fmod(degree,2) == 0) && radicand < 0)
-	{
+	if ((fmod(degree, 2) == 0) && radicand < 0) {
 		throw ("Root not defined for this radicand.");
 	}
-	return pow(radicand, degree);
+	return std::pow(radicand, 1 / degree);
 }
 
 double GenericMathLib::log(double x) {
-	if (x < 1)
-	{
+	if (x <= 0) {
 		throw ("Logarithm not defined for this number.");
 	}
-	return log10(x);
+	return std::log10(x);
 }
 
 double GenericMathLib::ln(double x) {
-	if (x < 1)
-	{
+	if (x <= 0) {
 		throw ("Logarithm not defined for this number.");
 	}
-	return log(x);
+	return std::log(x);
 }
