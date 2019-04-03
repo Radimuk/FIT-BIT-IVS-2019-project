@@ -84,6 +84,7 @@ namespace FitCalcTests {
 		EXPECT_EQ(3, this->mathLib.root(2, 9));
 		EXPECT_NEAR(1.414213562, this->mathLib.root(2, 2), this->error);
 		EXPECT_NEAR(3.107232506, this->mathLib.root(3, 30), this->error);
+		EXPECT_ANY_THROW(this->mathLib.root(2, -2));
 	}
 
 	TEST_F(GenericMathLibTest, log) {
@@ -99,6 +100,5 @@ namespace FitCalcTests {
 		EXPECT_NEAR(-M_LN2, this->mathLib.ln(0.5), this->error);
 		EXPECT_ANY_THROW(this->mathLib.ln(-2));
 	}
-
 
 }
