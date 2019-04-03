@@ -22,13 +22,16 @@
 #include "TrigonometricMathLib.h"
 
 double TrigonometricMathLib::sin(double x) {
-	return 0.0;
+	return std::sin(x);
 }
 
 double TrigonometricMathLib::cos(double x) {
-	return 0.0;
+	return std::cos(x);
 }
 
 double TrigonometricMathLib::tan(double x) {
-	return 0.0;
+	if (fmod(x,M_PI) == M_PI_2) {
+		throw ("Tangens not defined for this value.");
+	}
+	return std::tan(x);
 }

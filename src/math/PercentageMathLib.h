@@ -21,12 +21,14 @@
 
 #pragma once
 
-#include <math.h>
+#include <cmath>
+#include <stdexcept>
 
 /**
  * Percentage math library
  */
 class PercentageMathLib {
+
 
 public:
 
@@ -41,10 +43,10 @@ public:
 	/**
 	 * Subtracts a number and a percentage
 	 * @param minuend Numeric minuend
-	 * @param subtrahend Percentage subtrahend
+	 * @param percentage Percentage subtrahend
 	 * @return Difference of a number and percentage
 	 */
-	double sub(double minuend, double subtrahend);
+	double sub(double minuend, double percentage);
 
 	/**
 	 * Multiplies a number and a percentage
@@ -57,8 +59,8 @@ public:
 	/**
 	 * Divides a number and a percentage
 	 * @param dividend Numeric divident
-	 * @param divisor Percentage divisor
+	 * @param percentage Percentage divisor
 	 * @return Quotient of a number and percentage
 	 */
-	double div(double dividend, double divisor);
+	double div(double dividend, double percentage);
 };

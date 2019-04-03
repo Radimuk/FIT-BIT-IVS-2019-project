@@ -22,17 +22,20 @@
 #include "PercentageMathLib.h"
 
 double PercentageMathLib::add(double addend, double percentage) {
-	return 0.0;
+	return addend + (percentage / 100) * addend;
 }
 
-double PercentageMathLib::sub(double minuend, double subtrahend) {
-	return 0.0;
+double PercentageMathLib::sub(double minuend, double percentage) {
+	return minuend - (percentage / 100) * minuend;
 }
 
 double PercentageMathLib::mul(double factor, double percentage) {
-	return 0.0;
+	return factor * (percentage / 100);
 }
 
-double PercentageMathLib::div(double dividend, double divisor) {
-	return 0.0;
+double PercentageMathLib::div(double dividend, double percentage) {
+	if (percentage == 0) {
+		throw std::domain_error("Division by zero.");
+	}
+	return dividend / (percentage / 100);
 }
