@@ -35,7 +35,7 @@ double PercentageMathLib::mul(double factor, double percentage) {
 
 double PercentageMathLib::div(double dividend, double percentage) {
 	if (percentage == 0) {
-		throw ("Division by zero.");
+		throw std::domain_error("Division by zero.");
 	}
 	return dividend / (percentage / 100);
 }
