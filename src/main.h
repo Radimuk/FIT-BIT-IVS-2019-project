@@ -19,7 +19,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "main.h"
+#pragma once
+
+#include <iostream>
+#include <gtkmm.h>
+#include "MainWindow.h"
+
+#ifndef GLADE_FILE
+#define GLADE_FILE "calculator_gui.glade"
+#endif
 
 /**
  * Main program's function
@@ -27,25 +35,4 @@
  * @param argv Array of arguments
  * @return Execution status
  */
-int main(int argc, char *argv[]) {
-	Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "cz.fitcalc.main");
-	Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
-	try {
-		builder->add_from_file(GLADE_FILE);
-	}
-	catch (const Glib::FileError &ex) {
-		std::cerr << "FileError: " << ex.what() << std::endl;
-		return 1;
-	}
-	catch (const Glib::MarkupError &ex) {
-		std::cerr << "MarkupError: " << ex.what() << std::endl;
-		return 1;
-	}
-	catch (const Gtk::BuilderError &ex) {
-		std::cerr << "BuilderError: " << ex.what() << std::endl;
-		return 1;
-	}
-	MainWindow *window = nullptr;
-	builder->get_widget_derived("calculator_window", window);
-	return app->run(*window);
-}
+int main(int argc, char *argv[]);
