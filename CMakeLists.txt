@@ -25,6 +25,11 @@ if(NOT CMAKE_BUILD_TOOL MATCHES "(msdev|devenv|nmake|MSBuild)")
     endif()
 endif()
 
+if (DEFINED GLADE_FILE)
+	add_compile_definitions(GLADE_FILE="${GLADE_FILE}")
+else ()
+	add_compile_definitions(GLADE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/calculator_gui.glade")
+endif()
 
 add_subdirectory(src)
 add_subdirectory(tests)

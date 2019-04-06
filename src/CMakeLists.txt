@@ -5,5 +5,5 @@ include_directories(${GTKMM_INCLUDE_DIRS})
 
 add_subdirectory(math)
 
-add_executable(fit-calc main.cpp)
+add_executable(fit-calc main.cpp main.h MainWindow.cpp MainWindow.h)
 target_link_libraries(fit-calc ${GTKMM_LIBRARIES} m genericMathLib percentageMathLib trigonometricMathLib)
