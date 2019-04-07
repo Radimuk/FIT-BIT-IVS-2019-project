@@ -28,7 +28,7 @@ endif()
 if (DEFINED GLADE_FILE)
 	add_definitions(-DGLADE_FILE="${GLADE_FILE}")
 else ()
-	add_definitions(-DGLADE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/calculator_gui.glade")
+	add_definitions(-DGLADE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/src/gui/calculator_gui.glade")
 endif()
 
 add_subdirectory(src)

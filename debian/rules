@@ -2,3 +2,6 @@
 
 %:
 	dh $@  --buildsystem=cmake --builddirectory=build
+
+override_dh_auto_configure:
+	dh_auto_configure -- -DGLADE_FILE="/usr/share/fit-calc/calculator_gui.glade"

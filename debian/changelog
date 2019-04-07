@@ -1,6 +1,6 @@
-fit-calc (0.0.1~2.gbpe2774a) UNRELEASED; urgency=medium
+fit-calc (0.0.1~6.gbpaf3d36) UNRELEASED; urgency=medium
 
-  ** SNAPSHOT build @e2774ae5830f3ff72b368f8055554a7e8daa211b **
+  ** SNAPSHOT build @af3d36504af92bf05d56d17c83de546507b69c48 **
 
   [ Roman Ondráček ]
   * Initial commit
@@ -15,4 +15,22 @@ fit-calc (0.0.1~2.gbpe2774a) UNRELEASED; urgency=medium
   * Build: fix Makefile
   * Read Me: update repository's name and environments
 
- -- Roman Ondráček <roman.ondracek@iqrf.com>  Sat, 30 Mar 2019 22:54:32 +0100
+  [ DavidReinhart ]
+  * First version of GUI
+
+  [ Roman Ondráček ]
+  * Packages: add Debian package
+  * GUI: add about dialog, menu bar, modify height of text view
+  * Math lib: add stubs for generic, percentage and trigonomic math libraries (#23)
+
+  [ Pavel ]
+  * Math lib: add tests (#24)
+
+  [ Radim Lipka ]
+  * Math lib: add implementation (#25)
+
+  [ Roman Ondráček ]
+  * GUI: create GUI from .glade file
+  * CMake: fix GLADE_FILE macro definition on old CMake's version
+
+ -- Roman Ondráček <roman.ondracek@iqrf.com>  Sun, 07 Apr 2019 11:41:15 +0200

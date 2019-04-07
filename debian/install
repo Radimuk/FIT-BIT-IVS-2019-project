@@ -1,1 +1,2 @@
-build/bin/fit-calc      usr/bin
+build/bin/fit-calc      		usr/bin
+src/gui/calculator_gui.glade	usr/share/fit-calc
