@@ -11,7 +11,6 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-
 if(NOT CMAKE_BUILD_TOOL MATCHES "(msdev|devenv|nmake|MSBuild)")
     include(CheckCXXCompilerFlag)
     CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
@@ -30,6 +29,10 @@ if (DEFINED GLADE_FILE)
 else ()
 	add_definitions(-DGLADE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/src/gui/calculator_gui.glade")
 endif()
+
+set(ANTLR4_SRC ${CMAKE_SOURCE_DIR}/external/antlr4/runtime/Cpp)
+add_subdirectory(${ANTLR4_SRC} antlr4)
+include_directories(${ANTLR4_SRC}/runtime/src)
 
 add_subdirectory(src)
 add_subdirectory(tests)

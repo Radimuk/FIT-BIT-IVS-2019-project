@@ -12,5 +12,5 @@ else(NOT GTest_FOUND)
 	include_directories(${GTEST_INCLUDE_DIRS})
 endif(NOT GTest_FOUND)
 
-add_executable(tests main.cpp math/GenericMathLibTest.cpp math/TrigonometricMathLibTest.cpp math/PercentageMathLibTest.cpp)
-target_link_libraries(tests ${GTEST_BOTH_LIBRARIES} mathLib)
+add_executable(tests main.cpp math/GenericMathLibTest.cpp math/TrigonometricMathLibTest.cpp math/PercentageMathLibTest.cpp grammar/calculatorBaseVisitorTest.cpp)
+target_link_libraries(tests ${GTEST_BOTH_LIBRARIES} mathLib grammarLib antlr4_static)

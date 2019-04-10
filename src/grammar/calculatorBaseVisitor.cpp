@@ -4,4 +4,6 @@
 
 #include "calculatorBaseVisitor.h"
 
-
+antlrcpp::Any calculatorBaseVisitor::visitExpression(calculatorParser::ExpressionContext *context) {
+	return genericMath.add(0.0, 0.0);
+}

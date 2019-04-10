@@ -6,6 +6,7 @@
 
 #include "antlr4-runtime.h"
 #include "calculatorVisitor.h"
+#include "../math/GenericMathLib.h"
 
 
 /**
@@ -15,9 +16,7 @@
 class  calculatorBaseVisitor : public calculatorVisitor {
 public:
 
-  virtual antlrcpp::Any visitExpression(calculatorParser::ExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
+  antlrcpp::Any visitExpression(calculatorParser::ExpressionContext *ctx) override;
 
   virtual antlrcpp::Any visitMultiplyingExpression(calculatorParser::MultiplyingExpressionContext *ctx) override {
     return visitChildren(ctx);
@@ -47,6 +46,8 @@ public:
     return visitChildren(ctx);
   }
 
+private:
+	GenericMathLib genericMath;
 
 };
 
