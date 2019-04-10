@@ -13,4 +13,4 @@ else(NOT GTest_FOUND)
 endif(NOT GTest_FOUND)
 
 add_executable(tests main.cpp math/GenericMathLibTest.cpp math/TrigonometricMathLibTest.cpp math/PercentageMathLibTest.cpp)
-target_link_libraries(tests ${GTEST_BOTH_LIBRARIES} genericMathLib percentageMathLib trigonometricMathLib)
+target_link_libraries(tests ${GTEST_BOTH_LIBRARIES} mathLib)
