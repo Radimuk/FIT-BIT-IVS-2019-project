@@ -4,7 +4,6 @@ services:
   - docker
 
 compiler:
-  - clang
   - gcc
 
 before_install:
@@ -12,11 +11,10 @@ before_install:
   - docker run --name travis-ci -v $TRAVIS_BUILD_DIR:/ivs -td ubuntu:18.04 /bin/bash
   - docker exec -ti travis-ci bash -c "apt-get update"
   - docker exec -ti travis-ci bash -c "apt-get install -y antlr4 build-essential cmake libgtest-dev libgtkmm-3.0-dev uuid-dev"
-  - if [[ "$CC" == "clang" ]]; then docker exec -ti travis-ci bash -c "apt-get install -y clang"; fi
 
 script:
-  - docker exec -ti travis-ci bash -c "cd /ivs && CC=${CC} CXX=${CXX} make all"
-  - docker exec -ti travis-ci bash -c "cd /ivs && CC=${CC} CXX=${CXX} make test"
+  - docker exec -ti travis-ci bash -c "cd /ivs && make all"
+  - docker exec -ti travis-ci bash -c "cd /ivs && make test"
 
 after_script:
   - docker stop travis-ci
