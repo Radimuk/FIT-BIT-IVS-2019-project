@@ -42,4 +42,16 @@ namespace FitCalcTests {
 		EXPECT_EQ(expected, actual);
 	}
 
+	TEST_F(calculatorBaseVisitorTest, sub) {
+		antlr4::ANTLRInputStream input("1.0 - 2");
+		calculatorLexer lexer(&input);
+		antlr4::CommonTokenStream tokens(&lexer);
+		calculatorParser parser(&tokens);
+		calculatorParser::ExpressionContext* expresion = parser.expression();
+		calculatorBaseVisitor visitor;
+		double actual = visitor.visitExpression(expresion);
+		double expected = -1.0;
+		EXPECT_EQ(expected, actual);
+	}
+
 }

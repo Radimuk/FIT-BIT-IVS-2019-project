@@ -5,5 +5,11 @@
 #include "calculatorBaseVisitor.h"
 
 antlrcpp::Any calculatorBaseVisitor::visitExpression(calculatorParser::ExpressionContext *context) {
-	return genericMath.add(0.0, 0.0);
+	double left = std::stod(context->left->getText(), nullptr);
+	double right = std::stod(context->right->getText(), nullptr);
+	if (context->operation->getText() == "+") {
+		return genericMath.add(left, right);
+	} else {
+		return genericMath.sub(left, right);
+	}
 }

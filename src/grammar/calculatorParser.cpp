@@ -84,7 +84,7 @@ calculatorParser::ExpressionContext* calculatorParser::expression() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(16);
-    multiplyingExpression();
+    dynamic_cast<ExpressionContext *>(_localctx)->left = multiplyingExpression();
     setState(21);
     _errHandler->sync(this);
     _la = _input->LA(1);
@@ -92,18 +92,19 @@ calculatorParser::ExpressionContext* calculatorParser::expression() {
 
     || _la == calculatorParser::MINUS) {
       setState(17);
+      dynamic_cast<ExpressionContext *>(_localctx)->operation = _input->LT(1);
       _la = _input->LA(1);
       if (!(_la == calculatorParser::PLUS
 
       || _la == calculatorParser::MINUS)) {
-      _errHandler->recoverInline(this);
+        dynamic_cast<ExpressionContext *>(_localctx)->operation = _errHandler->recoverInline(this);
       }
       else {
         _errHandler->reportMatch(this);
         consume();
       }
       setState(18);
-      multiplyingExpression();
+      dynamic_cast<ExpressionContext *>(_localctx)->right = multiplyingExpression();
       setState(23);
       _errHandler->sync(this);
       _la = _input->LA(1);
@@ -172,7 +173,7 @@ calculatorParser::MultiplyingExpressionContext* calculatorParser::multiplyingExp
   try {
     enterOuterAlt(_localctx, 1);
     setState(24);
-    powExpression();
+    dynamic_cast<MultiplyingExpressionContext *>(_localctx)->left = powExpression();
     setState(29);
     _errHandler->sync(this);
     _la = _input->LA(1);
@@ -180,18 +181,19 @@ calculatorParser::MultiplyingExpressionContext* calculatorParser::multiplyingExp
 
     || _la == calculatorParser::DIV) {
       setState(25);
+      dynamic_cast<MultiplyingExpressionContext *>(_localctx)->operation = _input->LT(1);
       _la = _input->LA(1);
       if (!(_la == calculatorParser::TIMES
 
       || _la == calculatorParser::DIV)) {
-      _errHandler->recoverInline(this);
+        dynamic_cast<MultiplyingExpressionContext *>(_localctx)->operation = _errHandler->recoverInline(this);
       }
       else {
         _errHandler->reportMatch(this);
         consume();
       }
       setState(26);
-      powExpression();
+      dynamic_cast<MultiplyingExpressionContext *>(_localctx)->right = powExpression();
       setState(31);
       _errHandler->sync(this);
       _la = _input->LA(1);
@@ -252,15 +254,15 @@ calculatorParser::PowExpressionContext* calculatorParser::powExpression() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(32);
-    signedAtom();
+    dynamic_cast<PowExpressionContext *>(_localctx)->left = signedAtom();
     setState(37);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while (_la == calculatorParser::POW) {
       setState(33);
-      match(calculatorParser::POW);
+      dynamic_cast<PowExpressionContext *>(_localctx)->operation = match(calculatorParser::POW);
       setState(34);
-      signedAtom();
+      dynamic_cast<PowExpressionContext *>(_localctx)->right = signedAtom();
       setState(39);
       _errHandler->sync(this);
       _la = _input->LA(1);

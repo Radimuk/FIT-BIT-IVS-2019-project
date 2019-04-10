@@ -23,15 +23,15 @@ grammar calculator;
 
 
 expression
-   : multiplyingExpression ((PLUS | MINUS) multiplyingExpression)*
+   : left=multiplyingExpression (operation=(PLUS | MINUS) right=multiplyingExpression)*
    ;
 
 multiplyingExpression
-   : powExpression ((TIMES | DIV) powExpression)*
+   : left=powExpression (operation=(TIMES | DIV) right=powExpression)*
    ;
 
 powExpression
-   : signedAtom (POW signedAtom)*
+   : left=signedAtom (operation=POW right=signedAtom)*
    ;
 
 signedAtom

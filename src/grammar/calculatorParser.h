@@ -42,6 +42,9 @@ public:
 
   class  ExpressionContext : public antlr4::ParserRuleContext {
   public:
+    calculatorParser::MultiplyingExpressionContext *left = nullptr;;
+    antlr4::Token *operation = nullptr;;
+    calculatorParser::MultiplyingExpressionContext *right = nullptr;;
     ExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<MultiplyingExpressionContext *> multiplyingExpression();
@@ -59,6 +62,9 @@ public:
 
   class  MultiplyingExpressionContext : public antlr4::ParserRuleContext {
   public:
+    calculatorParser::PowExpressionContext *left = nullptr;;
+    antlr4::Token *operation = nullptr;;
+    calculatorParser::PowExpressionContext *right = nullptr;;
     MultiplyingExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<PowExpressionContext *> powExpression();
@@ -76,6 +82,9 @@ public:
 
   class  PowExpressionContext : public antlr4::ParserRuleContext {
   public:
+    calculatorParser::SignedAtomContext *left = nullptr;;
+    antlr4::Token *operation = nullptr;;
+    calculatorParser::SignedAtomContext *right = nullptr;;
     PowExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<SignedAtomContext *> signedAtom();
