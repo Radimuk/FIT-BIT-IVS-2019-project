@@ -1,5 +1,8 @@
 all: clean build test
 
+antlr4-compile:
+	cd src && antlr4 -Dlanguage=Cpp -no-listener -visitor calculator.g4 -o grammar
+
 build:
 	cmake -Bbuild -H.
 	cmake --build build
