@@ -19,3 +19,6 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 build/
+
+# Docs
+docs/api/

@@ -9,10 +9,15 @@ build:
 
 clean:
 	rm -rf build
+	rm -rf docs
 
 deb-package:
 	gbp dch -a -S --ignore-branch
 	dpkg-buildpackage -b -rfakeroot -us -uc -tc
+
+doxygen:
+	@mkdir -p docs/api
+	@doxygen
 
 run: build
 	./build/bin/fit-calc
