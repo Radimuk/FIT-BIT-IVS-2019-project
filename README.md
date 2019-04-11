@@ -6,6 +6,19 @@
  * Debian testing
  * Ubuntu 18.04
 
+## Závislosti
+ * antlr4
+ * build-essential
+ * cmake
+ * devscripts
+ * doxygen
+ * fakeroot
+ * git-buildpackage
+ * libgtest-dev
+ * libgtkmm-3.0-dev
+ * uuid-dev
+
+
 ## Autoři
 
 `<script>alert('1');</script>`
