@@ -28,6 +28,7 @@
 namespace FitCalcTests {
 
 	class calculatorBaseVisitorTest : public ::testing::Test {
+	protected:
 		double error = 1e-6;
 	};
 
