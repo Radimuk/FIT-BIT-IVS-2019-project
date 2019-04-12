@@ -4,22 +4,4 @@
 
 #include "calculatorBaseVisitor.h"
 
-antlrcpp::Any calculatorBaseVisitor::visitExpression(calculatorParser::ExpressionContext *context) {
-	double left = std::stod(context->left->getText(), nullptr);
-	double right = std::stod(context->right->getText(), nullptr);
-	if (context->operation->getText() == "+") {
-		return genericMath.add(left, right);
-	} else {
-		return genericMath.sub(left, right);
-	}
-}
 
-antlrcpp::Any calculatorBaseVisitor::visitMultiplyingExpression(calculatorParser::ExpressionContext *context) {
-	double left = std::stod(context->left->getText(), nullptr);
-	double right = std::stod(context->right->getText(), nullptr);
-	if (context->operation->getText() == "*") {
-		return genericMath.mul(left, right);
-	} else {
-		return genericMath.sub(left, right);
-	}
-}

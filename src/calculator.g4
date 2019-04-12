@@ -22,16 +22,22 @@
 grammar calculator;
 
 
+input
+   : expression EOF
+   ;
+
 expression
-   : left=multiplyingExpression (operation=(PLUS | MINUS) right=multiplyingExpression)*
+   : multiplyingExpression (PLUS multiplyingExpression)* # Plus
+   | multiplyingExpression (MINUS multiplyingExpression)* # Minus
    ;
 
 multiplyingExpression
-   : left=powExpression (operation=(TIMES | DIV) right=powExpression)*
+   : powExpression (TIMES powExpression)* # Times
+   | powExpression (DIV powExpression)* # Div
    ;
 
 powExpression
-   : left=signedAtom (operation=POW right=signedAtom)*
+   : signedAtom (POW signedAtom)* # Pow
    ;
 
 signedAtom

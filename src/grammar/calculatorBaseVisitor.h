@@ -3,10 +3,9 @@
 
 #pragma once
 
-#include <iostream>
+
 #include "antlr4-runtime.h"
 #include "calculatorVisitor.h"
-#include "../math/GenericMathLib.h"
 
 
 /**
@@ -16,11 +15,27 @@
 class  calculatorBaseVisitor : public calculatorVisitor {
 public:
 
-  antlrcpp::Any visitExpression(calculatorParser::ExpressionContext *ctx) override;
+  virtual antlrcpp::Any visitInput(calculatorParser::InputContext *ctx) override {
+    return visitChildren(ctx);
+  }
 
-  antlrcpp::Any visitMultiplyingExpression(calculatorParser::MultiplyingExpressionContext *ctx) override;
+  virtual antlrcpp::Any visitPlus(calculatorParser::PlusContext *ctx) override {
+    return visitChildren(ctx);
+  }
 
-  virtual antlrcpp::Any visitPowExpression(calculatorParser::PowExpressionContext *ctx) override {
+  virtual antlrcpp::Any visitMinus(calculatorParser::MinusContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitTimes(calculatorParser::TimesContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitDiv(calculatorParser::DivContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitPow(calculatorParser::PowContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -44,8 +59,6 @@ public:
     return visitChildren(ctx);
   }
 
-private:
-	GenericMathLib genericMath;
 
 };
 

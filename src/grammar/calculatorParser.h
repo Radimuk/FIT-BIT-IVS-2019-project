@@ -17,8 +17,8 @@ public:
   };
 
   enum {
-    RuleExpression = 0, RuleMultiplyingExpression = 1, RulePowExpression = 2, 
-    RuleSignedAtom = 3, RuleAtom = 4, RuleNumber = 5, RuleFunc = 6, RuleFuncName = 7
+    RuleInput = 0, RuleExpression = 1, RuleMultiplyingExpression = 2, RulePowExpression = 3, 
+    RuleSignedAtom = 4, RuleAtom = 5, RuleNumber = 6, RuleFunc = 7, RuleFuncName = 8
   };
 
   calculatorParser(antlr4::TokenStream *input);
@@ -31,6 +31,7 @@ public:
   virtual antlr4::dfa::Vocabulary& getVocabulary() const override;
 
 
+  class InputContext;
   class ExpressionContext;
   class MultiplyingExpressionContext;
   class PowExpressionContext;
@@ -40,60 +41,115 @@ public:
   class FuncContext;
   class FuncNameContext; 
 
+  class  InputContext : public antlr4::ParserRuleContext {
+  public:
+    InputContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    ExpressionContext *expression();
+    antlr4::tree::TerminalNode *EOF();
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  InputContext* input();
+
   class  ExpressionContext : public antlr4::ParserRuleContext {
   public:
-    calculatorParser::MultiplyingExpressionContext *left = nullptr;;
-    antlr4::Token *operation = nullptr;;
-    calculatorParser::MultiplyingExpressionContext *right = nullptr;;
     ExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    ExpressionContext() = default;
+    void copyFrom(ExpressionContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
     virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  PlusContext : public ExpressionContext {
+  public:
+    PlusContext(ExpressionContext *ctx);
+
     std::vector<MultiplyingExpressionContext *> multiplyingExpression();
     MultiplyingExpressionContext* multiplyingExpression(size_t i);
     std::vector<antlr4::tree::TerminalNode *> PLUS();
     antlr4::tree::TerminalNode* PLUS(size_t i);
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  MinusContext : public ExpressionContext {
+  public:
+    MinusContext(ExpressionContext *ctx);
+
+    std::vector<MultiplyingExpressionContext *> multiplyingExpression();
+    MultiplyingExpressionContext* multiplyingExpression(size_t i);
     std::vector<antlr4::tree::TerminalNode *> MINUS();
     antlr4::tree::TerminalNode* MINUS(size_t i);
-
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
   };
 
   ExpressionContext* expression();
 
   class  MultiplyingExpressionContext : public antlr4::ParserRuleContext {
   public:
-    calculatorParser::PowExpressionContext *left = nullptr;;
-    antlr4::Token *operation = nullptr;;
-    calculatorParser::PowExpressionContext *right = nullptr;;
     MultiplyingExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    MultiplyingExpressionContext() = default;
+    void copyFrom(MultiplyingExpressionContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
     virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  DivContext : public MultiplyingExpressionContext {
+  public:
+    DivContext(MultiplyingExpressionContext *ctx);
+
+    std::vector<PowExpressionContext *> powExpression();
+    PowExpressionContext* powExpression(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> DIV();
+    antlr4::tree::TerminalNode* DIV(size_t i);
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  TimesContext : public MultiplyingExpressionContext {
+  public:
+    TimesContext(MultiplyingExpressionContext *ctx);
+
     std::vector<PowExpressionContext *> powExpression();
     PowExpressionContext* powExpression(size_t i);
     std::vector<antlr4::tree::TerminalNode *> TIMES();
     antlr4::tree::TerminalNode* TIMES(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> DIV();
-    antlr4::tree::TerminalNode* DIV(size_t i);
-
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
   };
 
   MultiplyingExpressionContext* multiplyingExpression();
 
   class  PowExpressionContext : public antlr4::ParserRuleContext {
   public:
-    calculatorParser::SignedAtomContext *left = nullptr;;
-    antlr4::Token *operation = nullptr;;
-    calculatorParser::SignedAtomContext *right = nullptr;;
     PowExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    PowExpressionContext() = default;
+    void copyFrom(PowExpressionContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
     virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  PowContext : public PowExpressionContext {
+  public:
+    PowContext(PowExpressionContext *ctx);
+
     std::vector<SignedAtomContext *> signedAtom();
     SignedAtomContext* signedAtom(size_t i);
     std::vector<antlr4::tree::TerminalNode *> POW();
     antlr4::tree::TerminalNode* POW(size_t i);
-
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
   };
 
   PowExpressionContext* powExpression();

@@ -19,11 +19,17 @@ public:
   /**
    * Visit parse trees produced by calculatorParser.
    */
-    virtual antlrcpp::Any visitExpression(calculatorParser::ExpressionContext *context) = 0;
+    virtual antlrcpp::Any visitInput(calculatorParser::InputContext *context) = 0;
 
-    virtual antlrcpp::Any visitMultiplyingExpression(calculatorParser::MultiplyingExpressionContext *context) = 0;
+    virtual antlrcpp::Any visitPlus(calculatorParser::PlusContext *context) = 0;
 
-    virtual antlrcpp::Any visitPowExpression(calculatorParser::PowExpressionContext *context) = 0;
+    virtual antlrcpp::Any visitMinus(calculatorParser::MinusContext *context) = 0;
+
+    virtual antlrcpp::Any visitTimes(calculatorParser::TimesContext *context) = 0;
+
+    virtual antlrcpp::Any visitDiv(calculatorParser::DivContext *context) = 0;
+
+    virtual antlrcpp::Any visitPow(calculatorParser::PowContext *context) = 0;
 
     virtual antlrcpp::Any visitSignedAtom(calculatorParser::SignedAtomContext *context) = 0;
 
