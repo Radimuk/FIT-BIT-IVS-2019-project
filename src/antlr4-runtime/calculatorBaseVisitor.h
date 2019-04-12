@@ -1,12 +1,11 @@
 
-// Generated from calculator.g4 by ANTLR 4.7.2
+// Generated from /home/pavel/skola/ivs/FIT-BIT-IVS-2019-project/src/calculator.g4 by ANTLR 4.7.1
 
 #pragma once
 
-#include <iostream>
+
 #include "antlr4-runtime.h"
 #include "calculatorVisitor.h"
-#include "../math/GenericMathLib.h"
 
 
 /**
@@ -16,9 +15,13 @@
 class  calculatorBaseVisitor : public calculatorVisitor {
 public:
 
-  antlrcpp::Any visitExpression(calculatorParser::ExpressionContext *ctx) override;
+  virtual antlrcpp::Any visitExpression(calculatorParser::ExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
 
-  antlrcpp::Any visitMultiplyingExpression(calculatorParser::MultiplyingExpressionContext *ctx) override;
+  virtual antlrcpp::Any visitMultiplyingExpression(calculatorParser::MultiplyingExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
 
   virtual antlrcpp::Any visitPowExpression(calculatorParser::PowExpressionContext *ctx) override {
     return visitChildren(ctx);
@@ -44,8 +47,6 @@ public:
     return visitChildren(ctx);
   }
 
-private:
-	GenericMathLib genericMath;
 
 };
 
