@@ -21,7 +21,7 @@
 
 #include <gtest/gtest.h>
 #include "antlr4-runtime.h"
-#include "../../src/grammar/calculatorBaseVisitor.h"
+#include "../../src/grammar/MathVisitor.h"
 #include "../../src/grammar/calculatorLexer.h"
 #include "../../src/grammar/calculatorParser.h"
 
@@ -37,11 +37,11 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		auto actual = visitor.visit(expresion);
 		double expected = 3.0;
-		EXPECT_EQ(expected, actual);
+		EXPECT_EQ(expected, static_cast<double>(actual));
 	}
 
 	TEST_F(calculatorBaseVisitorTest, sub) {
@@ -49,9 +49,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = -1.0;
 		EXPECT_EQ(expected, actual);
 	}
@@ -61,9 +61,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 2.0;
 		EXPECT_EQ(expected, actual);
 	}
@@ -73,9 +73,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 1.0;
 		EXPECT_EQ(expected, actual);
 	}
@@ -85,9 +85,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 1.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
@@ -97,9 +97,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 9.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
@@ -109,9 +109,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 120.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
@@ -121,9 +121,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 8.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
@@ -133,9 +133,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 2.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
@@ -145,9 +145,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = M_LN10;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
@@ -158,9 +158,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 0.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
@@ -170,9 +170,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 1.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
@@ -182,9 +182,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 0.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
@@ -194,9 +194,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 12.0;
 		EXPECT_EQ(expected, actual);
 	}
@@ -206,9 +206,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 8.0;
 		EXPECT_EQ(expected, actual);
 	}
@@ -218,9 +218,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 1.8;
 		EXPECT_EQ(expected, actual);
 	}
@@ -230,9 +230,9 @@ namespace FitCalcTests {
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 90.0;
 		EXPECT_EQ(expected, actual);
 	}
