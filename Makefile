@@ -22,5 +22,8 @@ doxygen:
 run: build
 	./build/bin/fit-calc
 
+profile:
+	./build/bin/stddev
+
 test: build
 	./build/bin/tests
