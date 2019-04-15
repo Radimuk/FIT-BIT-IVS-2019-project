@@ -1,6 +1,10 @@
 #include <iostream>
 #include "../math/GenericMathLib.cpp"
 
+/**
+ * Calculate sample standard deviation
+ * @return execution status
+ */
 int main() {
 	GenericMathLib genericMath;
 	double array[1024];
@@ -8,16 +12,12 @@ int main() {
 	while (std::scanf("%lf", &array[enteredNumbers]) == 1) {
 		enteredNumbers++;
 	}
-	double arrayDouble[1024];
-	for (unsigned int k = 0; k < enteredNumbers; k++) {
-		arrayDouble[k] = array[k];
-	}
 	double sumOfSquares = 0;
 	double average = 0;
 	for (unsigned int i = 0; i < enteredNumbers; i++) {
-		double elementSquared = genericMath.pow(arrayDouble[i], 2.0);
+		double elementSquared = genericMath.pow(array[i], 2.0);
 		sumOfSquares = genericMath.add(sumOfSquares, elementSquared);
-		average = genericMath.add(average, arrayDouble[i]);
+		average = genericMath.add(average, array[i]);
 	}
 	average = genericMath.mul(average, genericMath.div(1.0, enteredNumbers));
 	average = genericMath.pow(average, 2.0);
