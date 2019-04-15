@@ -3,9 +3,9 @@
 
 int main() {
 	GenericMathLib genericMath;
-	int array[1024];
+	double array[1024];
 	unsigned int enteredNumbers = 0;
-	while (std::scanf("%d", &array[enteredNumbers]) == 1) {
+	while (std::scanf("%lf", &array[enteredNumbers]) == 1) {
 		enteredNumbers++;
 	}
 	double arrayDouble[1024];
