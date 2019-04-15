@@ -12,6 +12,10 @@ int main() {
 	while (std::scanf("%lf", &array[enteredNumbers]) == 1) {
 		enteredNumbers++;
 	}
+	if (enteredNumbers == 0 || enteredNumbers == 1){
+		fprintf(stderr, "Unable to count the deviation out of zero or one number.\n");
+		return -1;
+	}
 	double sumOfSquares = 0;
 	double average = 0;
 	for (unsigned int i = 0; i < enteredNumbers; i++) {
