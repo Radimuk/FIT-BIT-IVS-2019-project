@@ -1,5 +1,5 @@
 
-// Generated from calculator.g4 by ANTLR 4.7.2
+// Generated from calculator.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -12,8 +12,9 @@
 class  calculatorParser : public antlr4::Parser {
 public:
   enum {
-    LPAREN = 1, RPAREN = 2, PLUS = 3, MINUS = 4, TIMES = 5, DIV = 6, POW = 7, 
-    EQ = 8, COMMA = 9, POINT = 10, SIN = 11, NUMBER = 12, WHITESPACE = 13
+    T__0 = 1, T__1 = 2, T__2 = 3, LPAREN = 4, RPAREN = 5, PLUS = 6, MINUS = 7, 
+    TIMES = 8, DIV = 9, POW = 10, EQ = 11, COMMA = 12, POINT = 13, SIN = 14, 
+    NUMBER = 15, WHITESPACE = 16
   };
 
   enum {
@@ -58,7 +59,7 @@ public:
   public:
     ExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
-    ExpressionContext() = default;
+    ExpressionContext() : antlr4::ParserRuleContext() { }
     void copyFrom(ExpressionContext *context);
     using antlr4::ParserRuleContext::copyFrom;
 
@@ -95,7 +96,7 @@ public:
   public:
     MultiplyingExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
-    MultiplyingExpressionContext() = default;
+    MultiplyingExpressionContext() : antlr4::ParserRuleContext() { }
     void copyFrom(MultiplyingExpressionContext *context);
     using antlr4::ParserRuleContext::copyFrom;
 
@@ -132,7 +133,7 @@ public:
   public:
     PowExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
-    PowExpressionContext() = default;
+    PowExpressionContext() : antlr4::ParserRuleContext() { }
     void copyFrom(PowExpressionContext *context);
     using antlr4::ParserRuleContext::copyFrom;
 
@@ -219,7 +220,6 @@ public:
   public:
     FuncNameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *SIN();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    

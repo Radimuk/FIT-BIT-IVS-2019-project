@@ -61,7 +61,9 @@ func
    ;
 
 funcName
-   : SIN
+   : 'SIN'
+   | 'COS'
+   | 'TAN'
    ;
 
 LPAREN

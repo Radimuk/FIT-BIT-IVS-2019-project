@@ -36,3 +36,53 @@ antlrcpp::Any MathVisitor::visitPlus(calculatorParser::PlusContext *context) {
 	double b = visit(context->multiplyingExpression(1));
 	return genericMath.add(a, b);
 }
+
+antlrcpp::Any MathVisitor::visitMinus(calculatorParser::MinusContext *context) {
+	double a = visit(context->multiplyingExpression(0));
+	double b = visit(context->multiplyingExpression(1));
+	return genericMath.sub(a, b);
+}
+
+antlrcpp::Any MathVisitor::visitTimes(calculatorParser::TimesContext *context) {
+	double a = visit(context->powExpression(0));
+	double b = visit(context->powExpression(1));
+	return genericMath.mul(a, b);
+}
+
+antlrcpp::Any MathVisitor::visitDiv(calculatorParser::DivContext *context) {
+	double a = visit(context->powExpression(0));
+	double b = visit(context->powExpression(1));
+	return genericMath.div(a, b);
+}
+
+antlrcpp::Any MathVisitor::visitPow(calculatorParser::PowContext *context) {
+	double a = visit(context->signedAtom(0));
+	double b = visit(context->signedAtom(1));
+	return genericMath.pow(a, b);
+}
+
+antlrcpp::Any MathVisitor::visitSignedAtom(calculatorParser::SignedAtomContext *context) {
+	double result = std::stod(context->getText());
+	return result;
+}
+
+antlrcpp::Any MathVisitor::visitAtom(calculatorParser::AtomContext *context) {
+	double result = std::stod(context->getText());
+	return result;
+}
+
+antlrcpp::Any MathVisitor::visitFunc(calculatorParser::FuncContext *context) {
+	std::string func = visit(context->funcName());
+	double ex = visit(context->expression(0));
+	if(func == "SIN"){
+		return trigMath.sin(ex);
+	}else if(func == "COS"){
+		return trigMath.cos(ex);
+	}else if(func == "TAN"){
+		return trigMath.tan(ex);
+	}
+}
+
+antlrcpp::Any MathVisitor::visitFuncName(calculatorParser::FuncNameContext *context) {
+	std::string result = context->getText();
+}

@@ -23,18 +23,36 @@
 
 #include "calculatorBaseVisitor.h"
 #include "../math/GenericMathLib.h"
+#include "../math/TrigonometricMathLib.h"
 #include <iostream>
 
 class MathVisitor : public calculatorBaseVisitor {
 public:
 
-	antlrcpp::Any visitNumber(calculatorParser::NumberContext *context) override;
-
-	antlrcpp::Any visitInput(calculatorParser::InputContext *context);
+	antlrcpp::Any visitInput(calculatorParser::InputContext *context) override;
 
 	antlrcpp::Any visitPlus(calculatorParser::PlusContext *context) override;
 
+	antlrcpp::Any visitMinus(calculatorParser::MinusContext *context) override;
+
+	antlrcpp::Any visitTimes(calculatorParser::TimesContext *context) override;
+
+	antlrcpp::Any visitDiv(calculatorParser::DivContext *context) override;
+
+	antlrcpp::Any visitPow(calculatorParser::PowContext *context) override;
+
+	antlrcpp::Any visitSignedAtom(calculatorParser::SignedAtomContext *context) override;
+
+	antlrcpp::Any visitAtom(calculatorParser::AtomContext *context) override;
+
+	antlrcpp::Any visitNumber(calculatorParser::NumberContext *context) override;
+
+	antlrcpp::Any visitFunc(calculatorParser::FuncContext *context) override;
+
+	antlrcpp::Any visitFuncName(calculatorParser::FuncNameContext *context) override;
+
 private:
 	GenericMathLib genericMath;
+	TrigonometricMathLib trigMath;
 };
 
