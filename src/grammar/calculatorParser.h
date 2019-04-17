@@ -12,9 +12,9 @@
 class  calculatorParser : public antlr4::Parser {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, LPAREN = 4, RPAREN = 5, PLUS = 6, MINUS = 7, 
-    TIMES = 8, DIV = 9, POW = 10, EQ = 11, COMMA = 12, POINT = 13, SIN = 14, 
-    NUMBER = 15, WHITESPACE = 16
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, LPAREN = 6, RPAREN = 7, 
+    PLUS = 8, MINUS = 9, TIMES = 10, DIV = 11, POW = 12, EQ = 13, COMMA = 14, 
+    POINT = 15, NUMBER = 16, WHITESPACE = 17
   };
 
   enum {

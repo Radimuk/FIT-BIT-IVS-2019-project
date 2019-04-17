@@ -74,11 +74,11 @@ antlrcpp::Any MathVisitor::visitAtom(calculatorParser::AtomContext *context) {
 antlrcpp::Any MathVisitor::visitFunc(calculatorParser::FuncContext *context) {
 	std::string func = visit(context->funcName());
 	double ex = visit(context->expression(0));
-	if(func == "SIN"){
+	if(func == "sin"){
 		return trigMath.sin(ex);
-	}else if(func == "COS"){
+	}else if(func == "cos"){
 		return trigMath.cos(ex);
-	}else if(func == "TAN"){
+	}else if(func == "tan"){
 		return trigMath.tan(ex);
 	}
 }

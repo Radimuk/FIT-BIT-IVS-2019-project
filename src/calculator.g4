@@ -61,9 +61,11 @@ func
    ;
 
 funcName
-   : 'SIN'
-   | 'COS'
-   | 'TAN'
+   : 'sin'
+   | 'cos'
+   | 'tan'
+   | 'ln'
+   | 'log'
    ;
 
 LPAREN
@@ -99,10 +101,6 @@ COMMA
    ;
 POINT
    : '.'
-   ;
-
-SIN
-   : 'sin'
    ;
 
 NUMBER
