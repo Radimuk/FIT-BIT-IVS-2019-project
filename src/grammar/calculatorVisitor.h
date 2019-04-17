@@ -1,5 +1,5 @@
 
-// Generated from calculator.g4 by ANTLR 4.7.1
+// Generated from calculator.g4 by ANTLR 4.7.2
 
 #pragma once
 
@@ -25,11 +25,19 @@ public:
 
     virtual antlrcpp::Any visitMinus(calculatorParser::MinusContext *context) = 0;
 
+    virtual antlrcpp::Any visitNumberExpression(calculatorParser::NumberExpressionContext *context) = 0;
+
     virtual antlrcpp::Any visitTimes(calculatorParser::TimesContext *context) = 0;
 
     virtual antlrcpp::Any visitDiv(calculatorParser::DivContext *context) = 0;
 
+    virtual antlrcpp::Any visitMod(calculatorParser::ModContext *context) = 0;
+
+    virtual antlrcpp::Any visitNumberMultiplyintExpression(calculatorParser::NumberMultiplyintExpressionContext *context) = 0;
+
     virtual antlrcpp::Any visitPow(calculatorParser::PowContext *context) = 0;
+
+    virtual antlrcpp::Any visitNumberPowExpression(calculatorParser::NumberPowExpressionContext *context) = 0;
 
     virtual antlrcpp::Any visitSignedAtom(calculatorParser::SignedAtomContext *context) = 0;
 

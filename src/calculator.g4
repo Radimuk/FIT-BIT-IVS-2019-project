@@ -21,23 +21,30 @@
 
 grammar calculator;
 
+/**
+ * Parser rules
+ */
 
 input
    : expression EOF
    ;
 
 expression
-   : multiplyingExpression (PLUS multiplyingExpression)* # Plus
-   | multiplyingExpression (MINUS multiplyingExpression)* # Minus
+   : multiplyingExpression PLUS multiplyingExpression # Plus
+   | multiplyingExpression MINUS multiplyingExpression # Minus
+   | multiplyingExpression # NumberExpression
    ;
 
 multiplyingExpression
-   : powExpression (TIMES powExpression)* # Times
-   | powExpression (DIV powExpression)* # Div
+   : powExpression TIMES powExpression # Times
+   | powExpression DIV powExpression # Div
+   | powExpression MOD powExpression # Mod
+   | powExpression # NumberMultiplyintExpression
    ;
 
 powExpression
-   : signedAtom (POW signedAtom)* # Pow
+   : signedAtom POW signedAtom # Pow
+   | signedAtom # NumberPowExpression
    ;
 
 signedAtom
@@ -61,13 +68,53 @@ func
    ;
 
 funcName
-   : 'sin'
-   | 'cos'
-   | 'tan'
-   | 'ln'
-   | 'log'
+   : ABS
+   | SIN
+   | COS
+   | TAN
+   | LOG
+   | LN
    ;
 
+/*
+ * Lexer rules
+ */
+fragment A  : ('A'|'a') ;
+fragment B  : ('B'|'b') ;
+fragment C  : ('C'|'c') ;
+fragment D  : ('D'|'d') ;
+fragment E  : ('E'|'e') ;
+fragment F  : ('F'|'f') ;
+fragment G  : ('G'|'g') ;
+fragment H  : ('H'|'h') ;
+fragment I  : ('I'|'i') ;
+fragment J  : ('J'|'j') ;
+fragment K  : ('K'|'k') ;
+fragment L  : ('L'|'l') ;
+fragment M  : ('M'|'m') ;
+fragment N  : ('N'|'n') ;
+fragment O  : ('O'|'o') ;
+fragment P  : ('P'|'p') ;
+fragment Q  : ('Q'|'q') ;
+fragment R  : ('R'|'r') ;
+fragment S  : ('S'|'s') ;
+fragment T  : ('T'|'t') ;
+fragment U  : ('U'|'u') ;
+fragment V  : ('V'|'v') ;
+fragment W  : ('W'|'w') ;
+fragment X  : ('X'|'x') ;
+fragment Y  : ('Y'|'y') ;
+fragment Z  : ('Z'|'z') ;
+
+fragment NUM
+   : [0-9]+ (','|'.'[0-9]+)?
+   ;
+
+fragment SIGN
+   : ('+'|'-')
+   ;
+
+// Parentheses
 LPAREN
    : '('
    ;
@@ -75,6 +122,7 @@ RPAREN
    : ')'
    ;
 
+// Operations
 PLUS
    : '+'
    ;
@@ -88,12 +136,11 @@ DIV
    : '/'
    | ':'
    ;
+MOD
+   : M O D
+   ;
 POW
    : '^'
-   ;
-
-EQ
-   : '='
    ;
 
 COMMA
@@ -103,16 +150,29 @@ POINT
    : '.'
    ;
 
+// Functions
+ABS
+   : A B S
+   ;
+SIN
+   : S I N
+   ;
+COS
+   : C O S
+   ;
+TAN
+   : T A N
+   | T G
+   ;
+LOG
+   : L O G
+   ;
+LN
+   : L N
+   ;
+
 NUMBER
    : SIGN? NUM
-   ;
-
-fragment NUM
-   : [0-9]+ (','|'.'[0-9]+)?
-   ;
-
-fragment SIGN
-   : ('+'|'-')
    ;
 
 WHITESPACE

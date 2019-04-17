@@ -1,5 +1,5 @@
 
-// Generated from calculator.g4 by ANTLR 4.7.1
+// Generated from calculator.g4 by ANTLR 4.7.2
 
 #pragma once
 
@@ -27,6 +27,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitNumberExpression(calculatorParser::NumberExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitTimes(calculatorParser::TimesContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -35,7 +39,19 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitMod(calculatorParser::ModContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitNumberMultiplyintExpression(calculatorParser::NumberMultiplyintExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitPow(calculatorParser::PowContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitNumberPowExpression(calculatorParser::NumberPowExpressionContext *ctx) override {
     return visitChildren(ctx);
   }
 
