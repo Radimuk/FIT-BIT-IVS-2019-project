@@ -22,17 +22,18 @@
 #pragma once
 
 #include <gtkmm.h>
-#include "MenuBar.h"
 
-/**
- * Main application's window
- */
-class MainWindow : public Gtk::ApplicationWindow {
+class AboutDialog : public Gtk::AboutDialog {
 
 public:
-	MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
+	AboutDialog(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
+	void onActivate();
+
+protected:
+	void onButtonClose(int i);
 
 private:
 	Glib::RefPtr<Gtk::Builder> m_builder;
-	MenuBar *m_menuBar = nullptr;
+
 };
+

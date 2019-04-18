@@ -24,4 +24,5 @@
 
 MainWindow::MainWindow(BaseObjectType* object, const Glib::RefPtr<Gtk::Builder>& builder) : Gtk::ApplicationWindow(object), m_builder(builder) {
 	this->set_title("FIT Calc");
+	m_builder->get_widget_derived("menu_bar", m_menuBar);
 }
