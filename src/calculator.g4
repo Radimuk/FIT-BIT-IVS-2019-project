@@ -29,7 +29,8 @@ input
    ;
 
 expression
-   : LPAREN expression RPAREN # Parenthesis
+   : (PLUS|MINUS) expression # SignedExpression
+   | LPAREN expression RPAREN # Parenthesis
    | expression FACT # Factorial
    | expression POW expression # Pow
    | SQRT expression # Sqrt
@@ -44,7 +45,6 @@ expression
    | expression MINUS expression PERC # PercentageMinus
    | expression MINUS expression # Minus
    | ABSPAREN expression ABSPAREN # Abs
-   | (PLUS|MINUS) expression # SignedExpression
    | funcName LPAREN expression (COMMA expression)* RPAREN # Function
    | NUMBER # Number
    ;
