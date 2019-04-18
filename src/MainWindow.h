@@ -33,7 +33,19 @@ public:
 	MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 
 protected:
+	/**
+	 * Action for general button click
+	 * @param input input
+	 */
 	void onButtonClick(std::string input);
+	/**
+	 * Action for Clean button click
+	 */
+	void onButtonClean();
+	/**
+	 * Action for Backspace button click
+	 */
+	void onButtonBackspace(); 
 
 private:
 	Glib::RefPtr<Gtk::Builder> m_builder;
@@ -65,12 +77,16 @@ private:
 			{"button_multiply",         "*"},
 			{"button_divide",           "/"},
 			{"button_mod",              "mod"},
+			{"button_fact",				"!"},
+			{"button_pow",				"^"},
+			{"button_root",				"√"},
+			{"button_percentage",		"%"},
+			{"button_pow-1",			"^-1"},
 			// Functions
 			{"button_sin",              "sin()"},
 			{"button_cos",              "cos()"},
 			{"button_tan",              "tan()"},
 			{"button_log",              "log()"},
 			{"button_ln",               "ln()"},
-
 	};
 };
