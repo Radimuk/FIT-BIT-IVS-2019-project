@@ -19,22 +19,6 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitPlus(calculatorParser::PlusContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitMinus(calculatorParser::MinusContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitNumberExpression(calculatorParser::NumberExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitTimes(calculatorParser::TimesContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitDiv(calculatorParser::DivContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -43,7 +27,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitNumberMultiplyintExpression(calculatorParser::NumberMultiplyintExpressionContext *ctx) override {
+  virtual antlrcpp::Any visitTimes(calculatorParser::TimesContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -51,7 +35,15 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitNumberPowExpression(calculatorParser::NumberPowExpressionContext *ctx) override {
+  virtual antlrcpp::Any visitNumberExpression(calculatorParser::NumberExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitPlus(calculatorParser::PlusContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitMinus(calculatorParser::MinusContext *ctx) override {
     return visitChildren(ctx);
   }
 

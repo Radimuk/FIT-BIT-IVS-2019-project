@@ -30,21 +30,13 @@ input
    ;
 
 expression
-   : multiplyingExpression PLUS multiplyingExpression # Plus
-   | multiplyingExpression MINUS multiplyingExpression # Minus
-   | multiplyingExpression # NumberExpression
-   ;
-
-multiplyingExpression
-   : powExpression TIMES powExpression # Times
-   | powExpression DIV powExpression # Div
-   | powExpression MOD powExpression # Mod
-   | powExpression # NumberMultiplyintExpression
-   ;
-
-powExpression
-   : signedAtom POW signedAtom # Pow
-   | signedAtom # NumberPowExpression
+   : expression POW expression # Pow
+   | expression TIMES expression # Times
+   | expression DIV expression # Div
+   | expression MOD expression # Mod
+   | expression PLUS expression # Plus
+   | expression MINUS expression # Minus
+   | signedAtom # NumberExpression
    ;
 
 signedAtom
