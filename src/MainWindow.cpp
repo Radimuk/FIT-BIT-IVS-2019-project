@@ -22,7 +22,21 @@
 #include "MainWindow.h"
 
 
-MainWindow::MainWindow(BaseObjectType* object, const Glib::RefPtr<Gtk::Builder>& builder) : Gtk::ApplicationWindow(object), m_builder(builder) {
+MainWindow::MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+	: Gtk::ApplicationWindow(object), m_builder(builder) {
 	this->set_title("FIT Calc");
 	m_builder->get_widget_derived("menu_bar", m_menuBar);
+	m_builder->get_widget("text_entry", m_textEntry);
+	for (auto btnValues : m_buttons) {
+		Gtk::Button *button = nullptr;
+		m_builder->get_widget(btnValues.first, button);
+		button->signal_pressed().connect(
+				sigc::bind<Glib::ustring>(sigc::mem_fun(*this, &MainWindow::onButtonClick), btnValues.second));
+	}
+}
+
+void MainWindow::onButtonClick(std::string input) {
+	Glib::ustring text = m_textEntry->get_text();
+	text.append(input);
+	m_textEntry->set_text(text);
 }

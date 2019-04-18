@@ -186,7 +186,7 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
           </packing>
         </child>
         <child>
-          <object class="GtkGrid" id="button_grin">
+          <object class="GtkGrid" id="button_grid">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="row_spacing">2</property>
@@ -199,7 +199,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_euler_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -212,7 +211,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_percentage_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -225,7 +223,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_mod_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">3</property>
@@ -238,7 +235,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_backspace_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">4</property>
@@ -251,7 +247,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_clean_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">5</property>
@@ -264,7 +259,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_sin_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">6</property>
@@ -277,7 +271,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_seven_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -290,7 +283,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_eight_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -303,7 +295,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_nine_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -316,7 +307,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_divide_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">3</property>
@@ -329,7 +319,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_left_bracket_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">4</property>
@@ -342,7 +331,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_right_bracket_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">5</property>
@@ -355,7 +343,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_cos_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">6</property>
@@ -368,7 +355,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_four_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -381,7 +367,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_five_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -394,7 +379,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_six_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -407,7 +391,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_multiply_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">3</property>
@@ -420,7 +403,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_power_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">4</property>
@@ -433,7 +415,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_root_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">5</property>
@@ -446,7 +427,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_tan_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">6</property>
@@ -459,7 +439,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_one_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -472,7 +451,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_two_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -485,7 +463,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_three_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -498,7 +475,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_subtract_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">3</property>
@@ -511,7 +487,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_inversion_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">4</property>
@@ -524,7 +499,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_factorial_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">5</property>
@@ -532,12 +506,11 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button_absolute_value">
+              <object class="GtkButton" id="button_abs">
                 <property name="label" translatable="yes">|x|</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_absolute_value_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">6</property>
@@ -550,7 +523,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_zero_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -563,7 +535,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_comma_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -576,7 +547,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_equation_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -589,7 +559,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_add_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">3</property>
@@ -602,7 +571,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_log_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">4</property>
@@ -615,7 +583,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_ln_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">5</property>
@@ -628,7 +595,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_ans_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">6</property>
@@ -642,7 +608,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="on_pi_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">0</property>
