@@ -1,5 +1,5 @@
 
-// Generated from calculator.g4 by ANTLR 4.7.1
+// Generated from calculator.g4 by ANTLR 4.7.2
 
 #pragma once
 
@@ -14,7 +14,7 @@ public:
   enum {
     LPAREN = 1, RPAREN = 2, ABSPAREN = 3, PLUS = 4, MINUS = 5, TIMES = 6, 
     DIV = 7, MOD = 8, POW = 9, COMMA = 10, POINT = 11, FACT = 12, SQRT = 13, 
-    PERC = 14, ABS = 15, SIN = 16, COS = 17, TAN = 18, LOG = 19, LN = 20, 
+    PERC = 14, ABSVAL = 15, SIN = 16, COS = 17, TAN = 18, LOG = 19, LN = 20, 
     NUMBER = 21, WHITESPACE = 22
   };
 
@@ -58,7 +58,7 @@ public:
   public:
     ExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
-    ExpressionContext() : antlr4::ParserRuleContext() { }
+    ExpressionContext() = default;
     void copyFrom(ExpressionContext *context);
     using antlr4::ParserRuleContext::copyFrom;
 
@@ -284,7 +284,7 @@ public:
   public:
     FuncNameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *ABS();
+    antlr4::tree::TerminalNode *ABSVAL();
     antlr4::tree::TerminalNode *SIN();
     antlr4::tree::TerminalNode *COS();
     antlr4::tree::TerminalNode *TAN();

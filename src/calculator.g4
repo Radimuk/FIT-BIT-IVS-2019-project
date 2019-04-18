@@ -68,7 +68,7 @@ func
    ;
 
 funcName
-   : ABS
+   : ABSVAL
    | SIN
    | COS
    | TAN
@@ -167,7 +167,7 @@ PERC
    ;
 
 // Functions
-ABS
+ABSVAL
    : A B S
    ;
 SIN
