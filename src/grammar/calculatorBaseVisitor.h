@@ -27,7 +27,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitNumberExpression(calculatorParser::NumberExpressionContext *ctx) override {
+  virtual antlrcpp::Any visitSqrt(calculatorParser::SqrtContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -47,6 +47,14 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitFunction(calculatorParser::FunctionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitParenthesis(calculatorParser::ParenthesisContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitPercentageMinus(calculatorParser::PercentageMinusContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -55,7 +63,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitSqrt(calculatorParser::SqrtContext *ctx) override {
+  virtual antlrcpp::Any visitNumber(calculatorParser::NumberContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -75,23 +83,11 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitSignedExpression(calculatorParser::SignedExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitPercentagePlus(calculatorParser::PercentagePlusContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitSignedAtom(calculatorParser::SignedAtomContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitAtom(calculatorParser::AtomContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitNumber(calculatorParser::NumberContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitFunc(calculatorParser::FuncContext *ctx) override {
     return visitChildren(ctx);
   }
 

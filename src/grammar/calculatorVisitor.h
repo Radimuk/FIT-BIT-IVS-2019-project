@@ -25,7 +25,7 @@ public:
 
     virtual antlrcpp::Any visitRoot(calculatorParser::RootContext *context) = 0;
 
-    virtual antlrcpp::Any visitNumberExpression(calculatorParser::NumberExpressionContext *context) = 0;
+    virtual antlrcpp::Any visitSqrt(calculatorParser::SqrtContext *context) = 0;
 
     virtual antlrcpp::Any visitPercentageTimes(calculatorParser::PercentageTimesContext *context) = 0;
 
@@ -35,11 +35,15 @@ public:
 
     virtual antlrcpp::Any visitFactorial(calculatorParser::FactorialContext *context) = 0;
 
+    virtual antlrcpp::Any visitFunction(calculatorParser::FunctionContext *context) = 0;
+
+    virtual antlrcpp::Any visitParenthesis(calculatorParser::ParenthesisContext *context) = 0;
+
     virtual antlrcpp::Any visitPercentageMinus(calculatorParser::PercentageMinusContext *context) = 0;
 
     virtual antlrcpp::Any visitAbs(calculatorParser::AbsContext *context) = 0;
 
-    virtual antlrcpp::Any visitSqrt(calculatorParser::SqrtContext *context) = 0;
+    virtual antlrcpp::Any visitNumber(calculatorParser::NumberContext *context) = 0;
 
     virtual antlrcpp::Any visitTimes(calculatorParser::TimesContext *context) = 0;
 
@@ -49,15 +53,9 @@ public:
 
     virtual antlrcpp::Any visitMinus(calculatorParser::MinusContext *context) = 0;
 
+    virtual antlrcpp::Any visitSignedExpression(calculatorParser::SignedExpressionContext *context) = 0;
+
     virtual antlrcpp::Any visitPercentagePlus(calculatorParser::PercentagePlusContext *context) = 0;
-
-    virtual antlrcpp::Any visitSignedAtom(calculatorParser::SignedAtomContext *context) = 0;
-
-    virtual antlrcpp::Any visitAtom(calculatorParser::AtomContext *context) = 0;
-
-    virtual antlrcpp::Any visitNumber(calculatorParser::NumberContext *context) = 0;
-
-    virtual antlrcpp::Any visitFunc(calculatorParser::FuncContext *context) = 0;
 
     virtual antlrcpp::Any visitFuncName(calculatorParser::FuncNameContext *context) = 0;
 

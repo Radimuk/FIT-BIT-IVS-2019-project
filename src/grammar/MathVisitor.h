@@ -46,20 +46,16 @@ public:
 	antlrcpp::Any visitTimes(calculatorParser::TimesContext *context) override;
 
 	antlrcpp::Any visitDiv(calculatorParser::DivContext *context) override;
-	
+
 	antlrcpp::Any visitMod(calculatorParser::ModContext *context) override;
 
 	antlrcpp::Any visitAbs(calculatorParser::AbsContext *context) override;
 
 	antlrcpp::Any visitPow(calculatorParser::PowContext *context) override;
 
-	antlrcpp::Any visitSignedAtom(calculatorParser::SignedAtomContext *context) override;
-
-	antlrcpp::Any visitAtom(calculatorParser::AtomContext *context) override;
-
 	antlrcpp::Any visitNumber(calculatorParser::NumberContext *context) override;
 
-	antlrcpp::Any visitFunc(calculatorParser::FuncContext *context) override;
+	antlrcpp::Any visitFunction(calculatorParser::FunctionContext *context) override;
 
 	antlrcpp::Any visitFuncName(calculatorParser::FuncNameContext *context) override;
 
@@ -76,9 +72,13 @@ public:
 	antlrcpp::Any visitPercentagePlus(calculatorParser::PercentagePlusContext *context) override;
 
 	antlrcpp::Any visitPercentageMinus(calculatorParser::PercentageMinusContext *context) override;
+
+	antlrcpp::Any visitSignedExpression(calculatorParser::SignedExpressionContext *ctx) override;
+
+	antlrcpp::Any visitParenthesis(calculatorParser::ParenthesisContext *context) override;
+
 private:
 	GenericMathLib genericMath;
-	TrigonometricMathLib trigMath;
-	PercentageMathLib percMath;
+	TrigonometricMathLib trigonometricMath;
+	PercentageMathLib percentageMath;
 };
-

@@ -66,9 +66,9 @@ calculatorParser::InputContext* calculatorParser::input() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(14);
+    setState(6);
     expression(0);
-    setState(15);
+    setState(7);
     match(calculatorParser::EOF);
    
   }
@@ -140,17 +140,21 @@ antlrcpp::Any calculatorParser::RootContext::accept(tree::ParseTreeVisitor *visi
   else
     return visitor->visitChildren(this);
 }
-//----------------- NumberExpressionContext ------------------------------------------------------------------
+//----------------- SqrtContext ------------------------------------------------------------------
 
-calculatorParser::SignedAtomContext* calculatorParser::NumberExpressionContext::signedAtom() {
-  return getRuleContext<calculatorParser::SignedAtomContext>(0);
+tree::TerminalNode* calculatorParser::SqrtContext::SQRT() {
+  return getToken(calculatorParser::SQRT, 0);
 }
 
-calculatorParser::NumberExpressionContext::NumberExpressionContext(ExpressionContext *ctx) { copyFrom(ctx); }
+calculatorParser::ExpressionContext* calculatorParser::SqrtContext::expression() {
+  return getRuleContext<calculatorParser::ExpressionContext>(0);
+}
 
-antlrcpp::Any calculatorParser::NumberExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+calculatorParser::SqrtContext::SqrtContext(ExpressionContext *ctx) { copyFrom(ctx); }
+
+antlrcpp::Any calculatorParser::SqrtContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<calculatorVisitor*>(visitor))
-    return parserVisitor->visitNumberExpression(this);
+    return parserVisitor->visitSqrt(this);
   else
     return visitor->visitChildren(this);
 }
@@ -246,6 +250,66 @@ antlrcpp::Any calculatorParser::FactorialContext::accept(tree::ParseTreeVisitor 
   else
     return visitor->visitChildren(this);
 }
+//----------------- FunctionContext ------------------------------------------------------------------
+
+calculatorParser::FuncNameContext* calculatorParser::FunctionContext::funcName() {
+  return getRuleContext<calculatorParser::FuncNameContext>(0);
+}
+
+tree::TerminalNode* calculatorParser::FunctionContext::LPAREN() {
+  return getToken(calculatorParser::LPAREN, 0);
+}
+
+std::vector<calculatorParser::ExpressionContext *> calculatorParser::FunctionContext::expression() {
+  return getRuleContexts<calculatorParser::ExpressionContext>();
+}
+
+calculatorParser::ExpressionContext* calculatorParser::FunctionContext::expression(size_t i) {
+  return getRuleContext<calculatorParser::ExpressionContext>(i);
+}
+
+tree::TerminalNode* calculatorParser::FunctionContext::RPAREN() {
+  return getToken(calculatorParser::RPAREN, 0);
+}
+
+std::vector<tree::TerminalNode *> calculatorParser::FunctionContext::COMMA() {
+  return getTokens(calculatorParser::COMMA);
+}
+
+tree::TerminalNode* calculatorParser::FunctionContext::COMMA(size_t i) {
+  return getToken(calculatorParser::COMMA, i);
+}
+
+calculatorParser::FunctionContext::FunctionContext(ExpressionContext *ctx) { copyFrom(ctx); }
+
+antlrcpp::Any calculatorParser::FunctionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<calculatorVisitor*>(visitor))
+    return parserVisitor->visitFunction(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- ParenthesisContext ------------------------------------------------------------------
+
+tree::TerminalNode* calculatorParser::ParenthesisContext::LPAREN() {
+  return getToken(calculatorParser::LPAREN, 0);
+}
+
+calculatorParser::ExpressionContext* calculatorParser::ParenthesisContext::expression() {
+  return getRuleContext<calculatorParser::ExpressionContext>(0);
+}
+
+tree::TerminalNode* calculatorParser::ParenthesisContext::RPAREN() {
+  return getToken(calculatorParser::RPAREN, 0);
+}
+
+calculatorParser::ParenthesisContext::ParenthesisContext(ExpressionContext *ctx) { copyFrom(ctx); }
+
+antlrcpp::Any calculatorParser::ParenthesisContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<calculatorVisitor*>(visitor))
+    return parserVisitor->visitParenthesis(this);
+  else
+    return visitor->visitChildren(this);
+}
 //----------------- PercentageMinusContext ------------------------------------------------------------------
 
 std::vector<calculatorParser::ExpressionContext *> calculatorParser::PercentageMinusContext::expression() {
@@ -294,21 +358,17 @@ antlrcpp::Any calculatorParser::AbsContext::accept(tree::ParseTreeVisitor *visit
   else
     return visitor->visitChildren(this);
 }
-//----------------- SqrtContext ------------------------------------------------------------------
+//----------------- NumberContext ------------------------------------------------------------------
 
-tree::TerminalNode* calculatorParser::SqrtContext::SQRT() {
-  return getToken(calculatorParser::SQRT, 0);
+tree::TerminalNode* calculatorParser::NumberContext::NUMBER() {
+  return getToken(calculatorParser::NUMBER, 0);
 }
 
-calculatorParser::ExpressionContext* calculatorParser::SqrtContext::expression() {
-  return getRuleContext<calculatorParser::ExpressionContext>(0);
-}
+calculatorParser::NumberContext::NumberContext(ExpressionContext *ctx) { copyFrom(ctx); }
 
-calculatorParser::SqrtContext::SqrtContext(ExpressionContext *ctx) { copyFrom(ctx); }
-
-antlrcpp::Any calculatorParser::SqrtContext::accept(tree::ParseTreeVisitor *visitor) {
+antlrcpp::Any calculatorParser::NumberContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<calculatorVisitor*>(visitor))
-    return parserVisitor->visitSqrt(this);
+    return parserVisitor->visitNumber(this);
   else
     return visitor->visitChildren(this);
 }
@@ -400,6 +460,28 @@ antlrcpp::Any calculatorParser::MinusContext::accept(tree::ParseTreeVisitor *vis
   else
     return visitor->visitChildren(this);
 }
+//----------------- SignedExpressionContext ------------------------------------------------------------------
+
+calculatorParser::ExpressionContext* calculatorParser::SignedExpressionContext::expression() {
+  return getRuleContext<calculatorParser::ExpressionContext>(0);
+}
+
+tree::TerminalNode* calculatorParser::SignedExpressionContext::PLUS() {
+  return getToken(calculatorParser::PLUS, 0);
+}
+
+tree::TerminalNode* calculatorParser::SignedExpressionContext::MINUS() {
+  return getToken(calculatorParser::MINUS, 0);
+}
+
+calculatorParser::SignedExpressionContext::SignedExpressionContext(ExpressionContext *ctx) { copyFrom(ctx); }
+
+antlrcpp::Any calculatorParser::SignedExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<calculatorVisitor*>(visitor))
+    return parserVisitor->visitSignedExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
 //----------------- PercentagePlusContext ------------------------------------------------------------------
 
 std::vector<calculatorParser::ExpressionContext *> calculatorParser::PercentagePlusContext::expression() {
@@ -440,7 +522,7 @@ calculatorParser::ExpressionContext* calculatorParser::expression(int precedence
   size_t startState = 2;
   enterRecursionRule(_localctx, 2, calculatorParser::RuleExpression, precedence);
 
-    
+    size_t _la = 0;
 
   auto onExit = finally([=] {
     unrollRecursionContexts(parentContext);
@@ -448,18 +530,31 @@ calculatorParser::ExpressionContext* calculatorParser::expression(int precedence
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(25);
+    setState(35);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
+      case calculatorParser::LPAREN: {
+        _localctx = _tracker.createInstance<ParenthesisContext>(_localctx);
+        _ctx = _localctx;
+        previousContext = _localctx;
+
+        setState(10);
+        match(calculatorParser::LPAREN);
+        setState(11);
+        expression(0);
+        setState(12);
+        match(calculatorParser::RPAREN);
+        break;
+      }
+
       case calculatorParser::SQRT: {
         _localctx = _tracker.createInstance<SqrtContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-
-        setState(18);
+        setState(14);
         match(calculatorParser::SQRT);
-        setState(19);
-        expression(13);
+        setState(15);
+        expression(15);
         break;
       }
 
@@ -467,301 +562,33 @@ calculatorParser::ExpressionContext* calculatorParser::expression(int precedence
         _localctx = _tracker.createInstance<AbsContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-        setState(20);
+        setState(16);
         match(calculatorParser::ABSPAREN);
-        setState(21);
+        setState(17);
         expression(0);
-        setState(22);
+        setState(18);
         match(calculatorParser::ABSPAREN);
         break;
       }
 
-      case calculatorParser::LPAREN:
       case calculatorParser::PLUS:
-      case calculatorParser::MINUS:
-      case calculatorParser::ABSVAL:
-      case calculatorParser::SIN:
-      case calculatorParser::COS:
-      case calculatorParser::TAN:
-      case calculatorParser::LOG:
-      case calculatorParser::LN:
-      case calculatorParser::NUMBER: {
-        _localctx = _tracker.createInstance<NumberExpressionContext>(_localctx);
+      case calculatorParser::MINUS: {
+        _localctx = _tracker.createInstance<SignedExpressionContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-        setState(24);
-        signedAtom();
-        break;
-      }
+        setState(20);
+        _la = _input->LA(1);
+        if (!(_la == calculatorParser::PLUS
 
-    default:
-      throw NoViableAltException(this);
-    }
-    _ctx->stop = _input->LT(-1);
-    setState(72);
-    _errHandler->sync(this);
-    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 2, _ctx);
-    while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
-      if (alt == 1) {
-        if (!_parseListeners.empty())
-          triggerExitRuleEvent();
-        previousContext = _localctx;
-        setState(70);
-        _errHandler->sync(this);
-        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 1, _ctx)) {
-        case 1: {
-          auto newContext = _tracker.createInstance<PowContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(27);
-
-          if (!(precpred(_ctx, 14))) throw FailedPredicateException(this, "precpred(_ctx, 14)");
-          setState(28);
-          match(calculatorParser::POW);
-          setState(29);
-          expression(15);
-          break;
+        || _la == calculatorParser::MINUS)) {
+        _errHandler->recoverInline(this);
         }
-
-        case 2: {
-          auto newContext = _tracker.createInstance<RootContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(30);
-
-          if (!(precpred(_ctx, 12))) throw FailedPredicateException(this, "precpred(_ctx, 12)");
-          setState(31);
-          match(calculatorParser::SQRT);
-          setState(32);
-          expression(13);
-          break;
+        else {
+          _errHandler->reportMatch(this);
+          consume();
         }
-
-        case 3: {
-          auto newContext = _tracker.createInstance<TimesContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(33);
-
-          if (!(precpred(_ctx, 10))) throw FailedPredicateException(this, "precpred(_ctx, 10)");
-          setState(34);
-          match(calculatorParser::TIMES);
-          setState(35);
-          expression(11);
-          break;
-        }
-
-        case 4: {
-          auto newContext = _tracker.createInstance<DivContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(36);
-
-          if (!(precpred(_ctx, 8))) throw FailedPredicateException(this, "precpred(_ctx, 8)");
-          setState(37);
-          match(calculatorParser::DIV);
-          setState(38);
-          expression(9);
-          break;
-        }
-
-        case 5: {
-          auto newContext = _tracker.createInstance<ModContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(39);
-
-          if (!(precpred(_ctx, 7))) throw FailedPredicateException(this, "precpred(_ctx, 7)");
-          setState(40);
-          match(calculatorParser::MOD);
-          setState(41);
-          expression(8);
-          break;
-        }
-
-        case 6: {
-          auto newContext = _tracker.createInstance<PlusContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(42);
-
-          if (!(precpred(_ctx, 5))) throw FailedPredicateException(this, "precpred(_ctx, 5)");
-          setState(43);
-          match(calculatorParser::PLUS);
-          setState(44);
-          expression(6);
-          break;
-        }
-
-        case 7: {
-          auto newContext = _tracker.createInstance<MinusContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(45);
-
-          if (!(precpred(_ctx, 3))) throw FailedPredicateException(this, "precpred(_ctx, 3)");
-          setState(46);
-          match(calculatorParser::MINUS);
-          setState(47);
-          expression(4);
-          break;
-        }
-
-        case 8: {
-          auto newContext = _tracker.createInstance<FactorialContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(48);
-
-          if (!(precpred(_ctx, 15))) throw FailedPredicateException(this, "precpred(_ctx, 15)");
-          setState(49);
-          match(calculatorParser::FACT);
-          break;
-        }
-
-        case 9: {
-          auto newContext = _tracker.createInstance<PercentageTimesContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(50);
-
-          if (!(precpred(_ctx, 11))) throw FailedPredicateException(this, "precpred(_ctx, 11)");
-          setState(51);
-          match(calculatorParser::TIMES);
-          setState(52);
-          expression(0);
-          setState(53);
-          match(calculatorParser::PERC);
-          break;
-        }
-
-        case 10: {
-          auto newContext = _tracker.createInstance<PercentageDivContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(55);
-
-          if (!(precpred(_ctx, 9))) throw FailedPredicateException(this, "precpred(_ctx, 9)");
-          setState(56);
-          match(calculatorParser::DIV);
-          setState(57);
-          expression(0);
-          setState(58);
-          match(calculatorParser::PERC);
-          break;
-        }
-
-        case 11: {
-          auto newContext = _tracker.createInstance<PercentagePlusContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(60);
-
-          if (!(precpred(_ctx, 6))) throw FailedPredicateException(this, "precpred(_ctx, 6)");
-          setState(61);
-          match(calculatorParser::PLUS);
-          setState(62);
-          expression(0);
-          setState(63);
-          match(calculatorParser::PERC);
-          break;
-        }
-
-        case 12: {
-          auto newContext = _tracker.createInstance<PercentageMinusContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
-          _localctx = newContext;
-          pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(65);
-
-          if (!(precpred(_ctx, 4))) throw FailedPredicateException(this, "precpred(_ctx, 4)");
-          setState(66);
-          match(calculatorParser::MINUS);
-          setState(67);
-          expression(0);
-          setState(68);
-          match(calculatorParser::PERC);
-          break;
-        }
-
-        } 
-      }
-      setState(74);
-      _errHandler->sync(this);
-      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 2, _ctx);
-    }
-  }
-  catch (RecognitionException &e) {
-    _errHandler->reportError(this, e);
-    _localctx->exception = std::current_exception();
-    _errHandler->recover(this, _localctx->exception);
-  }
-  return _localctx;
-}
-
-//----------------- SignedAtomContext ------------------------------------------------------------------
-
-calculatorParser::SignedAtomContext::SignedAtomContext(ParserRuleContext *parent, size_t invokingState)
-  : ParserRuleContext(parent, invokingState) {
-}
-
-tree::TerminalNode* calculatorParser::SignedAtomContext::PLUS() {
-  return getToken(calculatorParser::PLUS, 0);
-}
-
-calculatorParser::SignedAtomContext* calculatorParser::SignedAtomContext::signedAtom() {
-  return getRuleContext<calculatorParser::SignedAtomContext>(0);
-}
-
-tree::TerminalNode* calculatorParser::SignedAtomContext::MINUS() {
-  return getToken(calculatorParser::MINUS, 0);
-}
-
-calculatorParser::FuncContext* calculatorParser::SignedAtomContext::func() {
-  return getRuleContext<calculatorParser::FuncContext>(0);
-}
-
-calculatorParser::AtomContext* calculatorParser::SignedAtomContext::atom() {
-  return getRuleContext<calculatorParser::AtomContext>(0);
-}
-
-
-size_t calculatorParser::SignedAtomContext::getRuleIndex() const {
-  return calculatorParser::RuleSignedAtom;
-}
-
-antlrcpp::Any calculatorParser::SignedAtomContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<calculatorVisitor*>(visitor))
-    return parserVisitor->visitSignedAtom(this);
-  else
-    return visitor->visitChildren(this);
-}
-
-calculatorParser::SignedAtomContext* calculatorParser::signedAtom() {
-  SignedAtomContext *_localctx = _tracker.createInstance<SignedAtomContext>(_ctx, getState());
-  enterRule(_localctx, 4, calculatorParser::RuleSignedAtom);
-
-  auto onExit = finally([=] {
-    exitRule();
-  });
-  try {
-    setState(81);
-    _errHandler->sync(this);
-    switch (_input->LA(1)) {
-      case calculatorParser::PLUS: {
-        enterOuterAlt(_localctx, 1);
-        setState(75);
-        match(calculatorParser::PLUS);
-        setState(76);
-        signedAtom();
-        break;
-      }
-
-      case calculatorParser::MINUS: {
-        enterOuterAlt(_localctx, 2);
-        setState(77);
-        match(calculatorParser::MINUS);
-        setState(78);
-        signedAtom();
+        setState(21);
+        expression(3);
         break;
       }
 
@@ -771,239 +598,242 @@ calculatorParser::SignedAtomContext* calculatorParser::signedAtom() {
       case calculatorParser::TAN:
       case calculatorParser::LOG:
       case calculatorParser::LN: {
-        enterOuterAlt(_localctx, 3);
-        setState(79);
-        func();
-        break;
-      }
-
-      case calculatorParser::LPAREN:
-      case calculatorParser::NUMBER: {
-        enterOuterAlt(_localctx, 4);
-        setState(80);
-        atom();
-        break;
-      }
-
-    default:
-      throw NoViableAltException(this);
-    }
-   
-  }
-  catch (RecognitionException &e) {
-    _errHandler->reportError(this, e);
-    _localctx->exception = std::current_exception();
-    _errHandler->recover(this, _localctx->exception);
-  }
-
-  return _localctx;
-}
-
-//----------------- AtomContext ------------------------------------------------------------------
-
-calculatorParser::AtomContext::AtomContext(ParserRuleContext *parent, size_t invokingState)
-  : ParserRuleContext(parent, invokingState) {
-}
-
-calculatorParser::NumberContext* calculatorParser::AtomContext::number() {
-  return getRuleContext<calculatorParser::NumberContext>(0);
-}
-
-tree::TerminalNode* calculatorParser::AtomContext::LPAREN() {
-  return getToken(calculatorParser::LPAREN, 0);
-}
-
-calculatorParser::ExpressionContext* calculatorParser::AtomContext::expression() {
-  return getRuleContext<calculatorParser::ExpressionContext>(0);
-}
-
-tree::TerminalNode* calculatorParser::AtomContext::RPAREN() {
-  return getToken(calculatorParser::RPAREN, 0);
-}
-
-
-size_t calculatorParser::AtomContext::getRuleIndex() const {
-  return calculatorParser::RuleAtom;
-}
-
-antlrcpp::Any calculatorParser::AtomContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<calculatorVisitor*>(visitor))
-    return parserVisitor->visitAtom(this);
-  else
-    return visitor->visitChildren(this);
-}
-
-calculatorParser::AtomContext* calculatorParser::atom() {
-  AtomContext *_localctx = _tracker.createInstance<AtomContext>(_ctx, getState());
-  enterRule(_localctx, 6, calculatorParser::RuleAtom);
-
-  auto onExit = finally([=] {
-    exitRule();
-  });
-  try {
-    setState(88);
-    _errHandler->sync(this);
-    switch (_input->LA(1)) {
-      case calculatorParser::NUMBER: {
-        enterOuterAlt(_localctx, 1);
-        setState(83);
-        number();
-        break;
-      }
-
-      case calculatorParser::LPAREN: {
-        enterOuterAlt(_localctx, 2);
-        setState(84);
+        _localctx = _tracker.createInstance<FunctionContext>(_localctx);
+        _ctx = _localctx;
+        previousContext = _localctx;
+        setState(22);
+        funcName();
+        setState(23);
         match(calculatorParser::LPAREN);
-        setState(85);
+        setState(24);
         expression(0);
-        setState(86);
+        setState(29);
+        _errHandler->sync(this);
+        _la = _input->LA(1);
+        while (_la == calculatorParser::COMMA) {
+          setState(25);
+          match(calculatorParser::COMMA);
+          setState(26);
+          expression(0);
+          setState(31);
+          _errHandler->sync(this);
+          _la = _input->LA(1);
+        }
+        setState(32);
         match(calculatorParser::RPAREN);
         break;
       }
 
+      case calculatorParser::NUMBER: {
+        _localctx = _tracker.createInstance<NumberContext>(_localctx);
+        _ctx = _localctx;
+        previousContext = _localctx;
+        setState(34);
+        match(calculatorParser::NUMBER);
+        break;
+      }
+
     default:
       throw NoViableAltException(this);
     }
-   
-  }
-  catch (RecognitionException &e) {
-    _errHandler->reportError(this, e);
-    _localctx->exception = std::current_exception();
-    _errHandler->recover(this, _localctx->exception);
-  }
-
-  return _localctx;
-}
-
-//----------------- NumberContext ------------------------------------------------------------------
-
-calculatorParser::NumberContext::NumberContext(ParserRuleContext *parent, size_t invokingState)
-  : ParserRuleContext(parent, invokingState) {
-}
-
-tree::TerminalNode* calculatorParser::NumberContext::NUMBER() {
-  return getToken(calculatorParser::NUMBER, 0);
-}
-
-
-size_t calculatorParser::NumberContext::getRuleIndex() const {
-  return calculatorParser::RuleNumber;
-}
-
-antlrcpp::Any calculatorParser::NumberContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<calculatorVisitor*>(visitor))
-    return parserVisitor->visitNumber(this);
-  else
-    return visitor->visitChildren(this);
-}
-
-calculatorParser::NumberContext* calculatorParser::number() {
-  NumberContext *_localctx = _tracker.createInstance<NumberContext>(_ctx, getState());
-  enterRule(_localctx, 8, calculatorParser::RuleNumber);
-
-  auto onExit = finally([=] {
-    exitRule();
-  });
-  try {
-    enterOuterAlt(_localctx, 1);
-    setState(90);
-    match(calculatorParser::NUMBER);
-   
-  }
-  catch (RecognitionException &e) {
-    _errHandler->reportError(this, e);
-    _localctx->exception = std::current_exception();
-    _errHandler->recover(this, _localctx->exception);
-  }
-
-  return _localctx;
-}
-
-//----------------- FuncContext ------------------------------------------------------------------
-
-calculatorParser::FuncContext::FuncContext(ParserRuleContext *parent, size_t invokingState)
-  : ParserRuleContext(parent, invokingState) {
-}
-
-calculatorParser::FuncNameContext* calculatorParser::FuncContext::funcName() {
-  return getRuleContext<calculatorParser::FuncNameContext>(0);
-}
-
-tree::TerminalNode* calculatorParser::FuncContext::LPAREN() {
-  return getToken(calculatorParser::LPAREN, 0);
-}
-
-std::vector<calculatorParser::ExpressionContext *> calculatorParser::FuncContext::expression() {
-  return getRuleContexts<calculatorParser::ExpressionContext>();
-}
-
-calculatorParser::ExpressionContext* calculatorParser::FuncContext::expression(size_t i) {
-  return getRuleContext<calculatorParser::ExpressionContext>(i);
-}
-
-tree::TerminalNode* calculatorParser::FuncContext::RPAREN() {
-  return getToken(calculatorParser::RPAREN, 0);
-}
-
-std::vector<tree::TerminalNode *> calculatorParser::FuncContext::COMMA() {
-  return getTokens(calculatorParser::COMMA);
-}
-
-tree::TerminalNode* calculatorParser::FuncContext::COMMA(size_t i) {
-  return getToken(calculatorParser::COMMA, i);
-}
-
-
-size_t calculatorParser::FuncContext::getRuleIndex() const {
-  return calculatorParser::RuleFunc;
-}
-
-antlrcpp::Any calculatorParser::FuncContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<calculatorVisitor*>(visitor))
-    return parserVisitor->visitFunc(this);
-  else
-    return visitor->visitChildren(this);
-}
-
-calculatorParser::FuncContext* calculatorParser::func() {
-  FuncContext *_localctx = _tracker.createInstance<FuncContext>(_ctx, getState());
-  enterRule(_localctx, 10, calculatorParser::RuleFunc);
-  size_t _la = 0;
-
-  auto onExit = finally([=] {
-    exitRule();
-  });
-  try {
-    enterOuterAlt(_localctx, 1);
-    setState(92);
-    funcName();
-    setState(93);
-    match(calculatorParser::LPAREN);
-    setState(94);
-    expression(0);
-    setState(99);
+    _ctx->stop = _input->LT(-1);
+    setState(82);
     _errHandler->sync(this);
-    _la = _input->LA(1);
-    while (_la == calculatorParser::COMMA) {
-      setState(95);
-      match(calculatorParser::COMMA);
-      setState(96);
-      expression(0);
-      setState(101);
+    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx);
+    while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
+      if (alt == 1) {
+        if (!_parseListeners.empty())
+          triggerExitRuleEvent();
+        previousContext = _localctx;
+        setState(80);
+        _errHandler->sync(this);
+        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 2, _ctx)) {
+        case 1: {
+          auto newContext = _tracker.createInstance<PowContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(37);
+
+          if (!(precpred(_ctx, 16))) throw FailedPredicateException(this, "precpred(_ctx, 16)");
+          setState(38);
+          match(calculatorParser::POW);
+          setState(39);
+          expression(17);
+          break;
+        }
+
+        case 2: {
+          auto newContext = _tracker.createInstance<RootContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(40);
+
+          if (!(precpred(_ctx, 14))) throw FailedPredicateException(this, "precpred(_ctx, 14)");
+          setState(41);
+          match(calculatorParser::SQRT);
+          setState(42);
+          expression(15);
+          break;
+        }
+
+        case 3: {
+          auto newContext = _tracker.createInstance<TimesContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(43);
+
+          if (!(precpred(_ctx, 12))) throw FailedPredicateException(this, "precpred(_ctx, 12)");
+          setState(44);
+          match(calculatorParser::TIMES);
+          setState(45);
+          expression(13);
+          break;
+        }
+
+        case 4: {
+          auto newContext = _tracker.createInstance<DivContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(46);
+
+          if (!(precpred(_ctx, 10))) throw FailedPredicateException(this, "precpred(_ctx, 10)");
+          setState(47);
+          match(calculatorParser::DIV);
+          setState(48);
+          expression(11);
+          break;
+        }
+
+        case 5: {
+          auto newContext = _tracker.createInstance<ModContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(49);
+
+          if (!(precpred(_ctx, 9))) throw FailedPredicateException(this, "precpred(_ctx, 9)");
+          setState(50);
+          match(calculatorParser::MOD);
+          setState(51);
+          expression(10);
+          break;
+        }
+
+        case 6: {
+          auto newContext = _tracker.createInstance<PlusContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(52);
+
+          if (!(precpred(_ctx, 7))) throw FailedPredicateException(this, "precpred(_ctx, 7)");
+          setState(53);
+          match(calculatorParser::PLUS);
+          setState(54);
+          expression(8);
+          break;
+        }
+
+        case 7: {
+          auto newContext = _tracker.createInstance<MinusContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(55);
+
+          if (!(precpred(_ctx, 5))) throw FailedPredicateException(this, "precpred(_ctx, 5)");
+          setState(56);
+          match(calculatorParser::MINUS);
+          setState(57);
+          expression(6);
+          break;
+        }
+
+        case 8: {
+          auto newContext = _tracker.createInstance<FactorialContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(58);
+
+          if (!(precpred(_ctx, 17))) throw FailedPredicateException(this, "precpred(_ctx, 17)");
+          setState(59);
+          match(calculatorParser::FACT);
+          break;
+        }
+
+        case 9: {
+          auto newContext = _tracker.createInstance<PercentageTimesContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(60);
+
+          if (!(precpred(_ctx, 13))) throw FailedPredicateException(this, "precpred(_ctx, 13)");
+          setState(61);
+          match(calculatorParser::TIMES);
+          setState(62);
+          expression(0);
+          setState(63);
+          match(calculatorParser::PERC);
+          break;
+        }
+
+        case 10: {
+          auto newContext = _tracker.createInstance<PercentageDivContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(65);
+
+          if (!(precpred(_ctx, 11))) throw FailedPredicateException(this, "precpred(_ctx, 11)");
+          setState(66);
+          match(calculatorParser::DIV);
+          setState(67);
+          expression(0);
+          setState(68);
+          match(calculatorParser::PERC);
+          break;
+        }
+
+        case 11: {
+          auto newContext = _tracker.createInstance<PercentagePlusContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(70);
+
+          if (!(precpred(_ctx, 8))) throw FailedPredicateException(this, "precpred(_ctx, 8)");
+          setState(71);
+          match(calculatorParser::PLUS);
+          setState(72);
+          expression(0);
+          setState(73);
+          match(calculatorParser::PERC);
+          break;
+        }
+
+        case 12: {
+          auto newContext = _tracker.createInstance<PercentageMinusContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
+          setState(75);
+
+          if (!(precpred(_ctx, 6))) throw FailedPredicateException(this, "precpred(_ctx, 6)");
+          setState(76);
+          match(calculatorParser::MINUS);
+          setState(77);
+          expression(0);
+          setState(78);
+          match(calculatorParser::PERC);
+          break;
+        }
+
+        } 
+      }
+      setState(84);
       _errHandler->sync(this);
-      _la = _input->LA(1);
+      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx);
     }
-    setState(102);
-    match(calculatorParser::RPAREN);
-   
   }
   catch (RecognitionException &e) {
     _errHandler->reportError(this, e);
     _localctx->exception = std::current_exception();
     _errHandler->recover(this, _localctx->exception);
   }
-
   return _localctx;
 }
 
@@ -1051,7 +881,7 @@ antlrcpp::Any calculatorParser::FuncNameContext::accept(tree::ParseTreeVisitor *
 
 calculatorParser::FuncNameContext* calculatorParser::funcName() {
   FuncNameContext *_localctx = _tracker.createInstance<FuncNameContext>(_ctx, getState());
-  enterRule(_localctx, 12, calculatorParser::RuleFuncName);
+  enterRule(_localctx, 4, calculatorParser::RuleFuncName);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -1059,7 +889,7 @@ calculatorParser::FuncNameContext* calculatorParser::funcName() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(104);
+    setState(85);
     _la = _input->LA(1);
     if (!((((_la & ~ 0x3fULL) == 0) &&
       ((1ULL << _la) & ((1ULL << calculatorParser::ABSVAL)
@@ -1097,18 +927,18 @@ bool calculatorParser::sempred(RuleContext *context, size_t ruleIndex, size_t pr
 
 bool calculatorParser::expressionSempred(ExpressionContext *_localctx, size_t predicateIndex) {
   switch (predicateIndex) {
-    case 0: return precpred(_ctx, 14);
-    case 1: return precpred(_ctx, 12);
-    case 2: return precpred(_ctx, 10);
-    case 3: return precpred(_ctx, 8);
-    case 4: return precpred(_ctx, 7);
-    case 5: return precpred(_ctx, 5);
-    case 6: return precpred(_ctx, 3);
-    case 7: return precpred(_ctx, 15);
-    case 8: return precpred(_ctx, 11);
-    case 9: return precpred(_ctx, 9);
-    case 10: return precpred(_ctx, 6);
-    case 11: return precpred(_ctx, 4);
+    case 0: return precpred(_ctx, 16);
+    case 1: return precpred(_ctx, 14);
+    case 2: return precpred(_ctx, 12);
+    case 3: return precpred(_ctx, 10);
+    case 4: return precpred(_ctx, 9);
+    case 5: return precpred(_ctx, 7);
+    case 6: return precpred(_ctx, 5);
+    case 7: return precpred(_ctx, 17);
+    case 8: return precpred(_ctx, 13);
+    case 9: return precpred(_ctx, 11);
+    case 10: return precpred(_ctx, 8);
+    case 11: return precpred(_ctx, 6);
 
   default:
     break;
@@ -1125,18 +955,18 @@ atn::ATN calculatorParser::_atn;
 std::vector<uint16_t> calculatorParser::_serializedATN;
 
 std::vector<std::string> calculatorParser::_ruleNames = {
-  "input", "expression", "signedAtom", "atom", "number", "func", "funcName"
+  "input", "expression", "funcName"
 };
 
 std::vector<std::string> calculatorParser::_literalNames = {
-  "", "'('", "')'", "'|'", "'+'", "'-'", "'*'", "", "", "'^'", "','", "'.'", 
-  "'!'", "'\u221A'", "'%'"
+  "", "", "'('", "')'", "'|'", "'+'", "'-'", "'*'", "", "", "'^'", "','", 
+  "'.'", "'!'", "'\u221A'", "'%'"
 };
 
 std::vector<std::string> calculatorParser::_symbolicNames = {
-  "", "LPAREN", "RPAREN", "ABSPAREN", "PLUS", "MINUS", "TIMES", "DIV", "MOD", 
-  "POW", "COMMA", "POINT", "FACT", "SQRT", "PERC", "ABSVAL", "SIN", "COS", 
-  "TAN", "LOG", "LN", "NUMBER", "WHITESPACE"
+  "", "NUMBER", "LPAREN", "RPAREN", "ABSPAREN", "PLUS", "MINUS", "TIMES", 
+  "DIV", "MOD", "POW", "COMMA", "POINT", "FACT", "SQRT", "PERC", "ABSVAL", 
+  "SIN", "COS", "TAN", "LOG", "LN", "WHITESPACE"
 };
 
 dfa::Vocabulary calculatorParser::_vocabulary(_literalNames, _symbolicNames);
@@ -1159,79 +989,68 @@ calculatorParser::Initializer::Initializer() {
 
   _serializedATN = {
     0x3, 0x608b, 0xa72a, 0x8133, 0xb9ed, 0x417c, 0x3be7, 0x7786, 0x5964, 
-    0x3, 0x18, 0x6d, 0x4, 0x2, 0x9, 0x2, 0x4, 0x3, 0x9, 0x3, 0x4, 0x4, 0x9, 
-    0x4, 0x4, 0x5, 0x9, 0x5, 0x4, 0x6, 0x9, 0x6, 0x4, 0x7, 0x9, 0x7, 0x4, 
-    0x8, 0x9, 0x8, 0x3, 0x2, 0x3, 0x2, 0x3, 0x2, 0x3, 0x3, 0x3, 0x3, 0x3, 
-    0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x5, 0x3, 0x1c, 
-    0xa, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
+    0x3, 0x18, 0x5a, 0x4, 0x2, 0x9, 0x2, 0x4, 0x3, 0x9, 0x3, 0x4, 0x4, 0x9, 
+    0x4, 0x3, 0x2, 0x3, 0x2, 0x3, 0x2, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
+    0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
+    0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
+    0x3, 0x7, 0x3, 0x1e, 0xa, 0x3, 0xc, 0x3, 0xe, 0x3, 0x21, 0xb, 0x3, 0x3, 
+    0x3, 0x3, 0x3, 0x3, 0x3, 0x5, 0x3, 0x26, 0xa, 0x3, 0x3, 0x3, 0x3, 0x3, 
     0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
     0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
     0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
     0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
     0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
-    0x3, 0x3, 0x3, 0x3, 0x7, 0x3, 0x49, 0xa, 0x3, 0xc, 0x3, 0xe, 0x3, 0x4c, 
-    0xb, 0x3, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 
-    0x5, 0x4, 0x54, 0xa, 0x4, 0x3, 0x5, 0x3, 0x5, 0x3, 0x5, 0x3, 0x5, 0x3, 
-    0x5, 0x5, 0x5, 0x5b, 0xa, 0x5, 0x3, 0x6, 0x3, 0x6, 0x3, 0x7, 0x3, 0x7, 
-    0x3, 0x7, 0x3, 0x7, 0x3, 0x7, 0x7, 0x7, 0x64, 0xa, 0x7, 0xc, 0x7, 0xe, 
-    0x7, 0x67, 0xb, 0x7, 0x3, 0x7, 0x3, 0x7, 0x3, 0x8, 0x3, 0x8, 0x3, 0x8, 
-    0x2, 0x3, 0x4, 0x9, 0x2, 0x4, 0x6, 0x8, 0xa, 0xc, 0xe, 0x2, 0x3, 0x3, 
-    0x2, 0x11, 0x16, 0x2, 0x78, 0x2, 0x10, 0x3, 0x2, 0x2, 0x2, 0x4, 0x1b, 
-    0x3, 0x2, 0x2, 0x2, 0x6, 0x53, 0x3, 0x2, 0x2, 0x2, 0x8, 0x5a, 0x3, 0x2, 
-    0x2, 0x2, 0xa, 0x5c, 0x3, 0x2, 0x2, 0x2, 0xc, 0x5e, 0x3, 0x2, 0x2, 0x2, 
-    0xe, 0x6a, 0x3, 0x2, 0x2, 0x2, 0x10, 0x11, 0x5, 0x4, 0x3, 0x2, 0x11, 
-    0x12, 0x7, 0x2, 0x2, 0x3, 0x12, 0x3, 0x3, 0x2, 0x2, 0x2, 0x13, 0x14, 
-    0x8, 0x3, 0x1, 0x2, 0x14, 0x15, 0x7, 0xf, 0x2, 0x2, 0x15, 0x1c, 0x5, 
-    0x4, 0x3, 0xf, 0x16, 0x17, 0x7, 0x5, 0x2, 0x2, 0x17, 0x18, 0x5, 0x4, 
-    0x3, 0x2, 0x18, 0x19, 0x7, 0x5, 0x2, 0x2, 0x19, 0x1c, 0x3, 0x2, 0x2, 
-    0x2, 0x1a, 0x1c, 0x5, 0x6, 0x4, 0x2, 0x1b, 0x13, 0x3, 0x2, 0x2, 0x2, 
-    0x1b, 0x16, 0x3, 0x2, 0x2, 0x2, 0x1b, 0x1a, 0x3, 0x2, 0x2, 0x2, 0x1c, 
-    0x4a, 0x3, 0x2, 0x2, 0x2, 0x1d, 0x1e, 0xc, 0x10, 0x2, 0x2, 0x1e, 0x1f, 
-    0x7, 0xb, 0x2, 0x2, 0x1f, 0x49, 0x5, 0x4, 0x3, 0x11, 0x20, 0x21, 0xc, 
-    0xe, 0x2, 0x2, 0x21, 0x22, 0x7, 0xf, 0x2, 0x2, 0x22, 0x49, 0x5, 0x4, 
-    0x3, 0xf, 0x23, 0x24, 0xc, 0xc, 0x2, 0x2, 0x24, 0x25, 0x7, 0x8, 0x2, 
-    0x2, 0x25, 0x49, 0x5, 0x4, 0x3, 0xd, 0x26, 0x27, 0xc, 0xa, 0x2, 0x2, 
-    0x27, 0x28, 0x7, 0x9, 0x2, 0x2, 0x28, 0x49, 0x5, 0x4, 0x3, 0xb, 0x29, 
-    0x2a, 0xc, 0x9, 0x2, 0x2, 0x2a, 0x2b, 0x7, 0xa, 0x2, 0x2, 0x2b, 0x49, 
-    0x5, 0x4, 0x3, 0xa, 0x2c, 0x2d, 0xc, 0x7, 0x2, 0x2, 0x2d, 0x2e, 0x7, 
-    0x6, 0x2, 0x2, 0x2e, 0x49, 0x5, 0x4, 0x3, 0x8, 0x2f, 0x30, 0xc, 0x5, 
-    0x2, 0x2, 0x30, 0x31, 0x7, 0x7, 0x2, 0x2, 0x31, 0x49, 0x5, 0x4, 0x3, 
-    0x6, 0x32, 0x33, 0xc, 0x11, 0x2, 0x2, 0x33, 0x49, 0x7, 0xe, 0x2, 0x2, 
-    0x34, 0x35, 0xc, 0xd, 0x2, 0x2, 0x35, 0x36, 0x7, 0x8, 0x2, 0x2, 0x36, 
-    0x37, 0x5, 0x4, 0x3, 0x2, 0x37, 0x38, 0x7, 0x10, 0x2, 0x2, 0x38, 0x49, 
-    0x3, 0x2, 0x2, 0x2, 0x39, 0x3a, 0xc, 0xb, 0x2, 0x2, 0x3a, 0x3b, 0x7, 
-    0x9, 0x2, 0x2, 0x3b, 0x3c, 0x5, 0x4, 0x3, 0x2, 0x3c, 0x3d, 0x7, 0x10, 
-    0x2, 0x2, 0x3d, 0x49, 0x3, 0x2, 0x2, 0x2, 0x3e, 0x3f, 0xc, 0x8, 0x2, 
-    0x2, 0x3f, 0x40, 0x7, 0x6, 0x2, 0x2, 0x40, 0x41, 0x5, 0x4, 0x3, 0x2, 
-    0x41, 0x42, 0x7, 0x10, 0x2, 0x2, 0x42, 0x49, 0x3, 0x2, 0x2, 0x2, 0x43, 
-    0x44, 0xc, 0x6, 0x2, 0x2, 0x44, 0x45, 0x7, 0x7, 0x2, 0x2, 0x45, 0x46, 
-    0x5, 0x4, 0x3, 0x2, 0x46, 0x47, 0x7, 0x10, 0x2, 0x2, 0x47, 0x49, 0x3, 
-    0x2, 0x2, 0x2, 0x48, 0x1d, 0x3, 0x2, 0x2, 0x2, 0x48, 0x20, 0x3, 0x2, 
-    0x2, 0x2, 0x48, 0x23, 0x3, 0x2, 0x2, 0x2, 0x48, 0x26, 0x3, 0x2, 0x2, 
-    0x2, 0x48, 0x29, 0x3, 0x2, 0x2, 0x2, 0x48, 0x2c, 0x3, 0x2, 0x2, 0x2, 
-    0x48, 0x2f, 0x3, 0x2, 0x2, 0x2, 0x48, 0x32, 0x3, 0x2, 0x2, 0x2, 0x48, 
-    0x34, 0x3, 0x2, 0x2, 0x2, 0x48, 0x39, 0x3, 0x2, 0x2, 0x2, 0x48, 0x3e, 
-    0x3, 0x2, 0x2, 0x2, 0x48, 0x43, 0x3, 0x2, 0x2, 0x2, 0x49, 0x4c, 0x3, 
-    0x2, 0x2, 0x2, 0x4a, 0x48, 0x3, 0x2, 0x2, 0x2, 0x4a, 0x4b, 0x3, 0x2, 
-    0x2, 0x2, 0x4b, 0x5, 0x3, 0x2, 0x2, 0x2, 0x4c, 0x4a, 0x3, 0x2, 0x2, 
-    0x2, 0x4d, 0x4e, 0x7, 0x6, 0x2, 0x2, 0x4e, 0x54, 0x5, 0x6, 0x4, 0x2, 
-    0x4f, 0x50, 0x7, 0x7, 0x2, 0x2, 0x50, 0x54, 0x5, 0x6, 0x4, 0x2, 0x51, 
-    0x54, 0x5, 0xc, 0x7, 0x2, 0x52, 0x54, 0x5, 0x8, 0x5, 0x2, 0x53, 0x4d, 
-    0x3, 0x2, 0x2, 0x2, 0x53, 0x4f, 0x3, 0x2, 0x2, 0x2, 0x53, 0x51, 0x3, 
-    0x2, 0x2, 0x2, 0x53, 0x52, 0x3, 0x2, 0x2, 0x2, 0x54, 0x7, 0x3, 0x2, 
-    0x2, 0x2, 0x55, 0x5b, 0x5, 0xa, 0x6, 0x2, 0x56, 0x57, 0x7, 0x3, 0x2, 
-    0x2, 0x57, 0x58, 0x5, 0x4, 0x3, 0x2, 0x58, 0x59, 0x7, 0x4, 0x2, 0x2, 
-    0x59, 0x5b, 0x3, 0x2, 0x2, 0x2, 0x5a, 0x55, 0x3, 0x2, 0x2, 0x2, 0x5a, 
-    0x56, 0x3, 0x2, 0x2, 0x2, 0x5b, 0x9, 0x3, 0x2, 0x2, 0x2, 0x5c, 0x5d, 
-    0x7, 0x17, 0x2, 0x2, 0x5d, 0xb, 0x3, 0x2, 0x2, 0x2, 0x5e, 0x5f, 0x5, 
-    0xe, 0x8, 0x2, 0x5f, 0x60, 0x7, 0x3, 0x2, 0x2, 0x60, 0x65, 0x5, 0x4, 
-    0x3, 0x2, 0x61, 0x62, 0x7, 0xc, 0x2, 0x2, 0x62, 0x64, 0x5, 0x4, 0x3, 
-    0x2, 0x63, 0x61, 0x3, 0x2, 0x2, 0x2, 0x64, 0x67, 0x3, 0x2, 0x2, 0x2, 
-    0x65, 0x63, 0x3, 0x2, 0x2, 0x2, 0x65, 0x66, 0x3, 0x2, 0x2, 0x2, 0x66, 
-    0x68, 0x3, 0x2, 0x2, 0x2, 0x67, 0x65, 0x3, 0x2, 0x2, 0x2, 0x68, 0x69, 
-    0x7, 0x4, 0x2, 0x2, 0x69, 0xd, 0x3, 0x2, 0x2, 0x2, 0x6a, 0x6b, 0x9, 
-    0x2, 0x2, 0x2, 0x6b, 0xf, 0x3, 0x2, 0x2, 0x2, 0x8, 0x1b, 0x48, 0x4a, 
-    0x53, 0x5a, 0x65, 
+    0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x7, 0x3, 
+    0x53, 0xa, 0x3, 0xc, 0x3, 0xe, 0x3, 0x56, 0xb, 0x3, 0x3, 0x4, 0x3, 0x4, 
+    0x3, 0x4, 0x2, 0x3, 0x4, 0x5, 0x2, 0x4, 0x6, 0x2, 0x4, 0x3, 0x2, 0x7, 
+    0x8, 0x3, 0x2, 0x12, 0x17, 0x2, 0x68, 0x2, 0x8, 0x3, 0x2, 0x2, 0x2, 
+    0x4, 0x25, 0x3, 0x2, 0x2, 0x2, 0x6, 0x57, 0x3, 0x2, 0x2, 0x2, 0x8, 0x9, 
+    0x5, 0x4, 0x3, 0x2, 0x9, 0xa, 0x7, 0x2, 0x2, 0x3, 0xa, 0x3, 0x3, 0x2, 
+    0x2, 0x2, 0xb, 0xc, 0x8, 0x3, 0x1, 0x2, 0xc, 0xd, 0x7, 0x4, 0x2, 0x2, 
+    0xd, 0xe, 0x5, 0x4, 0x3, 0x2, 0xe, 0xf, 0x7, 0x5, 0x2, 0x2, 0xf, 0x26, 
+    0x3, 0x2, 0x2, 0x2, 0x10, 0x11, 0x7, 0x10, 0x2, 0x2, 0x11, 0x26, 0x5, 
+    0x4, 0x3, 0x11, 0x12, 0x13, 0x7, 0x6, 0x2, 0x2, 0x13, 0x14, 0x5, 0x4, 
+    0x3, 0x2, 0x14, 0x15, 0x7, 0x6, 0x2, 0x2, 0x15, 0x26, 0x3, 0x2, 0x2, 
+    0x2, 0x16, 0x17, 0x9, 0x2, 0x2, 0x2, 0x17, 0x26, 0x5, 0x4, 0x3, 0x5, 
+    0x18, 0x19, 0x5, 0x6, 0x4, 0x2, 0x19, 0x1a, 0x7, 0x4, 0x2, 0x2, 0x1a, 
+    0x1f, 0x5, 0x4, 0x3, 0x2, 0x1b, 0x1c, 0x7, 0xd, 0x2, 0x2, 0x1c, 0x1e, 
+    0x5, 0x4, 0x3, 0x2, 0x1d, 0x1b, 0x3, 0x2, 0x2, 0x2, 0x1e, 0x21, 0x3, 
+    0x2, 0x2, 0x2, 0x1f, 0x1d, 0x3, 0x2, 0x2, 0x2, 0x1f, 0x20, 0x3, 0x2, 
+    0x2, 0x2, 0x20, 0x22, 0x3, 0x2, 0x2, 0x2, 0x21, 0x1f, 0x3, 0x2, 0x2, 
+    0x2, 0x22, 0x23, 0x7, 0x5, 0x2, 0x2, 0x23, 0x26, 0x3, 0x2, 0x2, 0x2, 
+    0x24, 0x26, 0x7, 0x3, 0x2, 0x2, 0x25, 0xb, 0x3, 0x2, 0x2, 0x2, 0x25, 
+    0x10, 0x3, 0x2, 0x2, 0x2, 0x25, 0x12, 0x3, 0x2, 0x2, 0x2, 0x25, 0x16, 
+    0x3, 0x2, 0x2, 0x2, 0x25, 0x18, 0x3, 0x2, 0x2, 0x2, 0x25, 0x24, 0x3, 
+    0x2, 0x2, 0x2, 0x26, 0x54, 0x3, 0x2, 0x2, 0x2, 0x27, 0x28, 0xc, 0x12, 
+    0x2, 0x2, 0x28, 0x29, 0x7, 0xc, 0x2, 0x2, 0x29, 0x53, 0x5, 0x4, 0x3, 
+    0x13, 0x2a, 0x2b, 0xc, 0x10, 0x2, 0x2, 0x2b, 0x2c, 0x7, 0x10, 0x2, 0x2, 
+    0x2c, 0x53, 0x5, 0x4, 0x3, 0x11, 0x2d, 0x2e, 0xc, 0xe, 0x2, 0x2, 0x2e, 
+    0x2f, 0x7, 0x9, 0x2, 0x2, 0x2f, 0x53, 0x5, 0x4, 0x3, 0xf, 0x30, 0x31, 
+    0xc, 0xc, 0x2, 0x2, 0x31, 0x32, 0x7, 0xa, 0x2, 0x2, 0x32, 0x53, 0x5, 
+    0x4, 0x3, 0xd, 0x33, 0x34, 0xc, 0xb, 0x2, 0x2, 0x34, 0x35, 0x7, 0xb, 
+    0x2, 0x2, 0x35, 0x53, 0x5, 0x4, 0x3, 0xc, 0x36, 0x37, 0xc, 0x9, 0x2, 
+    0x2, 0x37, 0x38, 0x7, 0x7, 0x2, 0x2, 0x38, 0x53, 0x5, 0x4, 0x3, 0xa, 
+    0x39, 0x3a, 0xc, 0x7, 0x2, 0x2, 0x3a, 0x3b, 0x7, 0x8, 0x2, 0x2, 0x3b, 
+    0x53, 0x5, 0x4, 0x3, 0x8, 0x3c, 0x3d, 0xc, 0x13, 0x2, 0x2, 0x3d, 0x53, 
+    0x7, 0xf, 0x2, 0x2, 0x3e, 0x3f, 0xc, 0xf, 0x2, 0x2, 0x3f, 0x40, 0x7, 
+    0x9, 0x2, 0x2, 0x40, 0x41, 0x5, 0x4, 0x3, 0x2, 0x41, 0x42, 0x7, 0x11, 
+    0x2, 0x2, 0x42, 0x53, 0x3, 0x2, 0x2, 0x2, 0x43, 0x44, 0xc, 0xd, 0x2, 
+    0x2, 0x44, 0x45, 0x7, 0xa, 0x2, 0x2, 0x45, 0x46, 0x5, 0x4, 0x3, 0x2, 
+    0x46, 0x47, 0x7, 0x11, 0x2, 0x2, 0x47, 0x53, 0x3, 0x2, 0x2, 0x2, 0x48, 
+    0x49, 0xc, 0xa, 0x2, 0x2, 0x49, 0x4a, 0x7, 0x7, 0x2, 0x2, 0x4a, 0x4b, 
+    0x5, 0x4, 0x3, 0x2, 0x4b, 0x4c, 0x7, 0x11, 0x2, 0x2, 0x4c, 0x53, 0x3, 
+    0x2, 0x2, 0x2, 0x4d, 0x4e, 0xc, 0x8, 0x2, 0x2, 0x4e, 0x4f, 0x7, 0x8, 
+    0x2, 0x2, 0x4f, 0x50, 0x5, 0x4, 0x3, 0x2, 0x50, 0x51, 0x7, 0x11, 0x2, 
+    0x2, 0x51, 0x53, 0x3, 0x2, 0x2, 0x2, 0x52, 0x27, 0x3, 0x2, 0x2, 0x2, 
+    0x52, 0x2a, 0x3, 0x2, 0x2, 0x2, 0x52, 0x2d, 0x3, 0x2, 0x2, 0x2, 0x52, 
+    0x30, 0x3, 0x2, 0x2, 0x2, 0x52, 0x33, 0x3, 0x2, 0x2, 0x2, 0x52, 0x36, 
+    0x3, 0x2, 0x2, 0x2, 0x52, 0x39, 0x3, 0x2, 0x2, 0x2, 0x52, 0x3c, 0x3, 
+    0x2, 0x2, 0x2, 0x52, 0x3e, 0x3, 0x2, 0x2, 0x2, 0x52, 0x43, 0x3, 0x2, 
+    0x2, 0x2, 0x52, 0x48, 0x3, 0x2, 0x2, 0x2, 0x52, 0x4d, 0x3, 0x2, 0x2, 
+    0x2, 0x53, 0x56, 0x3, 0x2, 0x2, 0x2, 0x54, 0x52, 0x3, 0x2, 0x2, 0x2, 
+    0x54, 0x55, 0x3, 0x2, 0x2, 0x2, 0x55, 0x5, 0x3, 0x2, 0x2, 0x2, 0x56, 
+    0x54, 0x3, 0x2, 0x2, 0x2, 0x57, 0x58, 0x9, 0x3, 0x2, 0x2, 0x58, 0x7, 
+    0x3, 0x2, 0x2, 0x2, 0x6, 0x1f, 0x25, 0x52, 0x54, 
   };
 
   atn::ATNDeserializer deserializer;

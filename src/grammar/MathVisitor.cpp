@@ -22,13 +22,11 @@
 #include "MathVisitor.h"
 
 antlrcpp::Any MathVisitor::visitNumber(calculatorParser::NumberContext *context) {
-	double result = std::stod(context->getText());
-	return result;
+	return std::stod(context->getText());
 }
 
 antlrcpp::Any MathVisitor::visitInput(calculatorParser::InputContext *context) {
-	double result = visit(context->expression());
-	return result;
+	return visit(context->expression());
 }
 
 antlrcpp::Any MathVisitor::visitPlus(calculatorParser::PlusContext *context) {
@@ -72,28 +70,15 @@ antlrcpp::Any MathVisitor::visitPow(calculatorParser::PowContext *context) {
 	return genericMath.pow(a, b);
 }
 
-antlrcpp::Any MathVisitor::visitSignedAtom(calculatorParser::SignedAtomContext *context) {
-	if (context->func() != nullptr) {
-		return visit(context->func());
-	}
-	double result = std::stod(context->getText());
-	return result;
-}
-
-antlrcpp::Any MathVisitor::visitAtom(calculatorParser::AtomContext *context) {
-	double result = std::stod(context->getText());
-	return result;
-}
-
-antlrcpp::Any MathVisitor::visitFunc(calculatorParser::FuncContext *context) {
+antlrcpp::Any MathVisitor::visitFunction(calculatorParser::FunctionContext *context) {
 	std::string func = visit(context->funcName());
 	double ex = visit(context->expression(0));
 	if (func == "sin") {
-		return trigMath.sin(ex);
+		return trigonometricMath.sin(ex);
 	} else if (func == "cos") {
-		return trigMath.cos(ex);
+		return trigonometricMath.cos(ex);
 	} else if (func == "tan" || func == "tg") {
-		return trigMath.tan(ex);
+		return trigonometricMath.tan(ex);
 	} else if (func == "abs") {
 		return genericMath.abs(ex);
 	} else if (func == "log") {
@@ -131,23 +116,35 @@ antlrcpp::Any MathVisitor::visitSqrt(calculatorParser::SqrtContext *context) {
 antlrcpp::Any MathVisitor::visitPercentageTimes(calculatorParser::PercentageTimesContext *context) {
 	double a = visit(context->expression(0));
 	double b = visit(context->expression(1));
-	return percMath.mul(a, b);
+	return percentageMath.mul(a, b);
 }
 
 antlrcpp::Any MathVisitor::visitPercentageDiv(calculatorParser::PercentageDivContext *context) {
 	double a = visit(context->expression(0));
 	double b = visit(context->expression(1));
-	return percMath.div(a, b);
+	return percentageMath.div(a, b);
 }
 
 antlrcpp::Any MathVisitor::visitPercentagePlus(calculatorParser::PercentagePlusContext *context) {
 	double a = visit(context->expression(0));
 	double b = visit(context->expression(1));
-	return percMath.add(a, b);
+	return percentageMath.add(a, b);
 }
 
 antlrcpp::Any MathVisitor::visitPercentageMinus(calculatorParser::PercentageMinusContext *context) {
 	double a = visit(context->expression(0));
 	double b = visit(context->expression(1));
-	return percMath.sub(a, b);
+	return percentageMath.sub(a, b);
+}
+
+antlrcpp::Any MathVisitor::visitSignedExpression(calculatorParser::SignedExpressionContext *context) {
+	double number = visit(context->expression());
+	if (context->MINUS()) {
+		return -1.0 * number;
+	}
+	return number;
+}
+
+antlrcpp::Any MathVisitor::visitParenthesis(calculatorParser::ParenthesisContext *context) {
+	return visit(context->expression());
 }

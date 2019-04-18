@@ -24,47 +24,29 @@ grammar calculator;
 /**
  * Parser rules
  */
-
 input
    : expression EOF
    ;
 
 expression
-   : expression FACT #Factorial
+   : LPAREN expression RPAREN # Parenthesis
+   | expression FACT # Factorial
    | expression POW expression # Pow
-   | SQRT expression #sqrt
-   | expression SQRT expression #Root
-   | expression TIMES expression PERC #PercentageTimes
+   | SQRT expression # Sqrt
+   | expression SQRT expression # Root
+   | expression TIMES expression PERC # PercentageTimes
    | expression TIMES expression # Times
-   | expression DIV expression PERC #PercentageDiv
+   | expression DIV expression PERC # PercentageDiv
    | expression DIV expression # Div
    | expression MOD expression # Mod
-   | expression PLUS expression PERC #PercentagePlus
+   | expression PLUS expression PERC # PercentagePlus
    | expression PLUS expression # Plus
-   | expression MINUS expression PERC #PercentageMinus
+   | expression MINUS expression PERC # PercentageMinus
    | expression MINUS expression # Minus
    | ABSPAREN expression ABSPAREN # Abs
-   | signedAtom # NumberExpression
-   ;
-
-signedAtom
-   : PLUS signedAtom
-   | MINUS signedAtom
-   | func
-   | atom
-   ;
-
-atom
-   : number
-   | LPAREN expression RPAREN
-   ;
-
-number
-   : NUMBER
-   ;
-
-func
-   : funcName LPAREN expression (COMMA expression)* RPAREN
+   | (PLUS|MINUS) expression # SignedExpression
+   | funcName LPAREN expression (COMMA expression)* RPAREN # Function
+   | NUMBER # Number
    ;
 
 funcName
@@ -106,12 +88,8 @@ fragment X  : ('X'|'x') ;
 fragment Y  : ('Y'|'y') ;
 fragment Z  : ('Z'|'z') ;
 
-fragment NUM
-   : [0-9]+ (','|'.'[0-9]+)?
-   ;
-
-fragment SIGN
-   : ('+'|'-')
+NUMBER
+   : [0-9]+ ((','|'.')[0-9]+)?
    ;
 
 // Parentheses
@@ -185,10 +163,6 @@ LOG
    ;
 LN
    : L N
-   ;
-
-NUMBER
-   : SIGN? NUM
    ;
 
 WHITESPACE

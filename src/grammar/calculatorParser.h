@@ -12,15 +12,14 @@
 class  calculatorParser : public antlr4::Parser {
 public:
   enum {
-    LPAREN = 1, RPAREN = 2, ABSPAREN = 3, PLUS = 4, MINUS = 5, TIMES = 6, 
-    DIV = 7, MOD = 8, POW = 9, COMMA = 10, POINT = 11, FACT = 12, SQRT = 13, 
-    PERC = 14, ABSVAL = 15, SIN = 16, COS = 17, TAN = 18, LOG = 19, LN = 20, 
-    NUMBER = 21, WHITESPACE = 22
+    NUMBER = 1, LPAREN = 2, RPAREN = 3, ABSPAREN = 4, PLUS = 5, MINUS = 6, 
+    TIMES = 7, DIV = 8, MOD = 9, POW = 10, COMMA = 11, POINT = 12, FACT = 13, 
+    SQRT = 14, PERC = 15, ABSVAL = 16, SIN = 17, COS = 18, TAN = 19, LOG = 20, 
+    LN = 21, WHITESPACE = 22
   };
 
   enum {
-    RuleInput = 0, RuleExpression = 1, RuleSignedAtom = 2, RuleAtom = 3, 
-    RuleNumber = 4, RuleFunc = 5, RuleFuncName = 6
+    RuleInput = 0, RuleExpression = 1, RuleFuncName = 2
   };
 
   calculatorParser(antlr4::TokenStream *input);
@@ -35,10 +34,6 @@ public:
 
   class InputContext;
   class ExpressionContext;
-  class SignedAtomContext;
-  class AtomContext;
-  class NumberContext;
-  class FuncContext;
   class FuncNameContext; 
 
   class  InputContext : public antlr4::ParserRuleContext {
@@ -87,11 +82,12 @@ public:
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
-  class  NumberExpressionContext : public ExpressionContext {
+  class  SqrtContext : public ExpressionContext {
   public:
-    NumberExpressionContext(ExpressionContext *ctx);
+    SqrtContext(ExpressionContext *ctx);
 
-    SignedAtomContext *signedAtom();
+    antlr4::tree::TerminalNode *SQRT();
+    ExpressionContext *expression();
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
@@ -136,6 +132,30 @@ public:
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
+  class  FunctionContext : public ExpressionContext {
+  public:
+    FunctionContext(ExpressionContext *ctx);
+
+    FuncNameContext *funcName();
+    antlr4::tree::TerminalNode *LPAREN();
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *RPAREN();
+    std::vector<antlr4::tree::TerminalNode *> COMMA();
+    antlr4::tree::TerminalNode* COMMA(size_t i);
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  ParenthesisContext : public ExpressionContext {
+  public:
+    ParenthesisContext(ExpressionContext *ctx);
+
+    antlr4::tree::TerminalNode *LPAREN();
+    ExpressionContext *expression();
+    antlr4::tree::TerminalNode *RPAREN();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
   class  PercentageMinusContext : public ExpressionContext {
   public:
     PercentageMinusContext(ExpressionContext *ctx);
@@ -157,12 +177,11 @@ public:
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
-  class  SqrtContext : public ExpressionContext {
+  class  NumberContext : public ExpressionContext {
   public:
-    SqrtContext(ExpressionContext *ctx);
+    NumberContext(ExpressionContext *ctx);
 
-    antlr4::tree::TerminalNode *SQRT();
-    ExpressionContext *expression();
+    antlr4::tree::TerminalNode *NUMBER();
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
@@ -206,6 +225,16 @@ public:
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
+  class  SignedExpressionContext : public ExpressionContext {
+  public:
+    SignedExpressionContext(ExpressionContext *ctx);
+
+    ExpressionContext *expression();
+    antlr4::tree::TerminalNode *PLUS();
+    antlr4::tree::TerminalNode *MINUS();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
   class  PercentagePlusContext : public ExpressionContext {
   public:
     PercentagePlusContext(ExpressionContext *ctx);
@@ -219,67 +248,6 @@ public:
 
   ExpressionContext* expression();
   ExpressionContext* expression(int precedence);
-  class  SignedAtomContext : public antlr4::ParserRuleContext {
-  public:
-    SignedAtomContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *PLUS();
-    SignedAtomContext *signedAtom();
-    antlr4::tree::TerminalNode *MINUS();
-    FuncContext *func();
-    AtomContext *atom();
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  SignedAtomContext* signedAtom();
-
-  class  AtomContext : public antlr4::ParserRuleContext {
-  public:
-    AtomContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    NumberContext *number();
-    antlr4::tree::TerminalNode *LPAREN();
-    ExpressionContext *expression();
-    antlr4::tree::TerminalNode *RPAREN();
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  AtomContext* atom();
-
-  class  NumberContext : public antlr4::ParserRuleContext {
-  public:
-    NumberContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *NUMBER();
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  NumberContext* number();
-
-  class  FuncContext : public antlr4::ParserRuleContext {
-  public:
-    FuncContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    FuncNameContext *funcName();
-    antlr4::tree::TerminalNode *LPAREN();
-    std::vector<ExpressionContext *> expression();
-    ExpressionContext* expression(size_t i);
-    antlr4::tree::TerminalNode *RPAREN();
-    std::vector<antlr4::tree::TerminalNode *> COMMA();
-    antlr4::tree::TerminalNode* COMMA(size_t i);
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  FuncContext* func();
-
   class  FuncNameContext : public antlr4::ParserRuleContext {
   public:
     FuncNameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
