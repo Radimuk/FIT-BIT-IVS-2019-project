@@ -41,11 +41,11 @@ MainWindow::MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> 
 	m_builder->get_widget("button_backspace", button);
 	button->signal_pressed().connect(
 				sigc::mem_fun(*this, &MainWindow::onButtonBackspace));
-/*
+
 	m_builder->get_widget("button_equation", button);
 	button->signal_pressed().connect(
 				sigc::mem_fun(*this, &MainWindow::onButtonEquation));
-*/
+
 }
 
 void MainWindow::onButtonClick(std::string input) {

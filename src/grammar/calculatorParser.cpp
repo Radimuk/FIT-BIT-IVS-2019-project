@@ -1,5 +1,5 @@
 
-// Generated from calculator.g4 by ANTLR 4.7.1
+// Generated from calculator.g4 by ANTLR 4.7.2
 
 
 #include "calculatorVisitor.h"
@@ -436,6 +436,7 @@ calculatorParser::ExpressionContext* calculatorParser::expression(int precedence
   size_t parentState = getState();
   calculatorParser::ExpressionContext *_localctx = _tracker.createInstance<ExpressionContext>(_ctx, parentState);
   calculatorParser::ExpressionContext *previousContext = _localctx;
+  (void)previousContext; // Silence compiler, in case the context is not used by generated code.
   size_t startState = 2;
   enterRecursionRule(_localctx, 2, calculatorParser::RuleExpression, precedence);
 
@@ -478,7 +479,7 @@ calculatorParser::ExpressionContext* calculatorParser::expression(int precedence
       case calculatorParser::LPAREN:
       case calculatorParser::PLUS:
       case calculatorParser::MINUS:
-      case calculatorParser::ABS:
+      case calculatorParser::ABSVAL:
       case calculatorParser::SIN:
       case calculatorParser::COS:
       case calculatorParser::TAN:
@@ -764,7 +765,7 @@ calculatorParser::SignedAtomContext* calculatorParser::signedAtom() {
         break;
       }
 
-      case calculatorParser::ABS:
+      case calculatorParser::ABSVAL:
       case calculatorParser::SIN:
       case calculatorParser::COS:
       case calculatorParser::TAN:
@@ -1012,8 +1013,8 @@ calculatorParser::FuncNameContext::FuncNameContext(ParserRuleContext *parent, si
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* calculatorParser::FuncNameContext::ABS() {
-  return getToken(calculatorParser::ABS, 0);
+tree::TerminalNode* calculatorParser::FuncNameContext::ABSVAL() {
+  return getToken(calculatorParser::ABSVAL, 0);
 }
 
 tree::TerminalNode* calculatorParser::FuncNameContext::SIN() {
@@ -1061,7 +1062,7 @@ calculatorParser::FuncNameContext* calculatorParser::funcName() {
     setState(104);
     _la = _input->LA(1);
     if (!((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & ((1ULL << calculatorParser::ABS)
+      ((1ULL << _la) & ((1ULL << calculatorParser::ABSVAL)
       | (1ULL << calculatorParser::SIN)
       | (1ULL << calculatorParser::COS)
       | (1ULL << calculatorParser::TAN)
@@ -1134,7 +1135,7 @@ std::vector<std::string> calculatorParser::_literalNames = {
 
 std::vector<std::string> calculatorParser::_symbolicNames = {
   "", "LPAREN", "RPAREN", "ABSPAREN", "PLUS", "MINUS", "TIMES", "DIV", "MOD", 
-  "POW", "COMMA", "POINT", "FACT", "SQRT", "PERC", "ABS", "SIN", "COS", 
+  "POW", "COMMA", "POINT", "FACT", "SQRT", "PERC", "ABSVAL", "SIN", "COS", 
   "TAN", "LOG", "LN", "NUMBER", "WHITESPACE"
 };
 
