@@ -24,11 +24,19 @@
 #include "calculatorBaseVisitor.h"
 #include "../math/GenericMathLib.h"
 #include "../math/TrigonometricMathLib.h"
+#include "../math/PercentageMathLib.h"
 #include <iostream>
+#include <algorithm>
+#include <cmath>
 
 class MathVisitor : public calculatorBaseVisitor {
 public:
 
+	/**
+	 * Calls functions for temporary results calculation
+	 * @param context
+	 * @return result of the calculation
+	 */
 	antlrcpp::Any visitInput(calculatorParser::InputContext *context) override;
 
 	antlrcpp::Any visitPlus(calculatorParser::PlusContext *context) override;
@@ -38,6 +46,10 @@ public:
 	antlrcpp::Any visitTimes(calculatorParser::TimesContext *context) override;
 
 	antlrcpp::Any visitDiv(calculatorParser::DivContext *context) override;
+	
+	antlrcpp::Any visitMod(calculatorParser::ModContext *context) override;
+
+	antlrcpp::Any visitAbs(calculatorParser::AbsContext *context) override;
 
 	antlrcpp::Any visitPow(calculatorParser::PowContext *context) override;
 
@@ -51,8 +63,22 @@ public:
 
 	antlrcpp::Any visitFuncName(calculatorParser::FuncNameContext *context) override;
 
+	antlrcpp::Any visitFactorial(calculatorParser::FactorialContext *context) override;
+
+	antlrcpp::Any visitRoot(calculatorParser::RootContext *context) override;
+
+	antlrcpp::Any visitSqrt(calculatorParser::SqrtContext *context) override;
+
+	antlrcpp::Any visitPercentageTimes(calculatorParser::PercentageTimesContext *context) override;
+
+	antlrcpp::Any visitPercentageDiv(calculatorParser::PercentageDivContext *context) override;
+
+	antlrcpp::Any visitPercentagePlus(calculatorParser::PercentagePlusContext *context) override;
+
+	antlrcpp::Any visitPercentageMinus(calculatorParser::PercentageMinusContext *context) override;
 private:
 	GenericMathLib genericMath;
 	TrigonometricMathLib trigMath;
+	PercentageMathLib percMath;
 };
 

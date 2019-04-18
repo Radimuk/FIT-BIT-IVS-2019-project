@@ -1,5 +1,5 @@
 
-// Generated from calculator.g4 by ANTLR 4.7.2
+// Generated from calculator.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -12,9 +12,10 @@
 class  calculatorParser : public antlr4::Parser {
 public:
   enum {
-    LPAREN = 1, RPAREN = 2, PLUS = 3, MINUS = 4, TIMES = 5, DIV = 6, MOD = 7, 
-    POW = 8, COMMA = 9, POINT = 10, ABS = 11, SIN = 12, COS = 13, TAN = 14, 
-    LOG = 15, LN = 16, NUMBER = 17, WHITESPACE = 18
+    LPAREN = 1, RPAREN = 2, ABSPAREN = 3, PLUS = 4, MINUS = 5, TIMES = 6, 
+    DIV = 7, MOD = 8, POW = 9, COMMA = 10, POINT = 11, FACT = 12, SQRT = 13, 
+    PERC = 14, ABS = 15, SIN = 16, COS = 17, TAN = 18, LOG = 19, LN = 20, 
+    NUMBER = 21, WHITESPACE = 22
   };
 
   enum {
@@ -57,13 +58,63 @@ public:
   public:
     ExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
    
-    ExpressionContext() = default;
+    ExpressionContext() : antlr4::ParserRuleContext() { }
     void copyFrom(ExpressionContext *context);
     using antlr4::ParserRuleContext::copyFrom;
 
     virtual size_t getRuleIndex() const override;
 
    
+  };
+
+  class  ModContext : public ExpressionContext {
+  public:
+    ModContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *MOD();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  RootContext : public ExpressionContext {
+  public:
+    RootContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *SQRT();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  NumberExpressionContext : public ExpressionContext {
+  public:
+    NumberExpressionContext(ExpressionContext *ctx);
+
+    SignedAtomContext *signedAtom();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  PercentageTimesContext : public ExpressionContext {
+  public:
+    PercentageTimesContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *TIMES();
+    antlr4::tree::TerminalNode *PERC();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  PercentageDivContext : public ExpressionContext {
+  public:
+    PercentageDivContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *DIV();
+    antlr4::tree::TerminalNode *PERC();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   class  DivContext : public ExpressionContext {
@@ -76,13 +127,42 @@ public:
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
-  class  ModContext : public ExpressionContext {
+  class  FactorialContext : public ExpressionContext {
   public:
-    ModContext(ExpressionContext *ctx);
+    FactorialContext(ExpressionContext *ctx);
+
+    ExpressionContext *expression();
+    antlr4::tree::TerminalNode *FACT();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  PercentageMinusContext : public ExpressionContext {
+  public:
+    PercentageMinusContext(ExpressionContext *ctx);
 
     std::vector<ExpressionContext *> expression();
     ExpressionContext* expression(size_t i);
-    antlr4::tree::TerminalNode *MOD();
+    antlr4::tree::TerminalNode *MINUS();
+    antlr4::tree::TerminalNode *PERC();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  AbsContext : public ExpressionContext {
+  public:
+    AbsContext(ExpressionContext *ctx);
+
+    std::vector<antlr4::tree::TerminalNode *> ABSPAREN();
+    antlr4::tree::TerminalNode* ABSPAREN(size_t i);
+    ExpressionContext *expression();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  SqrtContext : public ExpressionContext {
+  public:
+    SqrtContext(ExpressionContext *ctx);
+
+    antlr4::tree::TerminalNode *SQRT();
+    ExpressionContext *expression();
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
@@ -106,14 +186,6 @@ public:
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
-  class  NumberExpressionContext : public ExpressionContext {
-  public:
-    NumberExpressionContext(ExpressionContext *ctx);
-
-    SignedAtomContext *signedAtom();
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
   class  PlusContext : public ExpressionContext {
   public:
     PlusContext(ExpressionContext *ctx);
@@ -131,6 +203,17 @@ public:
     std::vector<ExpressionContext *> expression();
     ExpressionContext* expression(size_t i);
     antlr4::tree::TerminalNode *MINUS();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  PercentagePlusContext : public ExpressionContext {
+  public:
+    PercentagePlusContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *PLUS();
+    antlr4::tree::TerminalNode *PERC();
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 

@@ -27,24 +27,24 @@
 
 namespace FitCalcTests {
 
-	class calculatorBaseVisitorTest : public ::testing::Test {
+	class MathVisitorTest : public ::testing::Test {
 	protected:
 		double error = 1e-6;
 	};
 
-	TEST_F(calculatorBaseVisitorTest, negativeNumber) {
+	TEST_F(MathVisitorTest, negativeNumber) {
 		antlr4::ANTLRInputStream input("-1.0");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = -1.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, add) {
+	TEST_F(MathVisitorTest, add) {
 		antlr4::ANTLRInputStream input("1.0 + 2");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -56,7 +56,7 @@ namespace FitCalcTests {
 		EXPECT_EQ(expected, static_cast<double>(actual));
 	}
 
-	TEST_F(calculatorBaseVisitorTest, sub) {
+	TEST_F(MathVisitorTest, sub) {
 		antlr4::ANTLRInputStream input("1.0 - 2");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -68,7 +68,7 @@ namespace FitCalcTests {
 		EXPECT_EQ(expected, actual);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, mul) {
+	TEST_F(MathVisitorTest, mul) {
 		antlr4::ANTLRInputStream input("1.0 * 2");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -80,7 +80,7 @@ namespace FitCalcTests {
 		EXPECT_EQ(expected, actual);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, div) {
+	TEST_F(MathVisitorTest, div) {
 		antlr4::ANTLRInputStream input("2.0 / 2");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -92,7 +92,7 @@ namespace FitCalcTests {
 		EXPECT_EQ(expected, actual);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, mod) {
+	TEST_F(MathVisitorTest, mod) {
 		antlr4::ANTLRInputStream input("9.0 mod 2");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -104,19 +104,19 @@ namespace FitCalcTests {
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, absFunc) {
+	TEST_F(MathVisitorTest, absFunc) {
 		antlr4::ANTLRInputStream input("abs(-9.0)");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 9.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, abs) {
+	TEST_F(MathVisitorTest, abs) {
 		antlr4::ANTLRInputStream input("|-9.0|");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -128,7 +128,7 @@ namespace FitCalcTests {
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, fact) {
+	TEST_F(MathVisitorTest, fact) {
 		antlr4::ANTLRInputStream input("5.0!");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -140,7 +140,7 @@ namespace FitCalcTests {
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, pow) {
+	TEST_F(MathVisitorTest, pow) {
 		antlr4::ANTLRInputStream input("2.0^3");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -152,31 +152,31 @@ namespace FitCalcTests {
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, root) {
+	TEST_F(MathVisitorTest, root) {
 		antlr4::ANTLRInputStream input("3√8.0");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 2.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, sqroot) {
+	TEST_F(MathVisitorTest, sqroot) {
 		antlr4::ANTLRInputStream input("√25.0");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
-		calculatorParser::ExpressionContext* expresion = parser.expression();
-		calculatorBaseVisitor visitor;
-		double actual = visitor.visitExpression(expresion);
+		calculatorParser::InputContext* expresion = parser.input();
+		MathVisitor visitor;
+		double actual = visitor.visit(expresion);
 		double expected = 5.0;
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, log) {
+	TEST_F(MathVisitorTest, log) {
 		antlr4::ANTLRInputStream input("log (100.0)");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -188,7 +188,7 @@ namespace FitCalcTests {
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, ln) {
+	TEST_F(MathVisitorTest, ln) {
 		antlr4::ANTLRInputStream input("ln (10.0)");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -200,7 +200,7 @@ namespace FitCalcTests {
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, sin) {
+	TEST_F(MathVisitorTest, sin) {
 		antlr4::ANTLRInputStream input("sin(0)");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -212,7 +212,7 @@ namespace FitCalcTests {
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, cos) {
+	TEST_F(MathVisitorTest, cos) {
 		antlr4::ANTLRInputStream input("cos(0)");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -224,7 +224,7 @@ namespace FitCalcTests {
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, tan) {
+	TEST_F(MathVisitorTest, tan) {
 		antlr4::ANTLRInputStream input("tan(0)");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -236,7 +236,7 @@ namespace FitCalcTests {
 		EXPECT_NEAR(expected, actual, this->error);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, addPercentage) {
+	TEST_F(MathVisitorTest, addPercentage) {
 		antlr4::ANTLRInputStream input("10.0 + 20%");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -248,7 +248,7 @@ namespace FitCalcTests {
 		EXPECT_EQ(expected, actual);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, subPercentage) {
+	TEST_F(MathVisitorTest, subPercentage) {
 		antlr4::ANTLRInputStream input("10.0 - 20%");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -260,7 +260,7 @@ namespace FitCalcTests {
 		EXPECT_EQ(expected, actual);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, mulPercentage) {
+	TEST_F(MathVisitorTest, mulPercentage) {
 		antlr4::ANTLRInputStream input("18.0 * 10%");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);
@@ -272,7 +272,7 @@ namespace FitCalcTests {
 		EXPECT_EQ(expected, actual);
 	}
 
-	TEST_F(calculatorBaseVisitorTest, divPercentage) {
+	TEST_F(MathVisitorTest, divPercentage) {
 		antlr4::ANTLRInputStream input("18.0 / 20%");
 		calculatorLexer lexer(&input);
 		antlr4::CommonTokenStream tokens(&lexer);

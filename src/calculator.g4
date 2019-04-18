@@ -30,12 +30,20 @@ input
    ;
 
 expression
-   : expression POW expression # Pow
+   : expression FACT #Factorial
+   | expression POW expression # Pow
+   | SQRT expression #sqrt
+   | expression SQRT expression #Root
+   | expression TIMES expression PERC #PercentageTimes
    | expression TIMES expression # Times
+   | expression DIV expression PERC #PercentageDiv
    | expression DIV expression # Div
    | expression MOD expression # Mod
+   | expression PLUS expression PERC #PercentagePlus
    | expression PLUS expression # Plus
+   | expression MINUS expression PERC #PercentageMinus
    | expression MINUS expression # Minus
+   | ABSPAREN expression ABSPAREN # Abs
    | signedAtom # NumberExpression
    ;
 
@@ -114,6 +122,10 @@ RPAREN
    : ')'
    ;
 
+ABSPAREN
+   : '|'
+   ;
+
 // Operations
 PLUS
    : '+'
@@ -140,6 +152,18 @@ COMMA
    ;
 POINT
    : '.'
+   ;
+
+FACT
+   : '!'
+   ;
+
+SQRT
+   : '√'
+   ;
+
+PERC
+   : '%'
    ;
 
 // Functions

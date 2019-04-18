@@ -55,6 +55,17 @@ antlrcpp::Any MathVisitor::visitDiv(calculatorParser::DivContext *context) {
 	return genericMath.div(a, b);
 }
 
+antlrcpp::Any MathVisitor::visitMod(calculatorParser::ModContext *context) {
+	double a = visit(context->expression(0));
+	double b = visit(context->expression(1));
+	return genericMath.mod(a, b);
+}
+
+antlrcpp::Any MathVisitor::visitAbs(calculatorParser::AbsContext *context) {
+	double a = visit(context->expression());
+	return genericMath.abs(a);
+}
+
 antlrcpp::Any MathVisitor::visitPow(calculatorParser::PowContext *context) {
 	double a = visit(context->expression(0));
 	double b = visit(context->expression(1));
@@ -81,8 +92,14 @@ antlrcpp::Any MathVisitor::visitFunc(calculatorParser::FuncContext *context) {
 		return trigMath.sin(ex);
 	} else if (func == "cos") {
 		return trigMath.cos(ex);
-	} else if (func == "tan") {
+	} else if (func == "tan" || func == "tg") {
 		return trigMath.tan(ex);
+	} else if (func == "abs") {
+		return genericMath.abs(ex);
+	} else if (func == "log") {
+		return genericMath.log(ex);
+	} else if (func == "ln") {
+		return genericMath.ln(ex);
 	} else {
 		return 0.0;
 	}
@@ -90,5 +107,47 @@ antlrcpp::Any MathVisitor::visitFunc(calculatorParser::FuncContext *context) {
 
 antlrcpp::Any MathVisitor::visitFuncName(calculatorParser::FuncNameContext *context) {
 	std::string result = context->getText();
+	std::transform(result.begin(), result.end(), result.begin(), ::tolower); 
 	return result;
+}
+
+
+antlrcpp::Any MathVisitor::visitFactorial(calculatorParser::FactorialContext *context) {
+	double result = std::round(static_cast<double>(visit(context->expression())));
+	return genericMath.fact(static_cast<int>(result));
+}
+
+antlrcpp::Any MathVisitor::visitRoot(calculatorParser::RootContext *context) {
+	double a = visit(context->expression(0));
+	double b = visit(context->expression(1));
+	return genericMath.root(a, b);
+}
+
+antlrcpp::Any MathVisitor::visitSqrt(calculatorParser::SqrtContext *context) {
+	double a = visit(context->expression());
+	return genericMath.root(2, a);
+}
+
+antlrcpp::Any MathVisitor::visitPercentageTimes(calculatorParser::PercentageTimesContext *context) {
+	double a = visit(context->expression(0));
+	double b = visit(context->expression(1));
+	return percMath.mul(a, b);
+}
+
+antlrcpp::Any MathVisitor::visitPercentageDiv(calculatorParser::PercentageDivContext *context) {
+	double a = visit(context->expression(0));
+	double b = visit(context->expression(1));
+	return percMath.div(a, b);
+}
+
+antlrcpp::Any MathVisitor::visitPercentagePlus(calculatorParser::PercentagePlusContext *context) {
+	double a = visit(context->expression(0));
+	double b = visit(context->expression(1));
+	return percMath.add(a, b);
+}
+
+antlrcpp::Any MathVisitor::visitPercentageMinus(calculatorParser::PercentageMinusContext *context) {
+	double a = visit(context->expression(0));
+	double b = visit(context->expression(1));
+	return percMath.sub(a, b);
 }

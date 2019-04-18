@@ -1,5 +1,5 @@
 
-// Generated from calculator.g4 by ANTLR 4.7.2
+// Generated from calculator.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -19,11 +19,43 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitMod(calculatorParser::ModContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitRoot(calculatorParser::RootContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitNumberExpression(calculatorParser::NumberExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitPercentageTimes(calculatorParser::PercentageTimesContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitPercentageDiv(calculatorParser::PercentageDivContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitDiv(calculatorParser::DivContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitMod(calculatorParser::ModContext *ctx) override {
+  virtual antlrcpp::Any visitFactorial(calculatorParser::FactorialContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitPercentageMinus(calculatorParser::PercentageMinusContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitAbs(calculatorParser::AbsContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitSqrt(calculatorParser::SqrtContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -35,15 +67,15 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitNumberExpression(calculatorParser::NumberExpressionContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitPlus(calculatorParser::PlusContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitMinus(calculatorParser::MinusContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitPercentagePlus(calculatorParser::PercentagePlusContext *ctx) override {
     return visitChildren(ctx);
   }
 
