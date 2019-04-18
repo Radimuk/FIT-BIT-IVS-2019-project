@@ -19,20 +19,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#pragma once
-
-#include <gtkmm.h>
 #include "MenuBar.h"
 
-/**
- * Main application's window
- */
-class MainWindow : public Gtk::ApplicationWindow {
+MenuBar::MenuBar(BaseObjectType* object, const Glib::RefPtr<Gtk::Builder>& builder) : Gtk::MenuBar(object), m_builder(builder) {
+	m_builder->get_widget_derived("about_dialog", m_aboutDialog);
+	m_builder->get_widget("menu_help_about", m_menuItem);
+	m_menuItem->signal_activate().connect(sigc::mem_fun(m_aboutDialog, &AboutDialog::onActivate));
 
-public:
-	MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
-
-private:
-	Glib::RefPtr<Gtk::Builder> m_builder;
-	MenuBar *m_menuBar = nullptr;
-};
+}

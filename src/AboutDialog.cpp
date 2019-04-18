@@ -19,20 +19,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#pragma once
+#include "AboutDialog.h"
 
-#include <gtkmm.h>
-#include "MenuBar.h"
+AboutDialog::AboutDialog(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder) : Gtk::AboutDialog(object), m_builder(builder) {
+	this->signal_response().connect(sigc::mem_fun(*this, &AboutDialog::onButtonClose));
+}
 
-/**
- * Main application's window
- */
-class MainWindow : public Gtk::ApplicationWindow {
+void AboutDialog::onActivate() {
+	this->show();
+}
 
-public:
-	MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
-
-private:
-	Glib::RefPtr<Gtk::Builder> m_builder;
-	MenuBar *m_menuBar = nullptr;
-};
+void AboutDialog::onButtonClose(int i) {
+	this->hide();
+}
