@@ -14,7 +14,7 @@ int main() {
 	}
 	if (enteredNumbers == 0 || enteredNumbers == 1){
 		fprintf(stderr, "Unable to count the deviation out of zero or one number.\n");
-		return -1;
+		return 1;
 	}
 	double sumOfSquares = 0;
 	double average = 0;
