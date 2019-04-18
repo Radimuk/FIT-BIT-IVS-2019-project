@@ -32,7 +32,45 @@ class MainWindow : public Gtk::ApplicationWindow {
 public:
 	MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 
+protected:
+	void onButtonClick(std::string input);
+
 private:
 	Glib::RefPtr<Gtk::Builder> m_builder;
+	Gtk::Entry *m_textEntry = nullptr;
 	MenuBar *m_menuBar = nullptr;
+	std::map<std::string,std::string> m_buttons = {
+			// Numbers
+			{"button_zero",             "0"},
+			{"button_one",              "1"},
+			{"button_two",              "2"},
+			{"button_three",            "3"},
+			{"button_four",             "4"},
+			{"button_five",             "5"},
+			{"button_six",              "6"},
+			{"button_seven",            "7"},
+			{"button_eight",            "8"},
+			{"button_nine",             "9"},
+			{"button_comma",            ","},
+			// Constants
+			{"button_pi",               "π"},
+			{"button_euler",            "ℯ"},
+			// Parentheses
+			{"button_left_bracket",     "("},
+			{"button_right_bracket",    ")"},
+			{"button_abs",              "||"},
+			// Operations
+			{"button_add",              "+"},
+			{"button_subtract",         "-"},
+			{"button_multiply",         "*"},
+			{"button_divide",           "/"},
+			{"button_mod",              "mod"},
+			// Functions
+			{"button_sin",              "sin()"},
+			{"button_cos",              "cos()"},
+			{"button_tan",              "tan()"},
+			{"button_log",              "log()"},
+			{"button_ln",               "ln()"},
+
+	};
 };
