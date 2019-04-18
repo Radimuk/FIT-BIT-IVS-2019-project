@@ -29,6 +29,6 @@ void AboutDialog::onActivate() {
 	this->show();
 }
 
-void AboutDialog::onButtonClose(int i) {
+void AboutDialog::onButtonClose(int responseId) {
 	this->hide();
 }

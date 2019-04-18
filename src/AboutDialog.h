@@ -23,14 +23,27 @@
 
 #include <gtkmm.h>
 
+/**
+ * About dialog object
+ */ 
 class AboutDialog : public Gtk::AboutDialog {
-
 public:
+	/**
+	 * Create about dialog
+	 */
 	AboutDialog(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
+	
+	/**
+	 * Open about dialog
+	 */ 
 	void onActivate();
 
 protected:
-	void onButtonClose(int i);
+	/**
+	 * Action on button close 
+	 * @param responseId
+	 */
+	void onButtonClose(int responseId);
 
 private:
 	Glib::RefPtr<Gtk::Builder> m_builder;

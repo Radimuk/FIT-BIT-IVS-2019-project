@@ -23,6 +23,8 @@
 
 #include <gtkmm.h>
 #include "MenuBar.h"
+#include "antlr4-runtime.h"
+#include "grammar/MathVisitor.h"
 
 /**
  * Main application's window
@@ -38,14 +40,21 @@ protected:
 	 * @param input input
 	 */
 	void onButtonClick(std::string input);
+
 	/**
 	 * Action for Clean button click
 	 */
 	void onButtonClean();
+
 	/**
 	 * Action for Backspace button click
 	 */
-	void onButtonBackspace(); 
+	void onButtonBackspace();
+
+	/**
+	 * Action for Equation button click
+	 */
+	void onButtonEquation();
 
 private:
 	Glib::RefPtr<Gtk::Builder> m_builder;
@@ -77,11 +86,11 @@ private:
 			{"button_multiply",         "*"},
 			{"button_divide",           "/"},
 			{"button_mod",              "mod"},
-			{"button_fact",				"!"},
-			{"button_pow",				"^"},
+			{"button_factorial",		"!"},
+			{"button_power",			"^"},
 			{"button_root",				"√"},
 			{"button_percentage",		"%"},
-			{"button_pow-1",			"^-1"},
+			{"button_inversion",		"^-1"},
 			// Functions
 			{"button_sin",              "sin()"},
 			{"button_cos",              "cos()"},

@@ -33,13 +33,19 @@ MainWindow::MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> 
 		button->signal_pressed().connect(
 				sigc::bind<Glib::ustring>(sigc::mem_fun(*this, &MainWindow::onButtonClick), btnValues.second));
 	}
+	
 	m_builder->get_widget("button_clean", button);
 	button->signal_pressed().connect(
-				sigc::mem_fun(*this, &MainWindow::onButtonClick));
-
+				sigc::mem_fun(*this, &MainWindow::onButtonClean));
+	
 	m_builder->get_widget("button_backspace", button);
 	button->signal_pressed().connect(
-				sigc::mem_fun(*this, &MainWindow::onButtonDelete));
+				sigc::mem_fun(*this, &MainWindow::onButtonBackspace));
+/*
+	m_builder->get_widget("button_equation", button);
+	button->signal_pressed().connect(
+				sigc::mem_fun(*this, &MainWindow::onButtonEquation));
+*/
 }
 
 void MainWindow::onButtonClick(std::string input) {
@@ -56,4 +62,16 @@ void MainWindow::onButtonBackspace() {
 	Glib::ustring text = m_textEntry->get_text();
 	text = text.substr(0, text.size() -1);
 	m_textEntry->set_text(text);
+}
+
+void MainWindow::onButtonEquation() {
+	Glib::ustring text = m_textEntry->get_text();
+	antlr4::ANTLRInputStream input(text);
+	calculatorLexer lexer(&input);
+	antlr4::CommonTokenStream tokens(&lexer);
+	calculatorParser parser(&tokens);
+	calculatorParser::InputContext* expresion = parser.input();
+	MathVisitor visitor;
+	double result = visitor.visit(expresion);
+	m_textEntry->set_text(std::to_string(result));
 }
