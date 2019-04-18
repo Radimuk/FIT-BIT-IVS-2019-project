@@ -1,5 +1,5 @@
 
-// Generated from calculator.g4 by ANTLR 4.7.2
+// Generated from calculator.g4 by ANTLR 4.7.1
 
 #pragma once
 
@@ -12,13 +12,15 @@
 class  calculatorParser : public antlr4::Parser {
 public:
   enum {
-    LPAREN = 1, RPAREN = 2, PLUS = 3, MINUS = 4, TIMES = 5, DIV = 6, POW = 7, 
-    EQ = 8, COMMA = 9, POINT = 10, SIN = 11, NUMBER = 12, WHITESPACE = 13
+    LPAREN = 1, RPAREN = 2, ABSPAREN = 3, PLUS = 4, MINUS = 5, TIMES = 6, 
+    DIV = 7, MOD = 8, POW = 9, COMMA = 10, POINT = 11, FACT = 12, SQRT = 13, 
+    PERC = 14, ABS = 15, SIN = 16, COS = 17, TAN = 18, LOG = 19, LN = 20, 
+    NUMBER = 21, WHITESPACE = 22
   };
 
   enum {
-    RuleExpression = 0, RuleMultiplyingExpression = 1, RulePowExpression = 2, 
-    RuleSignedAtom = 3, RuleAtom = 4, RuleNumber = 5, RuleFunc = 6, RuleFuncName = 7
+    RuleInput = 0, RuleExpression = 1, RuleSignedAtom = 2, RuleAtom = 3, 
+    RuleNumber = 4, RuleFunc = 5, RuleFuncName = 6
   };
 
   calculatorParser(antlr4::TokenStream *input);
@@ -31,73 +33,192 @@ public:
   virtual antlr4::dfa::Vocabulary& getVocabulary() const override;
 
 
+  class InputContext;
   class ExpressionContext;
-  class MultiplyingExpressionContext;
-  class PowExpressionContext;
   class SignedAtomContext;
   class AtomContext;
   class NumberContext;
   class FuncContext;
   class FuncNameContext; 
 
-  class  ExpressionContext : public antlr4::ParserRuleContext {
+  class  InputContext : public antlr4::ParserRuleContext {
   public:
-    calculatorParser::MultiplyingExpressionContext *left = nullptr;;
-    antlr4::Token *operation = nullptr;;
-    calculatorParser::MultiplyingExpressionContext *right = nullptr;;
-    ExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    InputContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<MultiplyingExpressionContext *> multiplyingExpression();
-    MultiplyingExpressionContext* multiplyingExpression(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> PLUS();
-    antlr4::tree::TerminalNode* PLUS(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> MINUS();
-    antlr4::tree::TerminalNode* MINUS(size_t i);
+    ExpressionContext *expression();
+    antlr4::tree::TerminalNode *EOF();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
+  };
+
+  InputContext* input();
+
+  class  ExpressionContext : public antlr4::ParserRuleContext {
+  public:
+    ExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    ExpressionContext() : antlr4::ParserRuleContext() { }
+    void copyFrom(ExpressionContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
+    virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  ModContext : public ExpressionContext {
+  public:
+    ModContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *MOD();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  RootContext : public ExpressionContext {
+  public:
+    RootContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *SQRT();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  NumberExpressionContext : public ExpressionContext {
+  public:
+    NumberExpressionContext(ExpressionContext *ctx);
+
+    SignedAtomContext *signedAtom();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  PercentageTimesContext : public ExpressionContext {
+  public:
+    PercentageTimesContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *TIMES();
+    antlr4::tree::TerminalNode *PERC();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  PercentageDivContext : public ExpressionContext {
+  public:
+    PercentageDivContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *DIV();
+    antlr4::tree::TerminalNode *PERC();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  DivContext : public ExpressionContext {
+  public:
+    DivContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *DIV();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  FactorialContext : public ExpressionContext {
+  public:
+    FactorialContext(ExpressionContext *ctx);
+
+    ExpressionContext *expression();
+    antlr4::tree::TerminalNode *FACT();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  PercentageMinusContext : public ExpressionContext {
+  public:
+    PercentageMinusContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *MINUS();
+    antlr4::tree::TerminalNode *PERC();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  AbsContext : public ExpressionContext {
+  public:
+    AbsContext(ExpressionContext *ctx);
+
+    std::vector<antlr4::tree::TerminalNode *> ABSPAREN();
+    antlr4::tree::TerminalNode* ABSPAREN(size_t i);
+    ExpressionContext *expression();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  SqrtContext : public ExpressionContext {
+  public:
+    SqrtContext(ExpressionContext *ctx);
+
+    antlr4::tree::TerminalNode *SQRT();
+    ExpressionContext *expression();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  TimesContext : public ExpressionContext {
+  public:
+    TimesContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *TIMES();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  PowContext : public ExpressionContext {
+  public:
+    PowContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *POW();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  PlusContext : public ExpressionContext {
+  public:
+    PlusContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *PLUS();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  MinusContext : public ExpressionContext {
+  public:
+    MinusContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *MINUS();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  PercentagePlusContext : public ExpressionContext {
+  public:
+    PercentagePlusContext(ExpressionContext *ctx);
+
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *PLUS();
+    antlr4::tree::TerminalNode *PERC();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   ExpressionContext* expression();
-
-  class  MultiplyingExpressionContext : public antlr4::ParserRuleContext {
-  public:
-    calculatorParser::PowExpressionContext *left = nullptr;;
-    antlr4::Token *operation = nullptr;;
-    calculatorParser::PowExpressionContext *right = nullptr;;
-    MultiplyingExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    std::vector<PowExpressionContext *> powExpression();
-    PowExpressionContext* powExpression(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> TIMES();
-    antlr4::tree::TerminalNode* TIMES(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> DIV();
-    antlr4::tree::TerminalNode* DIV(size_t i);
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  MultiplyingExpressionContext* multiplyingExpression();
-
-  class  PowExpressionContext : public antlr4::ParserRuleContext {
-  public:
-    calculatorParser::SignedAtomContext *left = nullptr;;
-    antlr4::Token *operation = nullptr;;
-    calculatorParser::SignedAtomContext *right = nullptr;;
-    PowExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    std::vector<SignedAtomContext *> signedAtom();
-    SignedAtomContext* signedAtom(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> POW();
-    antlr4::tree::TerminalNode* POW(size_t i);
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  PowExpressionContext* powExpression();
-
+  ExpressionContext* expression(int precedence);
   class  SignedAtomContext : public antlr4::ParserRuleContext {
   public:
     SignedAtomContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -163,7 +284,12 @@ public:
   public:
     FuncNameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *ABS();
     antlr4::tree::TerminalNode *SIN();
+    antlr4::tree::TerminalNode *COS();
+    antlr4::tree::TerminalNode *TAN();
+    antlr4::tree::TerminalNode *LOG();
+    antlr4::tree::TerminalNode *LN();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
@@ -171,6 +297,9 @@ public:
 
   FuncNameContext* funcName();
 
+
+  virtual bool sempred(antlr4::RuleContext *_localctx, size_t ruleIndex, size_t predicateIndex) override;
+  bool expressionSempred(ExpressionContext *_localctx, size_t predicateIndex);
 
 private:
   static std::vector<antlr4::dfa::DFA> _decisionToDFA;
