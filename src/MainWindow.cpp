@@ -27,16 +27,33 @@ MainWindow::MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> 
 	this->set_title("FIT Calc");
 	m_builder->get_widget_derived("menu_bar", m_menuBar);
 	m_builder->get_widget("text_entry", m_textEntry);
+	Gtk::Button *button = nullptr;
 	for (auto btnValues : m_buttons) {
-		Gtk::Button *button = nullptr;
 		m_builder->get_widget(btnValues.first, button);
 		button->signal_pressed().connect(
 				sigc::bind<Glib::ustring>(sigc::mem_fun(*this, &MainWindow::onButtonClick), btnValues.second));
 	}
+	m_builder->get_widget("button_clean", button);
+	button->signal_pressed().connect(
+				sigc::mem_fun(*this, &MainWindow::onButtonClick));
+
+	m_builder->get_widget("button_backspace", button);
+	button->signal_pressed().connect(
+				sigc::mem_fun(*this, &MainWindow::onButtonDelete));
 }
 
 void MainWindow::onButtonClick(std::string input) {
 	Glib::ustring text = m_textEntry->get_text();
 	text.append(input);
+	m_textEntry->set_text(text);
+}
+
+void MainWindow::onButtonClean() {
+	m_textEntry->set_text("");
+}
+
+void MainWindow::onButtonBackspace() {
+	Glib::ustring text = m_textEntry->get_text();
+	text = text.substr(0, text.size() -1);
 	m_textEntry->set_text(text);
 }
