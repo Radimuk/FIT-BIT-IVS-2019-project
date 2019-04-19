@@ -27,6 +27,8 @@ public:
 
     virtual antlrcpp::Any visitSqrt(calculatorParser::SqrtContext *context) = 0;
 
+    virtual antlrcpp::Any visitEuler(calculatorParser::EulerContext *context) = 0;
+
     virtual antlrcpp::Any visitPercentageTimes(calculatorParser::PercentageTimesContext *context) = 0;
 
     virtual antlrcpp::Any visitPercentageDiv(calculatorParser::PercentageDivContext *context) = 0;
@@ -46,6 +48,8 @@ public:
     virtual antlrcpp::Any visitNumber(calculatorParser::NumberContext *context) = 0;
 
     virtual antlrcpp::Any visitTimes(calculatorParser::TimesContext *context) = 0;
+
+    virtual antlrcpp::Any visitPi(calculatorParser::PiContext *context) = 0;
 
     virtual antlrcpp::Any visitPow(calculatorParser::PowContext *context) = 0;
 
