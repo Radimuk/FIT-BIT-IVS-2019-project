@@ -21,43 +21,78 @@
 
 grammar calculator;
 
+/**
+ * Parser rules
+ */
+input
+   : expression EOF
+   ;
 
 expression
-   : left=multiplyingExpression (operation=(PLUS | MINUS) right=multiplyingExpression)*
-   ;
-
-multiplyingExpression
-   : left=powExpression (operation=(TIMES | DIV) right=powExpression)*
-   ;
-
-powExpression
-   : left=signedAtom (operation=POW right=signedAtom)*
-   ;
-
-signedAtom
-   : PLUS signedAtom
-   | MINUS signedAtom
-   | func
-   | atom
-   ;
-
-atom
-   : number
-   | LPAREN expression RPAREN
-   ;
-
-number
-   : NUMBER
-   ;
-
-func
-   : funcName LPAREN expression (COMMA expression)* RPAREN
+   : (PLUS|MINUS) expression # SignedExpression
+   | LPAREN expression RPAREN # Parenthesis
+   | expression FACT # Factorial
+   | expression POW expression # Pow
+   | SQRT expression # Sqrt
+   | expression SQRT expression # Root
+   | expression TIMES expression PERC # PercentageTimes
+   | expression TIMES expression # Times
+   | expression DIV expression PERC # PercentageDiv
+   | expression DIV expression # Div
+   | expression MOD expression # Mod
+   | expression PLUS expression PERC # PercentagePlus
+   | expression PLUS expression # Plus
+   | expression MINUS expression PERC # PercentageMinus
+   | expression MINUS expression # Minus
+   | ABSPAREN expression ABSPAREN # Abs
+   | funcName LPAREN expression (COMMA expression)* RPAREN # Function
+   | NUMBER # Number
    ;
 
 funcName
-   : SIN
+   : ABSVAL
+   | SIN
+   | COS
+   | TAN
+   | LOG
+   | LN
    ;
 
+/*
+ * Lexer rules
+ */
+fragment A  : ('A'|'a') ;
+fragment B  : ('B'|'b') ;
+fragment C  : ('C'|'c') ;
+fragment D  : ('D'|'d') ;
+fragment E  : ('E'|'e') ;
+fragment F  : ('F'|'f') ;
+fragment G  : ('G'|'g') ;
+fragment H  : ('H'|'h') ;
+fragment I  : ('I'|'i') ;
+fragment J  : ('J'|'j') ;
+fragment K  : ('K'|'k') ;
+fragment L  : ('L'|'l') ;
+fragment M  : ('M'|'m') ;
+fragment N  : ('N'|'n') ;
+fragment O  : ('O'|'o') ;
+fragment P  : ('P'|'p') ;
+fragment Q  : ('Q'|'q') ;
+fragment R  : ('R'|'r') ;
+fragment S  : ('S'|'s') ;
+fragment T  : ('T'|'t') ;
+fragment U  : ('U'|'u') ;
+fragment V  : ('V'|'v') ;
+fragment W  : ('W'|'w') ;
+fragment X  : ('X'|'x') ;
+fragment Y  : ('Y'|'y') ;
+fragment Z  : ('Z'|'z') ;
+
+NUMBER
+   : [0-9]+ ((','|'.')[0-9]+)?
+   ;
+
+// Parentheses
 LPAREN
    : '('
    ;
@@ -65,6 +100,11 @@ RPAREN
    : ')'
    ;
 
+ABSPAREN
+   : '|'
+   ;
+
+// Operations
 PLUS
    : '+'
    ;
@@ -78,12 +118,11 @@ DIV
    : '/'
    | ':'
    ;
+MOD
+   : M O D
+   ;
 POW
    : '^'
-   ;
-
-EQ
-   : '='
    ;
 
 COMMA
@@ -93,20 +132,37 @@ POINT
    : '.'
    ;
 
+FACT
+   : '!'
+   ;
+
+SQRT
+   : '√'
+   ;
+
+PERC
+   : '%'
+   ;
+
+// Functions
+ABSVAL
+   : A B S
+   ;
 SIN
-   : 'sin'
+   : S I N
    ;
-
-NUMBER
-   : SIGN? NUM
+COS
+   : C O S
    ;
-
-fragment NUM
-   : [0-9]+ (','|'.'[0-9]+)?
+TAN
+   : T A N
+   | T G
    ;
-
-fragment SIGN
-   : ('+'|'-')
+LOG
+   : L O G
+   ;
+LN
+   : L N
    ;
 
 WHITESPACE

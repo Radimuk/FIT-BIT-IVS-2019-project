@@ -22,6 +22,58 @@
 #include "MainWindow.h"
 
 
-MainWindow::MainWindow(BaseObjectType* object, const Glib::RefPtr<Gtk::Builder>& builder) : Gtk::ApplicationWindow(object), m_builder(builder) {
+MainWindow::MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+		: Gtk::ApplicationWindow(object), m_builder(builder) {
 	this->set_title("FIT Calc");
+	m_builder->get_widget_derived("menu_bar", m_menuBar);
+	m_builder->get_widget("text_entry", m_textEntry);
+	Gtk::Button *button = nullptr;
+	for (auto btnValues : m_buttons) {
+		m_builder->get_widget(btnValues.first, button);
+		button->signal_pressed().connect(
+				sigc::bind<Glib::ustring>(sigc::mem_fun(*this, &MainWindow::onButtonClick), btnValues.second)
+		);
+	}
+
+	m_builder->get_widget("button_clean", button);
+	button->signal_pressed().connect(sigc::mem_fun(*this, &MainWindow::onButtonClean));
+
+	m_builder->get_widget("button_backspace", button);
+	button->signal_pressed().connect(sigc::mem_fun(*this, &MainWindow::onButtonBackspace));
+
+	m_builder->get_widget("button_equation", button);
+	button->signal_pressed().connect(sigc::mem_fun(*this, &MainWindow::onButtonEquation));
+
+}
+
+void MainWindow::onButtonClick(std::string input) {
+	Glib::ustring text = m_textEntry->get_text();
+	text.append(input);
+	m_textEntry->set_text(text);
+}
+
+void MainWindow::onButtonClean() {
+	m_textEntry->set_text("");
+}
+
+void MainWindow::onButtonBackspace() {
+	Glib::ustring text = m_textEntry->get_text();
+	text = text.substr(0, text.size() - 1);
+	m_textEntry->set_text(text);
+}
+
+void MainWindow::onButtonEquation() {
+	Glib::ustring text = m_textEntry->get_text();
+	antlr4::ANTLRInputStream input(text);
+	calculatorLexer lexer(&input);
+	antlr4::CommonTokenStream tokens(&lexer);
+	calculatorParser parser(&tokens);
+	calculatorParser::InputContext *expresion = parser.input();
+	MathVisitor visitor;
+	try {
+		double result = visitor.visit(expresion);
+		m_textEntry->set_text(std::to_string(result));
+	} catch (const std::exception &e) {
+		m_textEntry->set_text(e.what());
+	}
 }

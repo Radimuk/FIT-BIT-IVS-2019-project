@@ -19,16 +19,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <gtest/gtest.h>
+#include "MenuBar.h"
 
-namespace FitCalcTests {
-
-	class ExampleTest : public ::testing::Test {
-
-	};
-
-	TEST_F(ExampleTest, True) {
-		ASSERT_TRUE(true);
-	}
+MenuBar::MenuBar(BaseObjectType* object, const Glib::RefPtr<Gtk::Builder>& builder) : Gtk::MenuBar(object), m_builder(builder) {
+	m_builder->get_widget_derived("about_dialog", m_aboutDialog);
+	m_builder->get_widget("menu_help_about", m_menuItem);
+	m_menuItem->signal_activate().connect(sigc::mem_fun(m_aboutDialog, &AboutDialog::onActivate));
 
 }

@@ -12,8 +12,10 @@
 class  calculatorLexer : public antlr4::Lexer {
 public:
   enum {
-    LPAREN = 1, RPAREN = 2, PLUS = 3, MINUS = 4, TIMES = 5, DIV = 6, POW = 7, 
-    EQ = 8, COMMA = 9, POINT = 10, SIN = 11, NUMBER = 12, WHITESPACE = 13
+    NUMBER = 1, LPAREN = 2, RPAREN = 3, ABSPAREN = 4, PLUS = 5, MINUS = 6, 
+    TIMES = 7, DIV = 8, MOD = 9, POW = 10, COMMA = 11, POINT = 12, FACT = 13, 
+    SQRT = 14, PERC = 15, ABSVAL = 16, SIN = 17, COS = 18, TAN = 19, LOG = 20, 
+    LN = 21, WHITESPACE = 22
   };
 
   calculatorLexer(antlr4::CharStream *input);

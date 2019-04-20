@@ -8,9 +8,7 @@ compiler:
 
 before_install:
   - docker pull ubuntu:18.04
-  - docker run --name travis-ci -v $TRAVIS_BUILD_DIR:/ivs -td ubuntu:18.04 /bin/bash
-  - docker exec -ti travis-ci bash -c "apt-get update"
-  - docker exec -ti travis-ci bash -c "apt-get install -y antlr4 build-essential cmake libgtest-dev libgtkmm-3.0-dev uuid-dev"
+  - docker run --name travis-ci -v $TRAVIS_BUILD_DIR:/ivs -td roman3349/fit-bit-ivs-2019-project:ubuntu-bionic /bin/bash
 
 script:
   - docker exec -ti travis-ci bash -c "cd /ivs && make all"

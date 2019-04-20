@@ -1,11 +1,15 @@
-all: clean build test
+all: build-release
 
 antlr4-compile:
 	cd src && antlr4 -Dlanguage=Cpp -no-listener -visitor calculator.g4 -o grammar
 
-build:
-	cmake -Bbuild -H.
-	cmake --build build
+build-release:
+	cmake -DCMAKE_BUILD_TYPE=Release -j4 -Bbuild/release -H.
+	cmake --build build/release
+
+build-debug:
+	cmake -DCMAKE_BUILD_TYPE=Debug -j4 -Bbuild/debug -H.
+	cmake --build build/debug
 
 clean:
 	rm -rf build
@@ -15,15 +19,20 @@ deb-package:
 	gbp dch -a -S --ignore-branch
 	dpkg-buildpackage -b -rfakeroot -us -uc -tc
 
+doc: doxygen
+
 doxygen:
 	@mkdir -p docs/api
 	@doxygen
 
-run: build
-	./build/bin/fit-calc
+run: build-release
+	./build/release/bin/fit-calc
 
-profile:
-	./build/bin/stddev
+run-debug: build-debug
+	./build/debug/bin/fit-calc
 
-test: build
-	./build/bin/tests
+test: build-release
+	./build/release/bin/tests
+
+test-debug: build-debug
+	./build/debug/bin/tests
