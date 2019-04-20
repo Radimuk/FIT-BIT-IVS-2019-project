@@ -25,6 +25,18 @@ doxygen:
 	@mkdir -p docs/api
 	@doxygen
 
+profiling: build-debug
+
+profiling-run: profiling
+	valgrind --tool=callgrind --callgrind-out-file=profiling/callgrind10.out ./build/debug/bin/stddev < src/profiling/data10.csv
+	valgrind --tool=callgrind --callgrind-out-file=profiling/callgrind100.out ./build/debug/bin/stddev < src/profiling/data100.csv
+	valgrind --tool=callgrind --callgrind-out-file=profiling/callgrind1000.out ./build/debug/bin/stddev < src/profiling/data1000.csv
+
+profiling-view: profiling-run
+	kcachegrind profiling/callgrind10.out
+	kcachegrind profiling/callgrind100.out
+	kcachegrind profiling/callgrind1000.out
+
 run: build-release
 	./build/release/bin/fit-calc
 

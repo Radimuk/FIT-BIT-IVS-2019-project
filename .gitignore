@@ -22,3 +22,6 @@ build/
 
 # Docs
 docs/api/
+
+# Profiling
+profiling/*.out

@@ -14,8 +14,10 @@
  * doxygen
  * fakeroot
  * git-buildpackage
+ * kcachegrind
  * libgtest-dev
  * libgtkmm-3.0-dev
+ * valgrind
  * uuid-dev
 
 
