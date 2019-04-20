@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=FIT Calc
+Comment=Simple GTK+ calculator
+Exec=fit-calc
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GTK;Utility;Calculator;
+Icon=accessories-calculator

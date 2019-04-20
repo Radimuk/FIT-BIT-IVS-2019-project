@@ -1,0 +1,3 @@
+debian/fit-calc/usr/bin/fit-calc						usr/bin
+debian/fit-calc/usr/share/applications/fit-calc.desktop	usr/share/applications
+debian/fit-calc/usr/share/fit-calc/calculator_gui.glade	usr/share/fit-calc
