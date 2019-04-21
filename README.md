@@ -14,6 +14,7 @@
  * doxygen
  * fakeroot
  * git-buildpackage
+ * gnome-icon-theme
  * libgtest-dev
  * libgtkmm-3.0-dev
  * uuid-dev

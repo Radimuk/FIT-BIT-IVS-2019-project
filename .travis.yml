@@ -7,7 +7,7 @@ compiler:
   - gcc
 
 before_install:
-  - docker pull ubuntu:18.04
+  - docker pull roman3349/fit-bit-ivs-2019-project:ubuntu-bionic
   - docker run --name travis-ci -v $TRAVIS_BUILD_DIR:/ivs -td roman3349/fit-bit-ivs-2019-project:ubuntu-bionic /bin/bash
 
 script:
