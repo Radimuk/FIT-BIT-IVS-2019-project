@@ -19,7 +19,7 @@ clean:
 
 deb-package:
 	gbp dch -a -S --ignore-branch
-	dpkg-buildpackage -b -rfakeroot -us -uc
+	dpkg-buildpackage -b -rfakeroot -us -uc -tc
 
 doc: doxygen
 

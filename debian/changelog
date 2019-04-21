@@ -1,10 +1,10 @@
-fit-calc (0.0.1~8.gbpd77d2c) UNRELEASED; urgency=medium
+fit-calc (0.5.0~1.gbp237e25) UNRELEASED; urgency=medium
 
-  ** SNAPSHOT build @d77d2c332703b9ff05b45faab4a3cc3e03074d4f **
+  ** SNAPSHOT build @237e256cd71422d115506e17ab77161bd43c3ed8 **
 
   [ Roman Ondráček ]
   * Initial commit
-  * Add project's skeletion
+  * Add project's skeleton
   * Fix Travis CI
   * Use PPA for GoogleTest's package
   * Fix Travis CI's configuration
@@ -15,15 +15,15 @@ fit-calc (0.0.1~8.gbpd77d2c) UNRELEASED; urgency=medium
   * Build: fix Makefile
   * Read Me: update repository's name and environments
 
-  [ DavidReinhart ]
+  [ David Reinhart ]
   * First version of GUI
 
   [ Roman Ondráček ]
   * Packages: add Debian package
   * GUI: add about dialog, menu bar, modify height of text view
-  * Math lib: add stubs for generic, percentage and trigonomic math libraries (#23)
+  * Math lib: add stubs for math libraries (#23)
 
-  [ Pavel ]
+  [ Pavel Raur ]
   * Math lib: add tests (#24)
 
   [ Radim Lipka ]
@@ -37,7 +37,7 @@ fit-calc (0.0.1~8.gbpd77d2c) UNRELEASED; urgency=medium
   * Grammar: add a skeleton of lexical analyser and parser
   * Travis CI: add missing dependency and fix submodule
   * Travis CI: drop clang support
-  * Grammar: add skeletion of a visitor and its test
+  * Grammar: add skeleton of a visitor and its test
   * Grammar: fix grammar definition
   * Docs: add API documentation
   * Read Me: add dependencies
@@ -65,6 +65,8 @@ fit-calc (0.0.1~8.gbpd77d2c) UNRELEASED; urgency=medium
   * Travis CI: use own Docker image to speed up the testing
   * GUI: catch exceptions from math lib and print the error message
   * Makefile: add debug targets, fix release targets
-  * Tests: remove the exaple test
+  * Tests: remove the example test
+  * Installation: add a manual installation, add a desktop icon
+  * Debian package: ignore temporary files for a package creation
 
- -- Roman Ondráček <roman.ondracek@iqrf.com>  Sat, 20 Apr 2019 21:53:12 +0200
+ -- root <root@0bad79e792df>  Sun, 21 Apr 2019 11:30:48 +0000
