@@ -22,3 +22,7 @@ build/
 
 # Docs
 docs/api/
+
+# Debian package
+debian/fit-calc/
+debian/fit-calc.debhelper.log

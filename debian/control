@@ -2,7 +2,7 @@ Source: fit-calc
 Section: math
 Priority: optional
 Maintainer: Roman Ondráček <xondra58@stud.fit.vutbr.cz>
-Build-Depends: debhelper (>= 10), cmake, libgtest-dev, libgtkmm-3.0-dev
+Build-Depends: debhelper (>= 10), cmake, gnome-icon-theme, libgtest-dev, libgtkmm-3.0-dev
 Standards-Version: 4.1.5
 Homepage: https://github.com/Roman3349/FIT-BIT-IVS-2019-project
 Vcs-Git: https://github.com/Roman3349/FIT-BIT-IVS-2019-project.git

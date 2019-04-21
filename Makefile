@@ -1,3 +1,5 @@
+DESTDIR := $(if $(DESTDIR),$(DESTDIR),/usr/local)
+
 all: build-release
 
 antlr4-compile:
@@ -25,6 +27,11 @@ doxygen:
 	@mkdir -p docs/api
 	@doxygen
 
+install:
+	cmake -DGLADE_FILE="/usr/local/share/fit-calc/calculator_gui.glade" -DCMAKE_BUILD_TYPE=Release -j4 -Bbuild/install -H.
+	cmake --build build/install
+	$(MAKE) -C build/install install
+
 run: build-release
 	./build/release/bin/fit-calc
 
@@ -36,3 +43,7 @@ test: build-release
 
 test-debug: build-debug
 	./build/debug/bin/tests
+
+uninstall:
+	$(MAKE) -C build/install uninstall
+
