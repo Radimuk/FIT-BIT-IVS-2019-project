@@ -148,3 +148,11 @@ antlrcpp::Any MathVisitor::visitSignedExpression(calculatorParser::SignedExpress
 antlrcpp::Any MathVisitor::visitParenthesis(calculatorParser::ParenthesisContext *context) {
 	return visit(context->expression());
 }
+
+antlrcpp::Any MathVisitor::visitEuler(calculatorParser::EulerContext *context) {
+	return M_E;
+}
+
+antlrcpp::Any MathVisitor::visitPi(calculatorParser::PiContext *context) {
+	return M_PI;
+}

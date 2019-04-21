@@ -77,6 +77,9 @@ public:
 
 	antlrcpp::Any visitParenthesis(calculatorParser::ParenthesisContext *context) override;
 
+	antlrcpp::Any visitEuler(calculatorParser::EulerContext *context) override;
+
+	antlrcpp::Any visitPi(calculatorParser::PiContext *context) override;
 private:
 	GenericMathLib genericMath;
 	TrigonometricMathLib trigonometricMath;

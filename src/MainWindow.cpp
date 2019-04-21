@@ -64,13 +64,23 @@ void MainWindow::onButtonBackspace() {
 
 void MainWindow::onButtonEquation() {
 	Glib::ustring text = m_textEntry->get_text();
-	antlr4::ANTLRInputStream input(text);
-	calculatorLexer lexer(&input);
-	antlr4::CommonTokenStream tokens(&lexer);
-	calculatorParser parser(&tokens);
-	calculatorParser::InputContext *expresion = parser.input();
-	MathVisitor visitor;
+	if (text.empty()) {
+		return;
+	}
+	CustomErrorListener customErrorListener;
 	try {
+		antlr4::ANTLRInputStream input(text);
+		calculatorLexer lexer(&input);
+		// Register custom error listener
+		lexer.removeErrorListeners();
+		lexer.addErrorListener(&customErrorListener);
+		antlr4::CommonTokenStream tokens(&lexer);
+		calculatorParser parser(&tokens);
+		// Register custom error listener
+		parser.removeErrorListeners();
+		parser.addErrorListener(&customErrorListener);
+		calculatorParser::InputContext *expresion = parser.input();
+		MathVisitor visitor;
 		double result = visitor.visit(expresion);
 		m_textEntry->set_text(std::to_string(result));
 	} catch (const std::exception &e) {

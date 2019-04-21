@@ -47,6 +47,8 @@ expression
    | ABSPAREN expression ABSPAREN # Abs
    | funcName LPAREN expression (COMMA expression)* RPAREN # Function
    | NUMBER # Number
+   | PI #Pi
+   | EULER #Euler
    ;
 
 funcName
@@ -142,6 +144,16 @@ SQRT
 
 PERC
    : '%'
+   ;
+// Constants
+PI
+   : 'π'
+   | 'pi'
+   ;
+
+EULER
+   : 'ℯ'
+   | 'e'
    ;
 
 // Functions
