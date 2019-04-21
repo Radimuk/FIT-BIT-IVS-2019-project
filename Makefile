@@ -15,13 +15,14 @@ build-debug:
 
 clean:
 	rm -rf build
-	rm -rf docs
+	rm -rf docs/api
+	$(MAKE) -C docs/user clean
 
 deb-package:
 	gbp dch -a -S --ignore-branch
 	dpkg-buildpackage -b -rfakeroot -us -uc -tc
 
-doc: doxygen
+doc: doxygen user-doc
 
 doxygen:
 	@mkdir -p docs/api
@@ -47,3 +48,6 @@ test-debug: build-debug
 uninstall:
 	$(MAKE) -C build/install uninstall
 
+user-doc:
+	$(MAKE) -C docs/user
+	cp -u docs/user/dokumentace.pdf dokumentace.pdf
