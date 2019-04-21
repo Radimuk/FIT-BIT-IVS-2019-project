@@ -152,6 +152,7 @@ PI
 
 EULER
    : 'ℯ'
+   | 'e'
    ;
 
 // Functions
