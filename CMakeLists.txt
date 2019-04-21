@@ -30,8 +30,21 @@ else ()
 	add_definitions(-DGLADE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/src/gui/calculator_gui.glade")
 endif()
 
+if(NOT APPLICATIONS_DIR)
+	if (${CMAKE_INSTALL_FULL_BINDIR} MATCHES "^/usr")
+		set(APPLICATIONS_DIR "/usr/share/applications")
+	else()
+		set(APPLICATIONS_DIR "~/.local/share/applications")
+	endif()
+endif()
+
+if(NOT TARGET uninstall)
+	configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/uninstall.cmake" "${CMAKE_CURRENT_BINARY_DIR}/cmake/uninstall.cmake" IMMEDIATE @ONLY)
+	add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake/uninstall.cmake)
+endif()
+
 set(ANTLR4_SRC ${CMAKE_SOURCE_DIR}/external/antlr4/runtime/Cpp)
-add_subdirectory(${ANTLR4_SRC} antlr4)
+add_subdirectory(${ANTLR4_SRC} antlr4 EXCLUDE_FROM_ALL)
 include_directories(${ANTLR4_SRC}/runtime/src)
 
 add_subdirectory(src)

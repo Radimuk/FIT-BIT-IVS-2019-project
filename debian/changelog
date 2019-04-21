@@ -1,6 +1,6 @@
-fit-calc (0.0.1~6.gbpaf3d36) UNRELEASED; urgency=medium
+fit-calc (0.0.1~8.gbpd77d2c) UNRELEASED; urgency=medium
 
-  ** SNAPSHOT build @af3d36504af92bf05d56d17c83de546507b69c48 **
+  ** SNAPSHOT build @d77d2c332703b9ff05b45faab4a3cc3e03074d4f **
 
   [ Roman Ondráček ]
   * Initial commit
@@ -32,5 +32,39 @@ fit-calc (0.0.1~6.gbpaf3d36) UNRELEASED; urgency=medium
   [ Roman Ondráček ]
   * GUI: create GUI from .glade file
   * CMake: fix GLADE_FILE macro definition on old CMake's version
+  * Packages: add GUI file to Debian package
+  * Math lib: merge math libraries into one
+  * Grammar: add a skeleton of lexical analyser and parser
+  * Travis CI: add missing dependency and fix submodule
+  * Travis CI: drop clang support
+  * Grammar: add skeletion of a visitor and its test
+  * Grammar: fix grammar definition
+  * Docs: add API documentation
+  * Read Me: add dependencies
 
- -- Roman Ondráček <roman.ondracek@iqrf.com>  Sun, 07 Apr 2019 11:41:15 +0200
+  [ Radim Lipka ]
+  * Grammar: add basic tests (#28)
+  * Grammar: add missing tests
+
+  [ Pavel Raur ]
+  * Grammar: add implementation (#30)
+
+  [ Roman Ondráček ]
+  * GUI: add about dialog
+  * GUI: add click event for some buttons
+
+  [ Radim Lipka ]
+  * GUI: add action for delete and clean buttons
+  * GUI: Add comments and equation function
+
+  [ Roman Ondráček ]
+  * GUI: fix link to parser
+  * Grammar: refactor implementation
+  * Grammar: fix signed expressions
+  * Docker: add Dockerfiles for testing
+  * Travis CI: use own Docker image to speed up the testing
+  * GUI: catch exceptions from math lib and print the error message
+  * Makefile: add debug targets, fix release targets
+  * Tests: remove the exaple test
+
+ -- Roman Ondráček <roman.ondracek@iqrf.com>  Sat, 20 Apr 2019 21:53:12 +0200
