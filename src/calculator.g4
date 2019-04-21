@@ -148,6 +148,7 @@ PERC
 // Constants
 PI
    : 'π'
+   | 'pi'
    ;
 
 EULER

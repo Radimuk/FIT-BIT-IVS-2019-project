@@ -70,11 +70,13 @@ void MainWindow::onButtonEquation() {
 	calculatorLexer lexer(&input);
 	antlr4::CommonTokenStream tokens(&lexer);
 	calculatorParser parser(&tokens);
-	MathErrorListener mathErrorListener;
+	CustomErrorListener customErrorListener;
+	// listener registration
 	lexer.removeErrorListeners();
-	lexer.addErrorListener(&mathErrorListener);
+	lexer.addErrorListener(&customErrorListener);
 	parser.removeErrorListeners();
-	parser.addErrorListener(&mathErrorListener);
+	parser.addErrorListener(&customErrorListener);
+	// listener registration --
 	calculatorParser::InputContext* expresion = parser.input();
 	MathVisitor visitor;
 	double result = visitor.visit(expresion);

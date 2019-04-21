@@ -1006,7 +1006,7 @@ std::vector<std::string> calculatorParser::_ruleNames = {
 
 std::vector<std::string> calculatorParser::_literalNames = {
   "", "", "'('", "')'", "'|'", "'+'", "'-'", "'*'", "", "", "'^'", "','", 
-  "'.'", "'!'", "'\u221A'", "'%'", "'\u03C0'"
+  "'.'", "'!'", "'\u221A'", "'%'"
 };
 
 std::vector<std::string> calculatorParser::_symbolicNames = {
