@@ -14,8 +14,8 @@ public:
   enum {
     NUMBER = 1, LPAREN = 2, RPAREN = 3, ABSPAREN = 4, PLUS = 5, MINUS = 6, 
     TIMES = 7, DIV = 8, MOD = 9, POW = 10, COMMA = 11, POINT = 12, FACT = 13, 
-    SQRT = 14, PERC = 15, ABSVAL = 16, SIN = 17, COS = 18, TAN = 19, LOG = 20, 
-    LN = 21, WHITESPACE = 22
+    SQRT = 14, PERC = 15, PI = 16, EULER = 17, ABSVAL = 18, SIN = 19, COS = 20, 
+    TAN = 21, LOG = 22, LN = 23, WHITESPACE = 24
   };
 
   enum {
@@ -88,6 +88,14 @@ public:
 
     antlr4::tree::TerminalNode *SQRT();
     ExpressionContext *expression();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  EulerContext : public ExpressionContext {
+  public:
+    EulerContext(ExpressionContext *ctx);
+
+    antlr4::tree::TerminalNode *EULER();
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
@@ -192,6 +200,14 @@ public:
     std::vector<ExpressionContext *> expression();
     ExpressionContext* expression(size_t i);
     antlr4::tree::TerminalNode *TIMES();
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  PiContext : public ExpressionContext {
+  public:
+    PiContext(ExpressionContext *ctx);
+
+    antlr4::tree::TerminalNode *PI();
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
