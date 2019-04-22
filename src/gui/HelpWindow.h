@@ -22,25 +22,13 @@
 #pragma once
 
 #include <gtkmm.h>
-#include "../grammar/calculatorLexer.h"
-#include "../grammar/MathVisitor.h"
-#include "../grammar/CustomErrorListener.h"
 
-/**
- * Equals button
- */
-class EqualsButton : public Gtk::Button {
+
+class HelpWindow: public Gtk::Window {
 public:
-	EqualsButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
-
-	/**
-	 * Equals button click action
-	 */
-	void onButtonClick();
+	HelpWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
+	void onActivate();
 
 private:
 	Glib::RefPtr<Gtk::Builder> m_builder;
-	Gtk::Entry *m_textEntry = nullptr;
-	CustomErrorListener m_customErrorListener;
 };
-

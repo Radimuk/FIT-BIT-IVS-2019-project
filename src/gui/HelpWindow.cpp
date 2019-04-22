@@ -19,28 +19,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#pragma once
+#include "HelpWindow.h"
 
-#include <gtkmm.h>
-#include "../grammar/calculatorLexer.h"
-#include "../grammar/MathVisitor.h"
-#include "../grammar/CustomErrorListener.h"
+HelpWindow::HelpWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+		: Gtk::Window(object), m_builder(builder) {
+	this->set_title("Nápověda");
+}
 
-/**
- * Equals button
- */
-class EqualsButton : public Gtk::Button {
-public:
-	EqualsButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
-
-	/**
-	 * Equals button click action
-	 */
-	void onButtonClick();
-
-private:
-	Glib::RefPtr<Gtk::Builder> m_builder;
-	Gtk::Entry *m_textEntry = nullptr;
-	CustomErrorListener m_customErrorListener;
-};
-
+void HelpWindow::onActivate() {
+	this->show();
+}

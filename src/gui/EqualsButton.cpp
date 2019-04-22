@@ -28,23 +28,21 @@ EqualsButton::EqualsButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Build
 }
 
 void EqualsButton::onButtonClick() {
-	std::string name = this->get_label();
 	Glib::ustring text = m_textEntry->get_text();
 	if (text.empty()) {
 		return;
 	}
-	CustomErrorListener customErrorListener;
 	try {
 		antlr4::ANTLRInputStream input(text);
 		calculatorLexer lexer(&input);
 		// Register custom error listener
 		lexer.removeErrorListeners();
-		lexer.addErrorListener(&customErrorListener);
+		lexer.addErrorListener(&m_customErrorListener);
 		antlr4::CommonTokenStream tokens(&lexer);
 		calculatorParser parser(&tokens);
 		// Register custom error listener
 		parser.removeErrorListeners();
-		parser.addErrorListener(&customErrorListener);
+		parser.addErrorListener(&m_customErrorListener);
 		calculatorParser::InputContext *expresion = parser.input();
 		MathVisitor visitor;
 		double result = visitor.visit(expresion);

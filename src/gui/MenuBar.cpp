@@ -23,6 +23,9 @@
 
 MenuBar::MenuBar(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
 		: Gtk::MenuBar(object), m_builder(builder) {
+	m_builder->get_widget_derived("help_window", m_helpWindow);
+	m_builder->get_widget("menu_help_show", m_menuItem);
+	m_menuItem->signal_activate().connect(sigc::mem_fun(m_helpWindow, &HelpWindow::onActivate));
 	m_builder->get_widget_derived("about_dialog", m_aboutDialog);
 	m_builder->get_widget("menu_help_about", m_menuItem);
 	m_menuItem->signal_activate().connect(sigc::mem_fun(m_aboutDialog, &AboutDialog::onActivate));
