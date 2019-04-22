@@ -19,20 +19,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#pragma once
+#include "InputButton.h"
 
-#include <iostream>
-#include <gtkmm.h>
-#include "gui/MainWindow.h"
+InputButton::InputButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+		: Gtk::Button(object), m_builder(builder) {
+	m_builder->get_widget("text_entry", m_textEntry);
+	this->signal_pressed().connect(sigc::mem_fun(*this, &InputButton::onButtonClick));
+}
 
-#ifndef GLADE_FILE
-#define GLADE_FILE "calculator_gui.glade"
-#endif
+InputButton::InputButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder, const std::string &text)
+		: InputButton(object, builder) {
+	m_text = text;
+}
 
-/**
- * Main program's function
- * @param argc Count of arguments
- * @param argv Array of arguments
- * @return Execution status
- */
-int main(int argc, char *argv[]);
+void InputButton::onButtonClick() {
+	Glib::ustring text = m_textEntry->get_text();
+	text.append(m_text);
+	m_textEntry->set_text(text);
+}

@@ -19,50 +19,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "MainWindow.h"
+#include "EqualsButton.h"
 
-
-MainWindow::MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
-		: Gtk::ApplicationWindow(object), m_builder(builder) {
-	this->set_title("FIT Calc");
-	m_builder->get_widget_derived("menu_bar", m_menuBar);
+EqualsButton::EqualsButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+		: Gtk::Button(object), m_builder(builder) {
 	m_builder->get_widget("text_entry", m_textEntry);
-	Gtk::Button *button = nullptr;
-	for (auto btnValues : m_buttons) {
-		m_builder->get_widget(btnValues.first, button);
-		button->signal_pressed().connect(
-				sigc::bind<Glib::ustring>(sigc::mem_fun(*this, &MainWindow::onButtonClick), btnValues.second)
-		);
-	}
-
-	m_builder->get_widget("button_clean", button);
-	button->signal_pressed().connect(sigc::mem_fun(*this, &MainWindow::onButtonClean));
-
-	m_builder->get_widget("button_backspace", button);
-	button->signal_pressed().connect(sigc::mem_fun(*this, &MainWindow::onButtonBackspace));
-
-	m_builder->get_widget("button_equation", button);
-	button->signal_pressed().connect(sigc::mem_fun(*this, &MainWindow::onButtonEquation));
-
+	this->signal_pressed().connect(sigc::mem_fun(*this, &EqualsButton::onButtonClick));
 }
 
-void MainWindow::onButtonClick(std::string input) {
-	Glib::ustring text = m_textEntry->get_text();
-	text.append(input);
-	m_textEntry->set_text(text);
-}
-
-void MainWindow::onButtonClean() {
-	m_textEntry->set_text("");
-}
-
-void MainWindow::onButtonBackspace() {
-	Glib::ustring text = m_textEntry->get_text();
-	text = text.substr(0, text.size() - 1);
-	m_textEntry->set_text(text);
-}
-
-void MainWindow::onButtonEquation() {
+void EqualsButton::onButtonClick() {
+	std::string name = this->get_label();
 	Glib::ustring text = m_textEntry->get_text();
 	if (text.empty()) {
 		return;

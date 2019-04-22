@@ -19,20 +19,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#pragma once
+#include "MainWindow.h"
 
-#include <iostream>
-#include <gtkmm.h>
-#include "gui/MainWindow.h"
+MainWindow::MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+		: Gtk::ApplicationWindow(object), m_builder(builder) {
+	this->set_title("FIT Calc");
+	this->set_icon_name("accessories-calculator");
+	m_builder->get_widget_derived("menu_bar", m_menuBar);
+	this->createButtons();
 
-#ifndef GLADE_FILE
-#define GLADE_FILE "calculator_gui.glade"
-#endif
+}
 
-/**
- * Main program's function
- * @param argc Count of arguments
- * @param argv Array of arguments
- * @return Execution status
- */
-int main(int argc, char *argv[]);
+void MainWindow::createButtons() {
+	for (auto button : m_buttons) {
+		m_builder->get_widget_derived(button.first, m_inputButton, button.second);
+	}
+	m_builder->get_widget_derived("button_clean", m_cleanButton);
+	m_builder->get_widget_derived("button_backspace", m_backspaceButton);
+	m_builder->get_widget_derived("button_equation", m_equalsButton);
+}

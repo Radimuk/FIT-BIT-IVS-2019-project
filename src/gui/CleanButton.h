@@ -24,29 +24,19 @@
 #include <gtkmm.h>
 
 /**
- * About dialog object
- */ 
-class AboutDialog : public Gtk::AboutDialog {
+ * Clean button
+ */
+class CleanButton : public Gtk::Button {
 public:
-	/**
-	 * Create about dialog
-	 */
-	AboutDialog(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
-	
-	/**
-	 * Open about dialog
-	 */ 
-	void onActivate();
+	CleanButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 
-protected:
 	/**
-	 * Action on button close 
-	 * @param responseId
+	 * Clean button click action
 	 */
-	void onButtonClose(int responseId);
+	void onButtonClick();
 
 private:
 	Glib::RefPtr<Gtk::Builder> m_builder;
-
+	Gtk::Entry *m_textEntry = nullptr;
 };
 

@@ -19,16 +19,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "AboutDialog.h"
+#pragma once
 
-AboutDialog::AboutDialog(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder) : Gtk::AboutDialog(object), m_builder(builder) {
-	this->signal_response().connect(sigc::mem_fun(*this, &AboutDialog::onButtonClose));
-}
+#include <gtkmm.h>
+#include "../grammar/calculatorLexer.h"
+#include "../grammar/MathVisitor.h"
+#include "../grammar/CustomErrorListener.h"
 
-void AboutDialog::onActivate() {
-	this->show();
-}
+/**
+ * Equals button
+ */
+class EqualsButton : public Gtk::Button {
+public:
+	EqualsButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 
-void AboutDialog::onButtonClose(int responseId) {
-	this->hide();
-}
+	/**
+	 * Equals button click action
+	 */
+	void onButtonClick();
+
+private:
+	Glib::RefPtr<Gtk::Builder> m_builder;
+	Gtk::Entry *m_textEntry = nullptr;
+};
+
