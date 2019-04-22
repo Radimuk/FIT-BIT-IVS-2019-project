@@ -26,6 +26,7 @@
 #include "antlr4-runtime.h"
 #include "grammar/calculatorLexer.h"
 #include "grammar/MathVisitor.h"
+#include "grammar/CustomErrorListener.h"
 
 /**
  * Main application's window

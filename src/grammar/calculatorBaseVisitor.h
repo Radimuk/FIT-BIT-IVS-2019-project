@@ -31,6 +31,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitEuler(calculatorParser::EulerContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitPercentageTimes(calculatorParser::PercentageTimesContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -68,6 +72,10 @@ public:
   }
 
   virtual antlrcpp::Any visitTimes(calculatorParser::TimesContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitPi(calculatorParser::PiContext *ctx) override {
     return visitChildren(ctx);
   }
 
