@@ -15,8 +15,10 @@
  * fakeroot
  * git-buildpackage
  * gnome-icon-theme
+ * kcachegrind
  * libgtest-dev
  * libgtkmm-3.0-dev
+ * valgrind
  * uuid-dev
 
 

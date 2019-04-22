@@ -23,6 +23,9 @@ build/
 # Docs
 docs/api/
 
+# Profiling
+profiling/*.out
+
 # Debian package
 debian/fit-calc/
 debian/fit-calc.debhelper.log

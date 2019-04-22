@@ -16,6 +16,7 @@ build-debug:
 clean:
 	rm -rf build
 	rm -rf docs
+	$(MAKE) -C profiling clean
 
 deb-package:
 	gbp dch -a -S --ignore-branch
@@ -26,6 +27,21 @@ doc: doxygen
 doxygen:
 	@mkdir -p docs/api
 	@doxygen
+
+profiling: build-debug
+
+profiling-doc:
+	$(MAKE) -C profiling
+
+profiling-run: profiling
+	valgrind --tool=callgrind --callgrind-out-file=profiling/callgrind10.out ./build/debug/bin/stddev < src/profiling/data10.csv
+	valgrind --tool=callgrind --callgrind-out-file=profiling/callgrind100.out ./build/debug/bin/stddev < src/profiling/data100.csv
+	valgrind --tool=callgrind --callgrind-out-file=profiling/callgrind1000.out ./build/debug/bin/stddev < src/profiling/data1000.csv
+
+profiling-view: profiling-run
+	kcachegrind profiling/callgrind10.out
+	kcachegrind profiling/callgrind100.out
+	kcachegrind profiling/callgrind1000.out
 
 install:
 	cmake -DGLADE_FILE="/usr/local/share/fit-calc/calculator_gui.glade" -DCMAKE_BUILD_TYPE=Release -j4 -Bbuild/install -H.
