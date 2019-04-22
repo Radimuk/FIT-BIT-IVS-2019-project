@@ -16,6 +16,7 @@ build-debug:
 clean:
 	rm -rf build
 	rm -rf docs
+	$(MAKE) -C profiling clean
 
 deb-package:
 	gbp dch -a -S --ignore-branch
@@ -28,6 +29,9 @@ doxygen:
 	@doxygen
 
 profiling: build-debug
+
+profiling-doc:
+	$(MAKE) -C profiling
 
 profiling-run: profiling
 	valgrind --tool=callgrind --callgrind-out-file=profiling/callgrind10.out ./build/debug/bin/stddev < src/profiling/data10.csv
