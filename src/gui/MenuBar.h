@@ -21,18 +21,17 @@
 
 #pragma once
 
-#include <iostream>
 #include <gtkmm.h>
-#include "gui/MainWindow.h"
+#include "AboutDialog.h"
+#include "HelpWindow.h"
 
-#ifndef GLADE_FILE
-#define GLADE_FILE "calculator_gui.glade"
-#endif
+class MenuBar : public Gtk::MenuBar {
+public:
+	MenuBar(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 
-/**
- * Main program's function
- * @param argc Count of arguments
- * @param argv Array of arguments
- * @return Execution status
- */
-int main(int argc, char *argv[]);
+private:
+	Glib::RefPtr<Gtk::Builder> m_builder;
+	Gtk::ImageMenuItem *m_menuItem = nullptr;
+	AboutDialog *m_aboutDialog = nullptr;
+	HelpWindow *m_helpWindow = nullptr;
+};

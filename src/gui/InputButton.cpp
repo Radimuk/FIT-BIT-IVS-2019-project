@@ -19,34 +19,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#pragma once
+#include "InputButton.h"
 
-#include <gtkmm.h>
+InputButton::InputButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+		: Gtk::Button(object), m_builder(builder) {
+	m_builder->get_widget("text_entry", m_textEntry);
+	this->signal_pressed().connect(sigc::mem_fun(*this, &InputButton::onButtonClick));
+}
 
-/**
- * About dialog object
- */ 
-class AboutDialog : public Gtk::AboutDialog {
-public:
-	/**
-	 * Create about dialog
-	 */
-	AboutDialog(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
-	
-	/**
-	 * Open about dialog
-	 */ 
-	void onActivate();
+InputButton::InputButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder, const std::string &text)
+		: InputButton(object, builder) {
+	m_text = text;
+}
 
-protected:
-	/**
-	 * Action on button close 
-	 * @param responseId
-	 */
-	void onButtonClose(int responseId);
-
-private:
-	Glib::RefPtr<Gtk::Builder> m_builder;
-
-};
-
+void InputButton::onButtonClick() {
+	Glib::ustring text = m_textEntry->get_text();
+	text.append(m_text);
+	m_textEntry->set_text(text);
+}

@@ -19,20 +19,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#pragma once
+#include "AboutDialog.h"
 
-#include <iostream>
-#include <gtkmm.h>
-#include "gui/MainWindow.h"
+AboutDialog::AboutDialog(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+		: Gtk::AboutDialog(object), m_builder(builder) {
+	this->signal_response().connect(sigc::mem_fun(*this, &AboutDialog::onButtonClose));
+}
 
-#ifndef GLADE_FILE
-#define GLADE_FILE "calculator_gui.glade"
-#endif
+void AboutDialog::onActivate() {
+	this->show();
+}
 
-/**
- * Main program's function
- * @param argc Count of arguments
- * @param argv Array of arguments
- * @return Execution status
- */
-int main(int argc, char *argv[]);
+void AboutDialog::onButtonClose(int responseId) {
+	this->hide();
+}

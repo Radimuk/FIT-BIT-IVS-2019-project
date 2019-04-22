@@ -21,18 +21,14 @@
 
 #pragma once
 
-#include <iostream>
 #include <gtkmm.h>
-#include "gui/MainWindow.h"
 
-#ifndef GLADE_FILE
-#define GLADE_FILE "calculator_gui.glade"
-#endif
 
-/**
- * Main program's function
- * @param argc Count of arguments
- * @param argv Array of arguments
- * @return Execution status
- */
-int main(int argc, char *argv[]);
+class HelpWindow: public Gtk::Window {
+public:
+	HelpWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
+	void onActivate();
+
+private:
+	Glib::RefPtr<Gtk::Builder> m_builder;
+};
