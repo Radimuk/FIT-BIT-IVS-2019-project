@@ -6,7 +6,10 @@ include_directories(${GTKMM_INCLUDE_DIRS})
 add_subdirectory(grammar)
 add_subdirectory(gui)
 add_subdirectory(math)
-add_subdirectory(profiling)
+
+if (ENABLE_PROFILING)
+	add_subdirectory(profiling)
+endif()
 
 add_executable(fit-calc main.cpp main.h)
 target_link_libraries(fit-calc guiLib)
