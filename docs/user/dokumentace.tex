@@ -13,12 +13,12 @@
 		\includegraphics[height = 96pt]{img/FIT_barevne_CMYK_CZ.pdf} \\
 
 		\begin{LARGE}
-			\textbf{Vysoké učení technické v~Brně} \\
+			\textbf{Vysoké učení technické v Brně} \\
 		\end{LARGE}
 
 		\begin{large}
 			Fakulta informačních technologií \\
-			Praktické aspekty vývoje software \\
+			Elektronika pro informační technologie \\
 			2018~/~2019 
 		\end{large}
 		\\[78mm]
@@ -46,13 +46,29 @@
 \newpage
 
 \section{Instalace kalkulačky}
-\section{Orientace v~prostředí kalkulačky}
+Existují dva způsoby, jak kalkulačku nainstalovat, jedna možnost je nainstalovat ji manuálně po stažení z repozitáře, druhá možnost je stáhnout si ji a nainstalovat z balíčků pro Debian.
+\subsection{Instalace z repozitáře}
+Pokud si chcete nainstalovat kalkulačku z repozitáře, stačí navšívit stránku \\ 
+\href{https://github.com/Roman3349/FIT-BIT-IVS-2019-project}{https://github.com/Roman3349/FIT-BIT-IVS-2019-project} a kliknout na \textbf{Download} nebo-li stáhnout. Po určení místa uložení pak stačí ve staženém adresáři napsat \textbf{sudo make install} a kalkulačka se nainstaluje. Pro odinstalovaní potom slouží příkaz \textbf{sudo make uninstall}.
+\subsection{Instalace z balíčku}
+Pokud se rozhodnete pro nainstalování si kalkulačky z balíčků pro debian, je nutné provést následující sekvenci příkazů. 
+\\
+if [ "\$(whoami)" != "root" ]; then \\
+SUDO=sudo \\
+fi 
+\begin{itemize}
+    \item \${SUDO} apt-get -y install apt-transport-https lsb-release ca-certificates
+    \item \${SUDO} wget -O /etc/apt/trusted.gpg.d/romanondracek.gpg\\ https://deb.romanondracek.cz/ubuntu/apt.gpg 
+    \item \${SUDO} sh -c 'echo "deb https://deb.romanondracek.cz/ubuntu/\\  \$(lsb\_release -sc) main" > /etc/apt/sources.list.d/romanondracek.list'
+    \item \${SUDO} apt-get update
+    \item a nakonec sudo apt-get install fit-calc
+\end{itemize}
+
+\section{Orientace v prostředí kalkulačky}
 \subsection{Horní lišta}
-V~horní liště kalkulačky můžete vidět dvě tlačítka.
+V horní liště kalkulačky můžete vidět tlačítko \textbf{Nápověda}.
 
-Po kliknutí na tlačítko \textbf{Soubor} se objeví možnost kalkulačku ukončit a také vytvořit nové okno kalkulačky. 
-
-Při kliknutí na tlačítko \textbf{Nápověda} se zobrazí možnost \textbf{O~aplikaci}, kde můžete zjistit informace o~aktuální verzi kalkulačky, odkaz na GitHub repozitář, seznam tvůrců a licenci, pod kterou je kalkulačka šířená.
+Při kliknutí na toto tlačítko se zobrazí možnost \textbf{O aplikaci}, kde můžete zjistit informace o aktuální verzi kalkulačky, odkaz na GitHub repozitář, seznam tvůrců a licenci, pod kterou je kalkulačka šířená a možnost \textbf{Nápověda}, kde si můžete přečíst nápovědu k používání kalkulačky.
 \subsection{Prostředí kalkulačky}
 Samotné prostřední kalkulačky je rozděleno do tří sekcí.
 
@@ -60,22 +76,24 @@ Samotné prostřední kalkulačky je rozděleno do tří sekcí.
 
 Přibližně uprostřed se nachází řádek sloužící pro váš vstup do kalkulačky.
 
-A~nakonec ve spodní části je k~vidění klávesnice s~čísly a různými funkcemi pro výpočet.
+A nakonec ve spodní části je k vidění klávesnice s čísly a různými funkcemi pro výpočet.
 
 \section{Ovládání kalkulačky}
-Vstup do kalkulačky lze zadat pomocí klikání na příslušná tlačítka. Čísla a některé funkce (pokud máte příslušné symboly na klávesnici) lze zadat i z~klávesnice.
+Vstup do kalkulačky lze zadat pomocí klikání na příslušná tlačítka. Čísla a některé funkce (pokud máte příslušné symboly na klávesnici) lze zadat i z klávesnice.
 \begin{itemize}
 \item Pro zadání čísel 0-9 slouží klávesy 0-9.
 \item Pro zadání konstanty PI a Eulerovova čísla použijte klavesy $\pi$ a $e$.
 \item Pro použití základních matematických operací plus, minus, krát a děleno, slouží tlačítka +, -, $\times$ a $\div$.
 \item Pro oddělelování celých a desetinných částí čísel slouží desetinná čárka $,$.
-\item Pro počítání s~mocninami a odmocninou slouží tlačítka $x^n$ pro obecnou mocninu, $x^{-1}$ pro získání inverzního čísla a $\sqrt{}$ pro získání odmocniny z~určitého čísla. Pro n--tou odmocninu je syntax $n\sqrt{}$. Při zadání pouze $\sqrt{}$ získáte druhou mocninu čísla.
-\item Pro počítání s~procenty slouží symbol \%, přičemž syntax pro počítání s~procenty je x +  (-, $\times$ nebo $\div$) y\%.
+\item Pro počítání s mocninami a odmocninou slouží tlačítka $x^n$ pro obecnou mocninu, $x^{-1}$ pro získání inverzního čísla a $\sqrt{}$ pro získání odmocniny z určitého čísla. Pro n--tou odmocninu je syntax $n\sqrt{}$. Při zadání pouze $\sqrt{}$ získáte druhou mocninu čísla.
+\item Pro počítání s procenty slouží symbol \%, přičemž syntax pro počítání s procenty je x +  (-, $\times$ nebo $\div$) y\%.
 \item Pro zbytek po dělení modulo, logaritmus se základem deset a přirozený logaritmus slouží tlačítka $mod, log$ a $ln$.
-\item Pro počítání s~faktoriálem a absolutní hodnotou slouží tlačítka $x!$ a $|x|$.
-\item Pro použití goniometrických funkcí sinus, cosinus a tangens slouží tlačítka sin, cos a tan v~pravém sloupci.
+\item Pro počítání s faktoriálem a absolutní hodnotou slouží tlačítka $x!$ a $|x|$.
+\item Pro použití goniometrických funkcí sinus, cosinus a tangens slouží tlačítka $sin, cos$ a $tan$ v pravém sloupci.
 \item Tlačítko C slouží pro vymazání celého vstupu. Tlačítko $\longleftarrow$ je určeno pro vymazání jednoho znaku ze vstupu.
 \item Tlačítko Ans slouží pro zapamatování výsledku posledního výpočtu.
 \end{itemize}
+
+
 
 \end{document}
