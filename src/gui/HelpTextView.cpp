@@ -19,17 +19,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#pragma once
-
-#include <gtkmm.h>
 #include "HelpTextView.h"
 
-class HelpWindow: public Gtk::Window {
-public:
-	HelpWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
-	void onActivate();
-
-private:
-	Glib::RefPtr<Gtk::Builder> m_builder;
-	HelpTextView *m_view = nullptr;
-};
+HelpTextView::HelpTextView(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+: Gtk::TextView(object), m_builder(builder){
+	this->set_editable(false);
+	auto buffer = this->get_buffer();
+	auto headingTag = buffer->create_tag("h");
+	headingTag->property_size_points() = 16.0;
+	buffer->insert_with_tag(buffer->end(), "Interface\n", headingTag);
+	buffer->insert(buffer->end(),
+	               "\nUser interface contains 3 areas:\n"
+	               "\t- History overview\n"
+	               "\t- Input field\n"
+	               "\t- On-screen keyboard\n\n"
+	);
+	buffer->insert_with_tag(buffer->end(), "History overview\n", headingTag);
+	buffer->insert(buffer->end(), "\nHistory overview contains previously calculated results.\n\n");
+	buffer->insert_with_tag(buffer->end(), "Input field\n", headingTag);
+	buffer->insert(buffer->end(), "\nInput field can be used for entering input to the calculator. You can enter it form your computer keyboard, or by mouse using onscreen keyboard.\n\n");
+}

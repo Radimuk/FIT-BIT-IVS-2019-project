@@ -599,6 +599,38 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
   </object>
   <object class="GtkWindow" id="help_window">
     <property name="can_focus">False</property>
+    <property name="default_width">320</property>
+    <property name="default_height">240</property>
+    <property name="destroy_with_parent">True</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="shadow_type">in</property>
+        <property name="propagate_natural_width">True</property>
+        <property name="propagate_natural_height">True</property>
+        <child>
+          <object class="GtkViewport">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hscroll_policy">natural</property>
+            <property name="vscroll_policy">natural</property>
+            <child>
+              <object class="GtkTextView" id="help_content">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="help_window1">
+    <property name="can_focus">False</property>
     <child>
       <placeholder/>
     </child>
@@ -741,7 +773,6 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Input field can be used for entering input to the calculator. You can enter it form your computer keyboard, or by mouse using onscreen keyboard.</property>
                     <property name="wrap">True</property>
                   </object>
                   <packing>
@@ -846,6 +877,9 @@ Percentage:
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="label" translatable="yes">Usage:</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="expand">False</property>
