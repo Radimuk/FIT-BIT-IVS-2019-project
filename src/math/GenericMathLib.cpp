@@ -63,6 +63,9 @@ double GenericMathLib::fact(int x) {
 }
 
 double GenericMathLib::pow(double base, double exponent) {
+	if (base == 0 && exponent => 0){
+		throw std::domain_error("Negative pow of zero not defined.");
+	}
 	return std::pow(base, exponent);
 }
 
