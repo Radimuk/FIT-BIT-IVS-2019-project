@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="program_name">FIT Calc</property>
-    <property name="version">0.0.1</property>
+    <property name="version">1.0.0</property>
     <property name="copyright" translatable="yes">Copyright (C) 2019 Radim Lipka &lt;xlipka02@stud.fit.vutbr.cz&gt;
 Copyright (C) 2019 Roman Ondráček &lt;xondra58@stud.fit.vutbr.cz&gt;
 Copyright (C) 2019 Pavel Raur &lt;xraurp00@stud.fit.vutbr.cz&gt;

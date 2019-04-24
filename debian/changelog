@@ -1,6 +1,4 @@
-fit-calc (0.5.0~1.gbp237e25) UNRELEASED; urgency=medium
-
-  ** SNAPSHOT build @237e256cd71422d115506e17ab77161bd43c3ed8 **
+fit-calc (1.0.0) testing; urgency=medium
 
   [ Roman Ondráček ]
   * Initial commit
@@ -68,5 +66,42 @@ fit-calc (0.5.0~1.gbp237e25) UNRELEASED; urgency=medium
   * Tests: remove the example test
   * Installation: add a manual installation, add a desktop icon
   * Debian package: ignore temporary files for a package creation
+  * Travis CI: fix configuration
+  * Debian package: fix package creation
+  * GUI: fix margins
 
- -- root <root@0bad79e792df>  Sun, 21 Apr 2019 11:30:48 +0000
+  [ Pavel Raur ]
+  * Grammar: add error listener and rule for constants (#34)
+
+  [ Roman Ondráček ]
+  * GUI: refactoring
+
+  [ Radim Lipka ]
+  * Profiling (#29)
+
+  [ Roman Ondráček ]
+  * GUI: add help window, fix coding style
+
+  [ Radim Lipka ]
+  * Math lib: fix bug in pow (#44)
+  * Debugging: add screenshot of debugging (#45)
+
+  [ Roman Ondráček ]
+  * Makefile: fix Makefile (#46)
+
+  [ Radim Lipka ]
+  * Docs: add User documentation (#32)
+  * Screenshot: add screenshot of the calculator (#43)
+
+  [ Roman Ondráček ]
+  * Evaluation: add evaluation
+
+  [ Pavel Raur ]
+  * GUI: add help (#47)
+  * Added comments in math visitor (#49)
+
+  [ Roman Ondráček ]
+  * GUI: add comments
+  * Grammar: add comments
+
+ -- Roman Ondráček <roman.ondracek@iqrf.com>  Wed, 24 Apr 2019 04:11:01 +0200
