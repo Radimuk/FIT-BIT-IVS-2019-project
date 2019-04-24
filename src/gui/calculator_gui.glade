@@ -599,13 +599,33 @@ David Reinhart &lt;xreinh00@stud.fit.vutbr.cz&gt;</property>
   </object>
   <object class="GtkWindow" id="help_window">
     <property name="can_focus">False</property>
+    <property name="default_width">320</property>
+    <property name="default_height">240</property>
+    <property name="destroy_with_parent">True</property>
     <child>
       <placeholder/>
     </child>
     <child>
-      <object class="GtkTextView">
+      <object class="GtkScrolledWindow">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
+        <property name="shadow_type">in</property>
+        <property name="propagate_natural_width">True</property>
+        <property name="propagate_natural_height">True</property>
+        <child>
+          <object class="GtkViewport">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hscroll_policy">natural</property>
+            <property name="vscroll_policy">natural</property>
+            <child>
+              <object class="GtkTextView" id="help_content">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </object>

@@ -19,16 +19,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "HelpWindow.h"
+#pragma once
 
-HelpWindow::HelpWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
-		: Gtk::Window(object), m_builder(builder) {
-	this->set_title("FIT Calc - Help");
-	this->set_icon_name("gtk-help");
-	this->set_default_size(500, 500);
-	m_builder->get_widget_derived("help_content", m_view);
-}
+#include <gtkmm.h>
 
-void HelpWindow::onActivate() {
-	this->show();
-}
+
+class HelpTextView: public Gtk::TextView {
+public:
+	HelpTextView(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
+
+private:
+	Glib::RefPtr<Gtk::Builder> m_builder;
+
+};
+

@@ -22,7 +22,7 @@
 #pragma once
 
 #include <gtkmm.h>
-
+#include "HelpTextView.h"
 
 class HelpWindow: public Gtk::Window {
 public:
@@ -31,4 +31,5 @@ public:
 
 private:
 	Glib::RefPtr<Gtk::Builder> m_builder;
+	HelpTextView *m_view = nullptr;
 };
