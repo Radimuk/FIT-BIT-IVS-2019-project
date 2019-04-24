@@ -28,6 +28,11 @@
  */
 class InputButton : public Gtk::Button {
 public:
+	/**
+	 * Constructor
+	 * @param object Button object
+	 * @param builder GTKmm builder
+	 */
 	InputButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 	InputButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder, const std::string &text);
 
@@ -37,8 +42,11 @@ public:
 	void onButtonClick();
 
 private:
+	/// GTKmm builder
 	Glib::RefPtr<Gtk::Builder> m_builder;
+	/// Text input
 	Gtk::Entry *m_textEntry = nullptr;
+	/// Text to insert
 	std::string m_text;
 };
 

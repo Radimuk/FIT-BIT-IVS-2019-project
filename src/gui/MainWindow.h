@@ -35,6 +35,11 @@
 class MainWindow : public Gtk::ApplicationWindow {
 
 public:
+	/**
+	 * Constructor
+	 * @param object Application window object
+	 * @param builder GTKmm builder
+	 */
 	MainWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 
 private:
@@ -43,12 +48,19 @@ private:
 	 */
 	void createButtons();
 
+	/// GTKmm builder
 	Glib::RefPtr<Gtk::Builder> m_builder;
+	/// Backspace button
 	BackspaceButton *m_backspaceButton = nullptr;
+	/// Input clean button
 	CleanButton *m_cleanButton = nullptr;
+	/// Equals button
 	EqualsButton *m_equalsButton = nullptr;
+	/// Input button
 	InputButton *m_inputButton = nullptr;
+	/// Menu bar
 	MenuBar *m_menuBar = nullptr;
+	/// Input buttons
 	std::map<std::string, std::string> m_buttons = {
 			// Numbers
 			{"button_zero",          "0"},

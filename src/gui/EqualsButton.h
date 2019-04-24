@@ -31,6 +31,11 @@
  */
 class EqualsButton : public Gtk::Button {
 public:
+	/**
+	 * COnstructor
+	 * @param object Button object
+	 * @param builder GTKmm builder
+	 */
 	EqualsButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 
 	/**
@@ -39,8 +44,11 @@ public:
 	void onButtonClick();
 
 private:
+	/// GTKmm builder
 	Glib::RefPtr<Gtk::Builder> m_builder;
+	/// Text entry
 	Gtk::Entry *m_textEntry = nullptr;
+	/// Custom error listener for grammar
 	CustomErrorListener m_customErrorListener;
 };
 

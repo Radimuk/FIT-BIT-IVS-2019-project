@@ -24,12 +24,26 @@
 #include <gtkmm.h>
 #include "HelpTextView.h"
 
+/**
+ * Help window
+ */
 class HelpWindow: public Gtk::Window {
 public:
+	/**
+	 * Constructor
+	 * @param object Window object
+	 * @param builder GTKmm builder
+	 */
 	HelpWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
+
+	/**
+	 * Window activation event handler
+	 */
 	void onActivate();
 
 private:
+	/// GTKmm builder
 	Glib::RefPtr<Gtk::Builder> m_builder;
+	/// Help text view
 	HelpTextView *m_view = nullptr;
 };

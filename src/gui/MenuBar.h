@@ -25,13 +25,25 @@
 #include "AboutDialog.h"
 #include "HelpWindow.h"
 
+/**
+ * Menu bar
+ */
 class MenuBar : public Gtk::MenuBar {
 public:
+	/**
+	 * Constructor
+	 * @param object Menu bar object
+	 * @param builder GTKmm builder
+	 */
 	MenuBar(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 
 private:
+	/// GTKmm builder
 	Glib::RefPtr<Gtk::Builder> m_builder;
+	/// Menu item
 	Gtk::ImageMenuItem *m_menuItem = nullptr;
+	/// About dialog
 	AboutDialog *m_aboutDialog = nullptr;
+	/// Help window
 	HelpWindow *m_helpWindow = nullptr;
 };

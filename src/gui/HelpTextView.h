@@ -23,12 +23,20 @@
 
 #include <gtkmm.h>
 
-
+/**
+ * Help text view
+ */
 class HelpTextView: public Gtk::TextView {
 public:
+	/**
+	 * Constructor
+	 * @param object Text view object
+	 * @param builder GTKmm builder
+	 */
 	HelpTextView(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 
 private:
+	/// GTKmm builder
 	Glib::RefPtr<Gtk::Builder> m_builder;
 
 };

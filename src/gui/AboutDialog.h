@@ -28,9 +28,11 @@
  */
 class AboutDialog : public Gtk::AboutDialog {
 public:
-	/**
-	 * Create about dialog
-	 */
+	 /**
+	  * Constructor
+	  * @param object About dialog object
+	  * @param builder GTkmm builder
+	  */
 	AboutDialog(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 
 	/**
@@ -46,6 +48,7 @@ protected:
 	void onButtonClose(int responseId);
 
 private:
+	/// GTKmm builder
 	Glib::RefPtr<Gtk::Builder> m_builder;
 
 };
