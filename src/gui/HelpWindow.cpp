@@ -19,20 +19,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#pragma once
+#include "HelpWindow.h"
 
-#include <iostream>
-#include <gtkmm.h>
-#include "gui/MainWindow.h"
+HelpWindow::HelpWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+		: Gtk::Window(object), m_builder(builder) {
+	this->set_title("Nápověda");
+}
 
-#ifndef GLADE_FILE
-#define GLADE_FILE "calculator_gui.glade"
-#endif
-
-/**
- * Main program's function
- * @param argc Count of arguments
- * @param argv Array of arguments
- * @return Execution status
- */
-int main(int argc, char *argv[]);
+void HelpWindow::onActivate() {
+	this->show();
+}

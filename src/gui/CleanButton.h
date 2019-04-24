@@ -19,16 +19,24 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "AboutDialog.h"
+#pragma once
 
-AboutDialog::AboutDialog(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder) : Gtk::AboutDialog(object), m_builder(builder) {
-	this->signal_response().connect(sigc::mem_fun(*this, &AboutDialog::onButtonClose));
-}
+#include <gtkmm.h>
 
-void AboutDialog::onActivate() {
-	this->show();
-}
+/**
+ * Clean button
+ */
+class CleanButton : public Gtk::Button {
+public:
+	CleanButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
 
-void AboutDialog::onButtonClose(int responseId) {
-	this->hide();
-}
+	/**
+	 * Clean button click action
+	 */
+	void onButtonClick();
+
+private:
+	Glib::RefPtr<Gtk::Builder> m_builder;
+	Gtk::Entry *m_textEntry = nullptr;
+};
+

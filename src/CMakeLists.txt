@@ -4,11 +4,15 @@ link_directories(${GTKMM_LIBRARY_DIRS})
 include_directories(${GTKMM_INCLUDE_DIRS})
 
 add_subdirectory(grammar)
+add_subdirectory(gui)
 add_subdirectory(math)
-add_subdirectory(profiling)
 
-add_executable(fit-calc main.cpp main.h MainWindow.cpp MainWindow.h MenuBar.cpp MenuBar.h AboutDialog.cpp AboutDialog.h)
-target_link_libraries(fit-calc ${GTKMM_LIBRARIES} m mathLib grammarLib antlr4_static)
+if (ENABLE_PROFILING)
+	add_subdirectory(profiling)
+endif()
+
+add_executable(fit-calc main.cpp main.h)
+target_link_libraries(fit-calc guiLib)
 
 install(TARGETS fit-calc RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES gui/fit-calc.desktop DESTINATION ${APPLICATIONS_DIR})

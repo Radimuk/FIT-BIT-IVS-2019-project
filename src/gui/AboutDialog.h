@@ -21,18 +21,31 @@
 
 #pragma once
 
-#include <iostream>
 #include <gtkmm.h>
-#include "gui/MainWindow.h"
-
-#ifndef GLADE_FILE
-#define GLADE_FILE "calculator_gui.glade"
-#endif
 
 /**
- * Main program's function
- * @param argc Count of arguments
- * @param argv Array of arguments
- * @return Execution status
+ * About dialog object
  */
-int main(int argc, char *argv[]);
+class AboutDialog : public Gtk::AboutDialog {
+public:
+	/**
+	 * Create about dialog
+	 */
+	AboutDialog(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
+
+	/**
+	 * Open about dialog
+	 */
+	void onActivate();
+
+protected:
+	/**
+	 * Action on button close 
+	 * @param responseId
+	 */
+	void onButtonClose(int responseId);
+
+private:
+	Glib::RefPtr<Gtk::Builder> m_builder;
+
+};

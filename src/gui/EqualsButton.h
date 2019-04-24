@@ -22,14 +22,25 @@
 #pragma once
 
 #include <gtkmm.h>
-#include "AboutDialog.h"
+#include "../grammar/calculatorLexer.h"
+#include "../grammar/MathVisitor.h"
+#include "../grammar/CustomErrorListener.h"
 
-class MenuBar : public Gtk::MenuBar {
+/**
+ * Equals button
+ */
+class EqualsButton : public Gtk::Button {
 public:
-	MenuBar(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
+	EqualsButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
+
+	/**
+	 * Equals button click action
+	 */
+	void onButtonClick();
 
 private:
 	Glib::RefPtr<Gtk::Builder> m_builder;
-	Gtk::ImageMenuItem *m_menuItem = nullptr;
-	AboutDialog *m_aboutDialog = nullptr;
+	Gtk::Entry *m_textEntry = nullptr;
+	CustomErrorListener m_customErrorListener;
 };
+

@@ -19,20 +19,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#pragma once
+#include "CleanButton.h"
 
-#include <iostream>
-#include <gtkmm.h>
-#include "gui/MainWindow.h"
+CleanButton::CleanButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+		: Gtk::Button(object), m_builder(builder) {
+	m_builder->get_widget("text_entry", m_textEntry);
+	this->signal_pressed().connect(sigc::mem_fun(*this, &CleanButton::onButtonClick));
+}
 
-#ifndef GLADE_FILE
-#define GLADE_FILE "calculator_gui.glade"
-#endif
-
-/**
- * Main program's function
- * @param argc Count of arguments
- * @param argv Array of arguments
- * @return Execution status
- */
-int main(int argc, char *argv[]);
+void CleanButton::onButtonClick() {
+	m_textEntry->set_text("");
+}

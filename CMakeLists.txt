@@ -7,6 +7,10 @@ include(GNUInstallDirs)
 find_package(PkgConfig)
 pkg_check_modules(GTKMM gtkmm-3.0)
 
+# Build options
+SET(ENABLE_TESTING TRUE CACHE BOOL "Build tests")
+SET(ENABLE_PROFILING FALSE CACHE BOOL "Build profiling")
+
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -48,4 +52,7 @@ add_subdirectory(${ANTLR4_SRC} antlr4 EXCLUDE_FROM_ALL)
 include_directories(${ANTLR4_SRC}/runtime/src)
 
 add_subdirectory(src)
-add_subdirectory(tests)
+
+if (ENABLE_TESTING)
+	add_subdirectory(tests)
+endif()

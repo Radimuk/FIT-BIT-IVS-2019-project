@@ -19,11 +19,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "MenuBar.h"
+#include "BackspaceButton.h"
 
-MenuBar::MenuBar(BaseObjectType* object, const Glib::RefPtr<Gtk::Builder>& builder) : Gtk::MenuBar(object), m_builder(builder) {
-	m_builder->get_widget_derived("about_dialog", m_aboutDialog);
-	m_builder->get_widget("menu_help_about", m_menuItem);
-	m_menuItem->signal_activate().connect(sigc::mem_fun(m_aboutDialog, &AboutDialog::onActivate));
+BackspaceButton::BackspaceButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder)
+		: Gtk::Button(object), m_builder(builder) {
+	m_builder->get_widget("text_entry", m_textEntry);
+	this->signal_pressed().connect(sigc::mem_fun(*this, &BackspaceButton::onButtonClick));
+}
 
+void BackspaceButton::onButtonClick() {
+	Glib::ustring text = m_textEntry->get_text();
+	text = text.substr(0, text.size() - 1);
+	m_textEntry->set_text(text);
 }

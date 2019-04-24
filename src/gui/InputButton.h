@@ -21,18 +21,24 @@
 
 #pragma once
 
-#include <iostream>
 #include <gtkmm.h>
-#include "gui/MainWindow.h"
-
-#ifndef GLADE_FILE
-#define GLADE_FILE "calculator_gui.glade"
-#endif
 
 /**
- * Main program's function
- * @param argc Count of arguments
- * @param argv Array of arguments
- * @return Execution status
+ * Input button
  */
-int main(int argc, char *argv[]);
+class InputButton : public Gtk::Button {
+public:
+	InputButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder);
+	InputButton(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> &builder, const std::string &text);
+
+	/**
+	 * Input button click action
+	 */
+	void onButtonClick();
+
+private:
+	Glib::RefPtr<Gtk::Builder> m_builder;
+	Gtk::Entry *m_textEntry = nullptr;
+	std::string m_text;
+};
+
