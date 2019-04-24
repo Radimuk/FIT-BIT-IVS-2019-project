@@ -18,7 +18,7 @@ build-debug:
 
 clean:
 	rm -rf build
-	rm -rf dist
+	$(MAKE) -C docs/user clean
 	$(MAKE) -C profiling clean
 
 cleanall: clean
@@ -33,7 +33,7 @@ deb-changelog-release:
 deb-package:
 	dpkg-buildpackage -b -rfakeroot -us -uc -tc
 
-doc: doxygen
+doc: doxygen user-doc
 
 doxygen:
 	@mkdir -p docs/api
@@ -81,3 +81,7 @@ test: build-debug
 
 uninstall:
 	$(MAKE) -C build/install uninstall
+
+user-doc:
+	$(MAKE) -C docs/user
+	cp -u docs/user/dokumentace.pdf dokumentace.pdf
