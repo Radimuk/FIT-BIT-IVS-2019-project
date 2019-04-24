@@ -1,0 +1,4 @@
+xlipka02 120 (implementace matematické knihovny, testy pro gramatiku, profilování, uživatelská dokumentace)
+xondra58 150 (kostra repozitáře, plán, nastavení CI, balíček pro Debian-based distribuce, repozitář pro balíčky, dokumentace API, akceptační testování)
+xraurp00 120 (testy matematické knihovny, implementace gramatiky, nápověda v aplikaci, akceptační testování)
+xreinh00 10 (návrh GUI)
