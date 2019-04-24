@@ -26,6 +26,9 @@
 #include <iostream>
 #include <exception>
 
+/**
+ * Custom error listener for parser and lexer errors
+ */
 class ANTLR4CPP_PUBLIC CustomErrorListener : public antlr4::BaseErrorListener {
 public:
     /**
