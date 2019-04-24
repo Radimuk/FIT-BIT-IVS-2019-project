@@ -6,7 +6,7 @@ enable_testing()
 find_package(GTest QUIET)
 
 if (NOT GTest_FOUND)
-	add_subdirectory(${CMAKE_SOURCE_DIR}/external/googletest googletest)
+	add_subdirectory(${CMAKE_SOURCE_DIR}/external/googletest googletest EXCLUDE_FROM_ALL)
 	set(GTEST_BOTH_LIBRARIES gtest gtest_main)
 else(NOT GTest_FOUND)
 	include_directories(${GTEST_INCLUDE_DIRS})

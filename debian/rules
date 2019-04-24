@@ -4,4 +4,4 @@
 	dh $@  --buildsystem=cmake --builddirectory=build/debian
 
 override_dh_auto_configure:
-	dh_auto_configure -- -DGLADE_FILE="/usr/share/fit-calc/calculator_gui.glade"
+	dh_auto_configure -- -DGLADE_FILE="/usr/share/fit-calc/calculator_gui.glade" -DENABLE_TESTING=No
