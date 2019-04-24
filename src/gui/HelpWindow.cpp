@@ -25,6 +25,7 @@ HelpWindow::HelpWindow(BaseObjectType *object, const Glib::RefPtr<Gtk::Builder> 
 		: Gtk::Window(object), m_builder(builder) {
 	this->set_title("FIT Calc - Help");
 	this->set_icon_name("gtk-help");
+	this->set_default_size(500, 500);
 	m_builder->get_widget_derived("help_content", m_view);
 }
 
