@@ -1,99 +1,123 @@
-\documentclass[12pt]{article}
-\usepackage[a4paper, text={17cm,24cm}, top=3cm, left=2cm]{geometry}
+\documentclass[11pt,a4paper,titlepage]{article}
+\usepackage[a4paper,top=3cm,left=2cm,right=2cm,bottom=2cm]{geometry}
 \usepackage[utf8]{inputenc}
-\usepackage{times}
 \usepackage[czech]{babel}
 \usepackage[unicode]{hyperref}
 \usepackage{graphicx}
+\title{Uživatelská dokumentace}
 \begin{document}
 
-\begin{titlepage}
-	\begin{center}
+	\begin{titlepage}
+		\begin{center}
+			\includegraphics[height = 96pt]{img/FIT_barevne_CMYK_CZ.pdf} \\
 
-		\includegraphics[height = 96pt]{img/FIT_barevne_CMYK_CZ.pdf} \\
+			\begin{LARGE}
+				\textbf{Vysoké učení technické v~Brně} \\
+			\end{LARGE}
 
-		\begin{LARGE}
-			\textbf{Vysoké učení technické v Brně} \\
-		\end{LARGE}
+			\begin{Large}
+				\textbf{Fakulta informačních technologií} \\
+			\end{Large}
 
-		\begin{large}
-			Fakulta informačních technologií \\
-			Elektronika pro informační technologie \\
-			2018~/~2019 
-		\end{large}
-		\\[78mm]
+			\begin{large}
+				Praktické aspekty vývoje software \\
+				2018~/~2019
+			\end{large}
 
-		\begin{huge}
+			\vspace{\stretch{0.382}}
+
+			\begin{huge}
 				\textbf{Uživatelská dokumentace} \\
-			\begin{large}		
-		Radim Lipka xlipka02@stud.fit.vutbr.cz
-		
-        Roman Ondráček xondra58@stud.fit.vutbr.cz
-        
-        Pavel Raur xraurp00@stud.fit.vutbr.cz
-        
-        David Reinhart xreinh00@stud.fit.vutbr.cz
-        \end{large}
-		\end{huge}
-	\end{center}
+			\end{huge}
 
-	\vfill
+			\vspace{\stretch{0.618}}
 
-
-\end{titlepage}
-
-\tableofcontents
-\newpage
-
-\section{Instalace kalkulačky}
-Existují dva způsoby, jak kalkulačku nainstalovat, jedna možnost je nainstalovat ji manuálně po stažení z repozitáře, druhá možnost je stáhnout si ji a nainstalovat z balíčků pro Debian.
-\subsection{Instalace z repozitáře}
-Pokud si chcete nainstalovat kalkulačku z repozitáře, stačí navšívit stránku \\ 
-\href{https://github.com/Roman3349/FIT-BIT-IVS-2019-project}{https://github.com/Roman3349/FIT-BIT-IVS-2019-project} a kliknout na \textbf{Download} nebo-li stáhnout. Po určení místa uložení pak stačí ve staženém adresáři napsat \textbf{sudo make install} a kalkulačka se nainstaluje. Pro odinstalovaní potom slouží příkaz \textbf{sudo make uninstall}.
-\subsection{Instalace z balíčku}
-Pokud se rozhodnete pro nainstalování si kalkulačky z balíčků pro debian, je nutné provést následující sekvenci příkazů. 
-\\
-if [ "\$(whoami)" != "root" ]; then \\
-SUDO=sudo \\
-fi 
-\begin{itemize}
-    \item \${SUDO} apt-get -y install apt-transport-https lsb-release ca-certificates
-    \item \${SUDO} wget -O /etc/apt/trusted.gpg.d/romanondracek.gpg\\ https://deb.romanondracek.cz/ubuntu/apt.gpg 
-    \item \${SUDO} sh -c 'echo "deb https://deb.romanondracek.cz/ubuntu/\\  \$(lsb\_release -sc) main" > /etc/apt/sources.list.d/romanondracek.list'
-    \item \${SUDO} apt-get update
-    \item a nakonec sudo apt-get install fit-calc
-\end{itemize}
-
-\section{Orientace v prostředí kalkulačky}
-\subsection{Horní lišta}
-V horní liště kalkulačky můžete vidět tlačítko \textbf{Nápověda}.
-
-Při kliknutí na toto tlačítko se zobrazí možnost \textbf{O aplikaci}, kde můžete zjistit informace o aktuální verzi kalkulačky, odkaz na GitHub repozitář, seznam tvůrců a licenci, pod kterou je kalkulačka šířená a možnost \textbf{Nápověda}, kde si můžete přečíst nápovědu k používání kalkulačky.
-\subsection{Prostředí kalkulačky}
-Samotné prostřední kalkulačky je rozděleno do tří sekcí.
-
-Úplně nahoře můžete vidět okno, ve kterém se zobrazují vámi zadávané hodnoty, například pro kontrolu, jestli jste při zadávání neudělali nějakej chybu, která by ovlivnila výsledek výpočtu.
-
-Přibližně uprostřed se nachází řádek sloužící pro váš vstup do kalkulačky.
-
-A nakonec ve spodní části je k vidění klávesnice s čísly a různými funkcemi pro výpočet.
-
-\section{Ovládání kalkulačky}
-Vstup do kalkulačky lze zadat pomocí klikání na příslušná tlačítka. Čísla a některé funkce (pokud máte příslušné symboly na klávesnici) lze zadat i z klávesnice.
-\begin{itemize}
-\item Pro zadání čísel 0-9 slouží klávesy 0-9.
-\item Pro zadání konstanty PI a Eulerovova čísla použijte klavesy $\pi$ a $e$.
-\item Pro použití základních matematických operací plus, minus, krát a děleno, slouží tlačítka +, -, $\times$ a $\div$.
-\item Pro oddělelování celých a desetinných částí čísel slouží desetinná čárka $,$.
-\item Pro počítání s mocninami a odmocninou slouží tlačítka $x^n$ pro obecnou mocninu, $x^{-1}$ pro získání inverzního čísla a $\sqrt{}$ pro získání odmocniny z určitého čísla. Pro n--tou odmocninu je syntax $n\sqrt{}$. Při zadání pouze $\sqrt{}$ získáte druhou mocninu čísla.
-\item Pro počítání s procenty slouží symbol \%, přičemž syntax pro počítání s procenty je x +  (-, $\times$ nebo $\div$) y\%.
-\item Pro zbytek po dělení modulo, logaritmus se základem deset a přirozený logaritmus slouží tlačítka $mod, log$ a $ln$.
-\item Pro počítání s faktoriálem a absolutní hodnotou slouží tlačítka $x!$ a $|x|$.
-\item Pro použití goniometrických funkcí sinus, cosinus a tangens slouží tlačítka $sin, cos$ a $tan$ v pravém sloupci.
-\item Tlačítko C slouží pro vymazání celého vstupu. Tlačítko $\longleftarrow$ je určeno pro vymazání jednoho znaku ze vstupu.
-\item Tlačítko Ans slouží pro zapamatování výsledku posledního výpočtu.
-\end{itemize}
+			\begin{large}
+				Radim Lipka xlipka02@stud.fit.vutbr.cz \\
+				Roman Ondráček xondra58@stud.fit.vutbr.cz \\
+				Pavel Raur xraurp00@stud.fit.vutbr.cz \\
+				David Reinhart xreinh00@stud.fit.vutbr.cz \\
+			\end{large}
+		\end{center}
+	\end{titlepage}
 
 
+	\tableofcontents
+	\newpage
+
+	\section{Instalace}
+
+	Existují tři způsoby, jak kalkulačku nainstalovat:
+
+	\begin{itemize}
+		\item kompilace a instalace ze zdrojových souborů - viz \ref{instalace:manualni},
+		\item sestavení a instalace balíčku pro linuxové distribuce založené na Debianu - viz \ref{instalace:balicek},
+		\item instalace z~repozitáře - viz \ref{instalace:repozitar}.
+	\end{itemize}
+
+	\subsection{Kompilace a instalace ze zdrojových souborů}\label{instalace:manualni}
+
+	Nejdříve je nutné nainstalovat závislosti potřebné ke kompilaci ze zdrojových souborů. \\
+	Na linuxových distribucích založených na Debianu se jedná o~tyto balíčky: \texttt{build-essential, cmake, git, gnome-icon-theme, libgtest-dev, libgtkmm-3.0-dev} a \texttt{uuid-dev}. \\
+
+	Poté je nutné naklonovat repozitář pomocí následujícího příkazu \\ \texttt{git clone https://github.com/Roman3349/FIT-BIT-IVS-2019-project --recurse-submodules} \\ a přejít do složky \texttt{FIT-BIT-IVS-2019-project}. \\
+	Kde poté stačí zadat příkaz \texttt{sudo make install} pro instalaci a pro odinstalaci stačí zadat příkaz \texttt{sudo make uninstall}.
+
+	\subsection{Sestavení a instalace balíčku}\label{instalace:balicek}
+
+	Najdříve je nutné nainstalovat závisloti potřebné ke kompilaci a také k~sestavení balíčku. \\
+	Na linuxových distribucích založených na Debianu se jedná o~tyto balíčky: \texttt{build-essential, cmake, devscripts, git, git-buildpackage, gnome-icon-theme, libgtest-dev, libgtkmm-3.0-dev} a \texttt{uuid-dev}. \\
+
+	Poté je nutné naklonovat repozitář pomocí následujícího příkazu \\ \texttt{git clone https://github.com/Roman3349/FIT-BIT-IVS-2019-project --recurse-submodules} \\ a přejít do složky \texttt{FIT-BIT-IVS-2019-project}. \\
+	Kde poté stačí zadat příkaz \texttt{make deb-package} pro vytvoření balíčku. \\
+	Poté stačí vytvořený balíček nainstalovat pomocí příkazu \texttt{sudo apt-get install ./../fit-calc\_*.deb}. \\
+	Pro případnou odinstalaci stačí zadat příkaz \texttt{sudo apt-get purge fit-calc}.
+
+	\subsection{Instalace z~repozitáře}\label{instalace:repozitar}
+
+	Tento způsob instalace je aktuálně podporovaný pouze na linuxových distribucích Debian testing a Ubuntu 18.04. \\
+	Nejdříve je nutné nainstalovat balíčky, které jsou nutné pro podporu HTTPS repozitářů pomocí příkazu \texttt{sudo apt-get -y install apt-transport-https lsb-release ca-certificates}. \\
+
+	Poté je nutné stáhnout PGP klíč, pomocí kterého je repozitář podepsaný, pomocí příkazu: \\ {\scriptsize\texttt{sudo wget -O /etc/apt/trusted.gpg.d/romanondracek.gpg https://deb.romanondracek.cz/debian/apt.gpg}}. \\
+	Dále přidáme repozitář do nastavení balíčkovacícho systému na Debianu pomocí příkazu: \\ {\scriptsize\verb~echo "deb https://deb.romanondracek.cz/debian/ testing main" | sudo tee /etc/apt/sources.list.d/romanondracek.list'~} případně na Ubuntu pomocí příkazu: \\ {\scriptsize\verb~echo "deb https://deb.romanondracek.cz/ubuntu/ bionic main" | sudo tee /etc/apt/sources.list.d/romanondracek.list'~}. \\
+	Pak aktualizujeme seznam balíčků v~repozitářích pomocí příkazu \texttt{sudo apt-get update} a nakonec nainstalujeme kalkulačku pomocí příkazu \texttt{sudo apt-get install fit-calc}.  \\
+	Pro případnou odinstalaci stačí zadat příkaz \texttt{sudo apt-get purge fit-calc}. \\
+
+	\newpage
+
+	\section{Orientace v~prostředí kalkulačky}
+
+	\subsection{Horní lišta}
+
+	V~horní liště kalkulačky můžete vidět tlačítko \textbf{Nápověda}.
+
+	Při kliknutí na toto tlačítko se zobrazí možnost \textbf{O~aplikaci}, kde můžete zjistit informace o~aktuální verzi kalkulačky, odkaz na GitHub repozitář, seznam tvůrců a licenci, pod kterou je kalkulačka šířená a možnost \textbf{Nápověda}, kde si můžete přečíst nápovědu k~používání kalkulačky.
+
+	\subsection{Prostředí kalkulačky}
+
+	Samotné prostřední kalkulačky je rozděleno do tří sekcí.
+
+	Úplně nahoře můžete vidět okno, ve kterém se zobrazují vámi zadávané hodnoty, například pro kontrolu, jestli jste při zadávání neudělali nějakej chybu, která by ovlivnila výsledek výpočtu.
+
+	Přibližně uprostřed se nachází řádek sloužící pro váš vstup do kalkulačky.
+
+	A~nakonec ve spodní části je k~vidění klávesnice s~čísly a různými funkcemi pro výpočet.
+
+	\section{Ovládání kalkulačky}
+
+	Vstup do kalkulačky lze zadat pomocí klikání na příslušná tlačítka. Čísla a některé funkce (pokud máte příslušné symboly na klávesnici) lze zadat i z~klávesnice.
+
+	\begin{itemize}
+		\item Pro zadání čísel 0-9 slouží klávesy 0-9.
+		\item Pro zadání konstanty PI a Eulerovova čísla použijte klavesy $\pi$ a $e$.
+		\item Pro použití základních matematických operací sčítání, odčítání, násobení a dělení, slouží tlačítka +, -, $\times$ a $\div$.
+		\item Pro oddělelování celých a desetinných částí čísel slouží desetinná čárka $,$.
+		\item Pro počítání s~mocninami a odmocninou slouží tlačítka $x^n$ pro obecnou mocninu, $x^{-1}$ pro získání inverzního čísla a $\sqrt{}$ pro získání odmocniny z~určitého čísla. Pro n--tou odmocninu je syntax $n\sqrt{}$. Při zadání pouze $\sqrt{}$ získáte druhou mocninu čísla.
+		\item Pro počítání s~procenty slouží symbol \%, přičemž syntax pro počítání s~procenty je x +  (-, $\times$ nebo $\div$) y\%.
+		\item Pro zbytek po dělení modulo, logaritmus se základem deset a přirozený logaritmus slouží tlačítka $mod, log$ a $ln$.
+		\item Pro počítání s~faktoriálem a absolutní hodnotou slouží tlačítka $x!$ a $|x|$.
+		\item Pro použití goniometrických funkcí sinus, cosinus a tangens slouží tlačítka $sin, cos$ a $tan$ v~pravém sloupci.
+		\item Tlačítko C slouží pro vymazání celého vstupu. Tlačítko $\leftarrow$ je určeno pro vymazání jednoho znaku ze vstupu.
+	\end{itemize}
 
 \end{document}
